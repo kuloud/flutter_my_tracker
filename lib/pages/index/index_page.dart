@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/pages/map/geo_location.dart';
+import 'package:flutter_my_tracker/pages/map/geo_location_page.dart';
 import 'package:flutter_my_tracker/pages/map/main_ui.dart';
 import 'package:flutter_my_tracker/pages/map/map_page.dart';
 
@@ -18,7 +18,7 @@ class _IndexPageState extends State<IndexPage> {
     const MapPage(),
     const MapPage(),
     const MapPage(),
-    GeolocatorWidget()
+    GeoLocatorPage()
   ];
 
   @override

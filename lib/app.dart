@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/pages/index/index_page.dart';
+import 'package:flutter_my_tracker/pages/map/geo_location_page.dart';
 
 class MyTrackerApp extends StatefulWidget {
   const MyTrackerApp({super.key});
@@ -28,7 +28,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      home: const IndexPage(),
+      home: const GeoLocatorPage(),
     );
   }
 }

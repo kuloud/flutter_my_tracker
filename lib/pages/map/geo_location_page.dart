@@ -3,16 +3,18 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
-class GeolocatorWidget extends StatefulWidget {
+class GeoLocatorPage extends StatefulWidget {
   /// Creates a new GeolocatorWidget.
-  const GeolocatorWidget({Key? key}) : super(key: key);
+  const GeoLocatorPage({Key? key}) : super(key: key);
 
   @override
-  _GeolocatorWidgetState createState() => _GeolocatorWidgetState();
+  _GeoLocatorPageState createState() => _GeoLocatorPageState();
 }
 
-class _GeolocatorWidgetState extends State<GeolocatorWidget> {
+class _GeoLocatorPageState extends State<GeoLocatorPage> {
   static const String _kLocationServicesDisabledMessage =
       'Location services are disabled.';
   static const String _kPermissionDeniedMessage = 'Permission denied.';
@@ -59,26 +61,26 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
       itemBuilder: (context) => [
         if (Platform.isIOS)
           const PopupMenuItem(
-            child: Text("Get Location Accuracy"),
             value: 1,
+            child: Text("Get Location Accuracy"),
           ),
         if (Platform.isIOS)
           const PopupMenuItem(
-            child: Text("Request Temporary Full Accuracy"),
             value: 2,
+            child: Text("Request Temporary Full Accuracy"),
           ),
         const PopupMenuItem(
-          child: Text("Open App Settings"),
           value: 3,
+          child: Text("Open App Settings"),
         ),
         if (Platform.isAndroid || Platform.isWindows)
           const PopupMenuItem(
-            child: Text("Open Location Settings"),
             value: 4,
+            child: Text("Open Location Settings"),
           ),
         const PopupMenuItem(
-          child: Text("Clear"),
           value: 5,
+          child: Text("Clear"),
         ),
       ],
     );
@@ -102,7 +104,7 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
               title: Text(positionItem.displayValue,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: Colors.white,
+                    // color: Colors.white,
                     fontWeight: FontWeight.bold,
                   )),
             );
@@ -111,7 +113,9 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
               child: ListTile(
                 title: Text(
                   positionItem.displayValue,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(
+                      // color: Colors.white
+                      ),
                 ),
               ),
             );
@@ -123,10 +127,6 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            child: (_positionStreamSubscription == null ||
-                    _positionStreamSubscription!.isPaused)
-                ? const Icon(Icons.play_arrow)
-                : const Icon(Icons.pause),
             onPressed: () {
               positionStreamStarted = !positionStreamStarted;
               _toggleListening();
@@ -137,16 +137,10 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
                     ? 'Resume'
                     : 'Pause',
             backgroundColor: _determineButtonColor(),
-          ),
-          sizedBox,
-          FloatingActionButton(
-            child: const Icon(Icons.my_location),
-            onPressed: _getCurrentPosition,
-          ),
-          sizedBox,
-          FloatingActionButton(
-            child: const Icon(Icons.bookmark),
-            onPressed: _getLastKnownPosition,
+            child: (_positionStreamSubscription == null ||
+                    _positionStreamSubscription!.isPaused)
+                ? const Icon(Icons.play_arrow)
+                : const Icon(Icons.pause),
           ),
         ],
       ),
@@ -224,6 +218,7 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
 
   void _updatePositionList(_PositionItemType type, String displayValue) {
     _positionItems.add(_PositionItem(type, displayValue));
+    print(displayValue);
     setState(() {});
   }
 
