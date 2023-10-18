@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:background_locator_2/background_locator.dart';
 import 'package:background_locator_2/location_dto.dart';
 import 'package:background_locator_2/settings/android_settings.dart';
@@ -18,14 +20,23 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   bool isRunning = false;
   LocationDto? lastLocation;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    syn();
+    syncServiceRunningState();
   }
 
-  Future<void> syn() async {
+  @override
+  void dispose() {
+    super.dispose();
+    if (_timer?.isActive ?? false) {
+      _timer?.cancel();
+    }
+  }
+
+  Future<void> syncServiceRunningState() async {
     final isServiceRunning = await BackgroundLocator.isServiceRunning();
     if (context.mounted) {
       setState(() {
@@ -68,6 +79,9 @@ class _IndexPageState extends State<IndexPage> {
   }
 
   void _onStop() async {
+    if (_timer?.isActive ?? false) {
+      _timer?.cancel();
+    }
     await BackgroundLocator.unRegisterLocationUpdate();
     final isServiceRunning = await BackgroundLocator.isServiceRunning();
     setState(() {
@@ -79,6 +93,11 @@ class _IndexPageState extends State<IndexPage> {
     if (await _checkLocationPermission()) {
       await _startLocator();
       final isServiceRunning = await BackgroundLocator.isServiceRunning();
+
+      _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+        // 每秒触发一次的逻辑
+        print(DateTime.now());
+      });
 
       setState(() {
         isRunning = isServiceRunning;

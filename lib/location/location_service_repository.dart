@@ -1,13 +1,18 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:isolate';
 import 'dart:math';
 import 'dart:ui';
 
 import 'package:background_locator_2/location_dto.dart';
+import 'package:flutter_my_tracker/models/pojos/position.dart';
+import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 
 class LocationServiceRepository {
-  static LocationServiceRepository _instance = LocationServiceRepository._();
+  static final LocationServiceRepository _instance =
+      LocationServiceRepository._();
+  final PositionProvider _positionProvider = PositionProvider();
 
   LocationServiceRepository._();
 
@@ -17,31 +22,30 @@ class LocationServiceRepository {
 
   static const String isolateName = 'LocatorIsolate';
 
-  int _count = -1;
-
   Future<void> init(Map<dynamic, dynamic> params) async {
+    if (!_positionProvider.isOpen()) {
+      await _positionProvider.open('location_database.db');
+    }
+
     final SendPort? send = IsolateNameServer.lookupPortByName(isolateName);
     send?.send(null);
   }
 
   Future<void> dispose() async {
-    logger.d("***********Dispose callback handler");
-    logger.d("$_count");
+    logger.d("Dispose callback handler");
+    if (_positionProvider.isOpen()) {
+      await _positionProvider.close();
+    }
     final SendPort? send = IsolateNameServer.lookupPortByName(isolateName);
     send?.send(null);
   }
 
   Future<void> callback(LocationDto locationDto) async {
-    logger.d('$_count location in dart: ${locationDto.toString()}');
-    await setLogPosition(_count, locationDto);
+    if (_positionProvider.isOpen()) {
+      await _positionProvider.insert(Position.fromJson(locationDto.toJson()));
+    }
+
     final SendPort? send = IsolateNameServer.lookupPortByName(isolateName);
     send?.send(locationDto.toJson());
-    _count++;
-  }
-
-  static Future<void> setLogPosition(int count, LocationDto data) async {
-    final date = DateTime.now();
-    // await FileManager.writeToLogFile(
-    //     '$count : ${formatDateLog(date)} --> ${formatLog(data)} --- isMocked: ${data.isMocked}\n');
   }
 }

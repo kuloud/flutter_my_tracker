@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:background_locator/keys.dart';
+import 'package:background_locator_2/keys.dart';
 
 class Position {
   static const String ARG_ID = 'id';

@@ -51,6 +51,12 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.light(
@@ -81,6 +87,8 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
     if (data == null) {
       return;
     }
+
+    // logger.d("${data.latitude}, ${data.longitude}");
 
     await BackgroundLocator.updateNotificationText(
         title: "new location received",
