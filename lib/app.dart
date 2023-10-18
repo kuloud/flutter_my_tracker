@@ -3,17 +3,15 @@ import 'dart:ui';
 
 import 'package:background_locator_2/background_locator.dart';
 import 'package:background_locator_2/location_dto.dart';
-import 'package:background_locator_2/settings/android_settings.dart';
-import 'package:background_locator_2/settings/ios_settings.dart';
-import 'package:background_locator_2/settings/locator_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/location/location_callback_handler.dart';
 import 'package:flutter_my_tracker/location/location_service_repository.dart';
+import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/pages/index/index_page.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
-import 'package:location_permissions/location_permissions.dart';
 
 import 'dart:async';
 
@@ -41,9 +39,16 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
     IsolateNameServer.registerPortWithName(
         port.sendPort, LocationServiceRepository.isolateName);
 
+    final trackStatCubit =
+        BlocProvider.of<TrackStatCubit>(context, listen: false);
+
     port.listen(
       (dynamic data) async {
         await updateUI(data);
+        Position? position = (data != null) ? Position.fromJson(data) : null;
+        if (position != null) {
+          trackStatCubit.update(position);
+        }
       },
     );
 
@@ -52,7 +57,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    port.close();
     super.dispose();
   }
 
@@ -74,6 +79,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
       ],
       supportedLocales: S.delegate.supportedLocales,
       home: const IndexPage(),
+      // home: const TrajectoryPage(),
     );
   }
 
@@ -88,7 +94,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
       return;
     }
 
-    // logger.d("${data.latitude}, ${data.longitude}");
+    logger.d("${data.toJson()}");
 
     await BackgroundLocator.updateNotificationText(
         title: "new location received",

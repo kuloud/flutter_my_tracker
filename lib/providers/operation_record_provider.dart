@@ -50,6 +50,14 @@ class OperationRecordProvider {
     return maps?.map((map) => OperationRecord.fromJson(map)).toList();
   }
 
+  Future<List<OperationRecord>?> getOperationRecordsByTime(
+      DateTime startTime, DateTime endTime) async {
+    List<Map<String, dynamic>>? maps = await db?.query(
+      'operation_records',
+    );
+    return maps?.map((map) => OperationRecord.fromJson(map)).toList();
+  }
+
   Future<int?> delete(int id) async {
     return await db?.delete(
       'operation_records',

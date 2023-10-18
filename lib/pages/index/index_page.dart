@@ -6,7 +6,16 @@ import 'package:background_locator_2/settings/android_settings.dart';
 import 'package:background_locator_2/settings/ios_settings.dart';
 import 'package:background_locator_2/settings/locator_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/location/location_callback_handler.dart';
+import 'package:flutter_my_tracker/pages/index/components/highlighted_number_text.dart';
+import 'package:flutter_my_tracker/pages/index/components/main_info_card.dart';
+import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
+import 'package:flutter_my_tracker/pages/index/components/trajectory/trajectory_panel.dart';
+import 'package:flutter_my_tracker/stat/track_stat.dart';
+import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:location_permissions/location_permissions.dart';
 
@@ -48,37 +57,69 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FloatingActionButton(
-              onPressed: () {
-                if (isRunning) {
-                  _onStop();
-                } else {
-                  _onStart();
-                }
-              },
-              backgroundColor: _determineButtonColor(),
-              child: (isRunning)
-                  ? const Icon(Icons.pause)
-                  : const Icon(Icons.play_arrow),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(S.of(context).appName),
+          automaticallyImplyLeading: false,
         ),
-        body: Container(
-          width: double.maxFinite,
-          padding: const EdgeInsets.all(22),
-          child: const Text(''),
-        ));
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            final trackStatCubit =
+                BlocProvider.of<TrackStatCubit>(context, listen: false);
+            if (isRunning) {
+              _onStop().then((value) => trackStatCubit.stop());
+            } else {
+              _onStart().then((value) => trackStatCubit.start());
+            }
+          },
+          backgroundColor: _determineButtonColor(),
+          child: (isRunning)
+              ? const Icon(Icons.pause)
+              : const Icon(Icons.play_arrow),
+        ),
+        bottomSheet: Container(
+          color: Theme.of(context).colorScheme.background,
+          child: DraggableScrollableSheet(
+            // maxChildSize: 0.6,
+            minChildSize: 0.4,
+            expand: false,
+            snap: true,
+            snapSizes: const [0.4],
+            builder: (BuildContext context, ScrollController scrollController) {
+              return SingleChildScrollView(
+                controller: scrollController,
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  width: double.maxFinite,
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [MainInfoCard()],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        body: const SizedBox.expand(
+            child: Stack(
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: TrajectoryPanel(),
+                ),
+              ],
+            )
+          ],
+        )));
   }
 
   Color _determineButtonColor() {
-    return isRunning ? Colors.green : Colors.red;
+    return isRunning ? Colors.red : Colors.green;
   }
 
-  void _onStop() async {
+  Future<bool> _onStop() async {
     if (_timer?.isActive ?? false) {
       _timer?.cancel();
     }
@@ -87,9 +128,10 @@ class _IndexPageState extends State<IndexPage> {
     setState(() {
       isRunning = isServiceRunning;
     });
+    return isServiceRunning;
   }
 
-  void _onStart() async {
+  Future<bool> _onStart() async {
     if (await _checkLocationPermission()) {
       await _startLocator();
       final isServiceRunning = await BackgroundLocator.isServiceRunning();
@@ -103,9 +145,12 @@ class _IndexPageState extends State<IndexPage> {
         isRunning = isServiceRunning;
         lastLocation = null;
       });
+
+      return isServiceRunning;
     } else {
       // show error
     }
+    return false;
   }
 
   Future<bool> _checkLocationPermission() async {

@@ -1,5 +1,12 @@
 {
+    "appName": "轨迹",
+
     "bottomNavigationBarLabelMap":"Map",
     "bottomNavigationBarLabelTracks":"Tracks",
-    "bottomNavigationBarLabelHistory":"History"
+    "bottomNavigationBarLabelHistory":"History",
+    
+    "unitKm":"公里",
+    "unitM":"米",
+    "labelPace":"配速",
+    "labelStep":"步数"
 }

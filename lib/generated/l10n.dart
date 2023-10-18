@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Sky`
+  String get appName {
+    return Intl.message(
+      'Sky',
+      name: 'appName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Map`
   String get bottomNavigationBarLabelMap {
     return Intl.message(
@@ -75,6 +85,46 @@ class S {
     return Intl.message(
       'History',
       name: 'bottomNavigationBarLabelHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `KM`
+  String get unitKm {
+    return Intl.message(
+      'KM',
+      name: 'unitKm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `M`
+  String get unitM {
+    return Intl.message(
+      'M',
+      name: 'unitM',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pace`
+  String get labelPace {
+    return Intl.message(
+      'Pace',
+      name: 'labelPace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step`
+  String get labelStep {
+    return Intl.message(
+      'Step',
+      name: 'labelStep',
       desc: '',
       args: [],
     );

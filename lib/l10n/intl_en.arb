@@ -1,5 +1,12 @@
 {
+    "appName": "Sky",
+
     "bottomNavigationBarLabelMap":"Map",
     "bottomNavigationBarLabelTracks":"Tracks",
-    "bottomNavigationBarLabelHistory":"History"
+    "bottomNavigationBarLabelHistory":"History",
+
+    "unitKm":"KM",
+    "unitM":"M",
+    "labelPace":"Pace",
+    "labelStep":"Step"
 }
