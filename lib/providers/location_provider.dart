@@ -1,6 +1,4 @@
 import 'package:flutter_my_tracker/models/pojos/position.dart';
-import 'package:flutter_my_tracker/models/pojos/position_ext.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -33,26 +31,26 @@ class PositionProvider {
     );
   }
 
-  Future<KPosition> insert(KPosition position) async {
+  Future<Position> insert(Position position) async {
     position.id = await db.insert('positions', position.toJson());
     return position;
   }
 
-  Future<KPosition?> getPositionById(int id) async {
+  Future<Position?> getPositionById(int id) async {
     List<Map<String, dynamic>> maps = await db.query(
       'positions',
       where: 'id = ?',
       whereArgs: [id],
     );
     if (maps.isNotEmpty) {
-      return Position.fromMap(maps.first).copyWith(id: id);
+      return Position.fromJson(maps.first);
     }
     return null;
   }
 
-  Future<List<KPosition>> getAllPositions() async {
+  Future<List<Position>> getAllPositions() async {
     List<Map<String, dynamic>> maps = await db.query('positions');
-    return maps.map((map) => Position.fromMap(map).copyWith()).toList();
+    return maps.map((map) => Position.fromJson(map)).toList();
   }
 
   Future<int> delete(int id) async {
@@ -63,7 +61,7 @@ class PositionProvider {
     );
   }
 
-  Future<int> update(KPosition position) async {
+  Future<int> update(Position position) async {
     return await db.update(
       'positions',
       position.toJson(),

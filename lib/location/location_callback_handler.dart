@@ -1,5 +1,6 @@
 import 'package:background_locator_2/location_dto.dart';
 import 'package:flutter_my_tracker/location/location_service_repository.dart';
+import 'package:flutter_my_tracker/utils/logger.dart';
 
 @pragma('vm:entry-point')
 class LocationCallbackHandler {
@@ -26,6 +27,6 @@ class LocationCallbackHandler {
 
   @pragma('vm:entry-point')
   static Future<void> notificationCallback() async {
-    print('***notificationCallback');
+    logger.d('***notificationCallback');
   }
 }
