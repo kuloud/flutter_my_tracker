@@ -6,6 +6,8 @@ import 'package:background_locator_2/location_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_my_tracker/cubit/theme/theme_bloc.dart';
+import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
 import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/location/location_service_repository.dart';
@@ -63,24 +65,27 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.light(
-        useMaterial3: true,
-      ).copyWith(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue)),
-      darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue)),
-      themeMode: ThemeMode.system,
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      home: const IndexPage(),
-      // home: const TrajectoryPage(),
-    );
+    return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
+      return MaterialApp(
+        theme: ThemeData.light(
+          useMaterial3: true,
+        ).copyWith(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue)),
+        darkTheme: ThemeData.dark(
+          useMaterial3: true,
+        ),
+        themeMode: (state is DarkTheme) ? ThemeMode.dark : ThemeMode.light,
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        home: const IndexPage(),
+        // home: const TrajectoryPage(),
+      );
+    });
   }
 
   Future<void> updateUI(dynamic data) async {

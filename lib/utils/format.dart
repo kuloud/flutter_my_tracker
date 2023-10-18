@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
+import 'package:intl/intl.dart';
 
 String formatMilliseconds(int milliseconds) {
   Duration duration = Duration(milliseconds: milliseconds);
@@ -14,6 +15,24 @@ String formatMilliseconds(int milliseconds) {
   String secondsStr = seconds.toString().padLeft(2, '0');
 
   return '$hoursStr:$minutesStr:$secondsStr';
+}
+
+String formatMillisecondsCN(int milliseconds) {
+  Duration duration = Duration(milliseconds: milliseconds);
+  int hours = duration.inHours;
+  int minutes = duration.inMinutes.remainder(60);
+  int seconds = duration.inSeconds.remainder(60);
+
+  return (hours > 0)
+      ? '$hours时$minutes分$seconds秒'
+      : (minutes > 0)
+          ? '$minutes分$seconds秒'
+          : '$seconds秒';
+}
+
+String formatMillisecondsDateTime(int milliseconds) {
+  return DateFormat('yyyy:MM:dd HH:mm')
+      .format(DateTime.fromMillisecondsSinceEpoch(milliseconds.toInt()));
 }
 
 Object distanceFormat(S s, double meters) {

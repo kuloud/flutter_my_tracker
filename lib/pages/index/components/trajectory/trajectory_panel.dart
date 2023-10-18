@@ -2,6 +2,7 @@ import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
+import 'package:flutter_my_tracker/utils/color.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 class TrajectoryPanel extends StatefulWidget {
@@ -35,6 +36,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
                     p.longitude,
                     p.altitude,
                   ),
+                  color: generateSpeedColor(p.speed),
                 ));
               }
 

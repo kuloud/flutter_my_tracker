@@ -1,13 +1,17 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-List<Color> generateGradientColors(double pace) {
-  double normalizedPace = pace / 10; // 将配速标准化到 0-1 范围内
-  Color green = Colors.green;
-  Color yellow = Colors.yellow;
-  Color red = Colors.red;
-
-  return [
-    Color.lerp(green, yellow, normalizedPace)!,
-    Color.lerp(yellow, red, normalizedPace)!,
-  ];
+/// m/s
+Color generateSpeedColor(double speed) {
+  if (speed > 3) {
+    // 快速跑
+    double normalizedPace = (min(speed, 4.5) - 3) * 0.66;
+    return Color.lerp(Colors.yellow, Colors.red, normalizedPace)!;
+  } else if (speed > 0.5) {
+    double normalizedPace = (max(speed, 0.5) - 0.5) * 0.4;
+    return Color.lerp(Colors.green, Colors.yellow, normalizedPace)!;
+  } else {
+    return const Color.fromARGB(255, 200, 200, 200);
+  }
 }

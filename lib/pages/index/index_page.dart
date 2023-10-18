@@ -13,7 +13,9 @@ import 'package:flutter_my_tracker/location/location_callback_handler.dart';
 import 'package:flutter_my_tracker/pages/index/components/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/pages/index/components/main_info_card.dart';
 import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
+import 'package:flutter_my_tracker/pages/index/components/recent_record_card.dart';
 import 'package:flutter_my_tracker/pages/index/components/trajectory/trajectory_panel.dart';
+import 'package:flutter_my_tracker/pages/settings/settings_page.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
@@ -60,6 +62,16 @@ class _IndexPageState extends State<IndexPage> {
         appBar: AppBar(
           title: Text(S.of(context).appName),
           automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()),
+                  );
+                },
+                icon: const Icon(Icons.settings))
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -71,7 +83,7 @@ class _IndexPageState extends State<IndexPage> {
               _onStart().then((value) => trackStatCubit.start());
             }
           },
-          backgroundColor: _determineButtonColor(),
+          backgroundColor: _determineButtonColor(Theme.of(context).colorScheme),
           child: (isRunning)
               ? const Icon(Icons.pause)
               : const Icon(Icons.play_arrow),
@@ -92,7 +104,7 @@ class _IndexPageState extends State<IndexPage> {
                   width: double.maxFinite,
                   child: const Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: [MainInfoCard()],
+                    children: [MainInfoCard(), RecentRecordCard()],
                   ),
                 ),
               );
@@ -115,8 +127,10 @@ class _IndexPageState extends State<IndexPage> {
         )));
   }
 
-  Color _determineButtonColor() {
-    return isRunning ? Colors.red : Colors.green;
+  Color _determineButtonColor(ColorScheme colorScheme) {
+    return isRunning
+        ? colorScheme.errorContainer
+        : colorScheme.primaryContainer;
   }
 
   Future<bool> _onStop() async {

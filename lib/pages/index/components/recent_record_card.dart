@@ -8,8 +8,8 @@ import 'package:flutter_my_tracker/pages/index/components/highlighted_number_tex
 import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 
-class MainInfoCard extends StatelessWidget {
-  const MainInfoCard({
+class RecentRecordCard extends StatelessWidget {
+  const RecentRecordCard({
     super.key,
   });
 
@@ -35,36 +35,29 @@ class MainInfoCard extends StatelessWidget {
               ];
               return Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(children: [
-                    Row(
+                  padding: const EdgeInsets.only(
+                      left: 16, right: 16, top: 16, bottom: 8),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        HighlightNumberText(
-                          text:
-                              '${distanceFormat(S.of(context), state.trackStat.totalDistance)}',
-                          hightlightTextStyle:
-                              Theme.of(context).textTheme.displayMedium,
-                          textStyle: Theme.of(context).textTheme.bodyLarge,
+                        Text(
+                          '${distanceFormat(S.of(context), state.trackStat.totalDistance)}, ${formatMillisecondsCN(state.trackStat.totalTime.toInt())}',
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      child: PaceGradientBar(),
-                    ),
-                    GridView.count(
-                        mainAxisSpacing: 8,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        crossAxisCount: 3,
-                        childAspectRatio: 2,
-                        children: items
-                            .mapIndexed((e, i) => SkyGridTile(
-                                  data: e,
-                                  textAlign: _determineTextAlign(i),
-                                ))
-                            .toList())
-                  ]),
+                        Text(
+                          '最近运动, ${formatMillisecondsDateTime(state.trackStat.startTime.toInt())}',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const Divider(),
+                        ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            '全部运动记录',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          trailing: const Icon(Icons.chevron_right),
+                        )
+                      ]),
                 ),
               );
             default:

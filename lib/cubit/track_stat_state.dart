@@ -13,4 +13,8 @@ final class TrackStatUpdated extends TrackStatState {
   TrackStatUpdated({required this.trackStat});
 }
 
-final class TrackStatStop extends TrackStatState {}
+final class TrackStatStop extends TrackStatState {
+  final TrackStat trackStat;
+
+  TrackStatStop({required this.trackStat});
+}

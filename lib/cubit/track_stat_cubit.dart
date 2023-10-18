@@ -23,7 +23,7 @@ class TrackStatCubit extends Cubit<TrackStatState> {
   }
 
   stop() {
+    emit(TrackStatStop(trackStat: _trackStat!));
     _trackStat = null;
-    emit(TrackStatStop());
   }
 }
