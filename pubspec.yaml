@@ -11,11 +11,12 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  # google_maps_flutter: ^2.5.0
-  geolocator: ^10.1.0
+
   intl: ^0.18.1
-  path: ^1.8.3
+  location_permissions: ^4.0.1
+  path_provider: ^2.1.1
   sqflite: ^2.3.0
+  background_locator_2: ^2.0.6
 
 dev_dependencies:
   flutter_test:
