@@ -13,9 +13,12 @@ import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/location/location_service_repository.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/pages/index/index_page.dart';
+import 'package:flutter_my_tracker/pages/test.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 
 import 'dart:async';
+
+import 'package:get_it/get_it.dart';
 
 class MyTrackerApp extends StatefulWidget {
   const MyTrackerApp({super.key});
@@ -84,6 +87,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
         supportedLocales: S.delegate.supportedLocales,
         home: const IndexPage(),
         // home: const TrajectoryPage(),
+        // home: MyApp(),
       );
     });
   }

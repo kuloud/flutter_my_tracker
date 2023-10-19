@@ -38,5 +38,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  # assets:
+  #   - assets/mesh_3d/lowpolytree.obj
 flutter_intl:
   enabled: true

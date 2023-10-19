@@ -5,18 +5,34 @@ import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 
 class TrackStat {
-  int positionsCount = 0;
-  double minSpeed = double.infinity;
-  double maxSpeed = 0;
-  double minAltitude = double.infinity;
-  double maxAltitude = 0;
-  double totalDistance = 0;
+  int? id;
+  int positionsCount;
+  double minSpeed;
+  double maxSpeed;
+  double minAltitude;
+  double maxAltitude;
+  double totalDistance;
 
-  double startTime = double.infinity;
-  double endTime = 0;
-  double totalTime = 0;
+  double startTime;
+  double endTime;
 
+  double totalTime;
+  double avgSpeed;
   Position? lastPosition;
+
+  TrackStat({
+    this.id,
+    this.positionsCount = 0,
+    this.minSpeed = double.infinity,
+    this.maxSpeed = 0,
+    this.minAltitude = double.infinity,
+    this.maxAltitude = 0,
+    this.totalDistance = 0,
+    this.startTime = double.infinity,
+    this.avgSpeed = 0,
+    this.endTime = 0,
+    this.totalTime = 0,
+  });
 
   TrackStat addPosition(Position position) {
     positionsCount++;
@@ -36,15 +52,56 @@ class TrackStat {
     if (lastPosition != null) {
       totalDistance += calculateDistance(lastPosition!, position);
     }
+    avgSpeed = 1000.0 * totalDistance / totalTime;
     lastPosition = position;
 
     return this;
+  }
+
+  void tick() {
+    final now = double.parse('${DateTime.now().millisecondsSinceEpoch}');
+    startTime = (startTime != double.infinity) ? min(startTime, now) : now;
+    endTime = max(endTime, now);
+    totalTime = endTime - startTime;
+    avgSpeed = 1000.0 * totalDistance / totalTime;
   }
 
   TrackStat addPositions(List<Position> positions) {
     positions.map((e) => addPosition(e));
 
     return this;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'positionsCount': positionsCount,
+      'minSpeed': minSpeed,
+      'maxSpeed': maxSpeed,
+      'minAltitude': minAltitude,
+      'maxAltitude': maxAltitude,
+      'totalDistance': totalDistance,
+      'startTime': startTime.toInt(),
+      'endTime': endTime.toInt(),
+      'totalTime': totalTime,
+      'avgSpeed': avgSpeed,
+    };
+  }
+
+  factory TrackStat.fromJson(Map<dynamic, dynamic> json) {
+    return TrackStat(
+      id: json['id'],
+      positionsCount: json['positionsCount'],
+      minSpeed: json['minSpeed'],
+      maxSpeed: json['maxSpeed'],
+      minAltitude: json['minAltitude'],
+      maxAltitude: json['maxAltitude'],
+      totalDistance: json['totalDistance'],
+      startTime: double.parse('${json['startTime']}'),
+      endTime: double.parse('${json['endTime']}'),
+      totalTime: json['totalTime'],
+      avgSpeed: json['avgSpeed'],
+    );
   }
 
   Map<String, dynamic> toPrintJson() {

@@ -7,10 +7,18 @@ class PositionProvider {
   Database? db;
   bool isCreated = false;
 
-  Future open(String path) async {
-    logger.d('open------------');
+  PositionProvider._internal();
+
+  static PositionProvider? _instance;
+
+  factory PositionProvider.instance() {
+    _instance ??= PositionProvider._internal();
+    return _instance!;
+  }
+
+  Future open() async {
     db = await openDatabase(
-      join(await getDatabasesPath(), path),
+      join(await getDatabasesPath(), 'location_database.db'),
       version: 1,
       onCreate: (db, version) async {
         await db.execute('''

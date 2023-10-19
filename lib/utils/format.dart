@@ -48,7 +48,7 @@ double dp(double val, int places) {
 }
 
 String formatPace(double speed) {
-  if (speed <= 0) {
+  if (speed <= 0 || speed == double.infinity || speed.isNaN) {
     return 'N/A';
   }
   int minutes = (1000 / speed / 60).floor();
