@@ -32,8 +32,9 @@ class Position {
 
   factory Position.fromJson(Map<dynamic, dynamic> json) {
     bool isLocationMocked =
-        Platform.isAndroid ? json[Keys.ARG_IS_MOCKED] : false;
-    return Position(
+        Platform.isAndroid ? (json[Keys.ARG_IS_MOCKED] == 1) : false;
+
+    final p = Position(
       id: json[ARG_ID],
       latitude: json[Keys.ARG_LATITUDE],
       longitude: json[Keys.ARG_LONGITUDE],
@@ -46,6 +47,7 @@ class Position {
       isMocked: isLocationMocked,
       provider: json[Keys.ARG_PROVIDER],
     );
+    return p;
   }
 
   Map<String, dynamic> toJson() {

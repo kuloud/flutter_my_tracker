@@ -25,11 +25,10 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
     super.initState();
 
     _recordFuture = PositionProvider.instance().getAllPositions(
-        // startTime: DateTime.fromMillisecondsSinceEpoch(
-        //     widget.trackStat.startTime.toInt()),
-        // endTime: DateTime.fromMillisecondsSinceEpoch(
-        //     widget.trackStat.endTime.toInt())
-        );
+        startTime: DateTime.fromMillisecondsSinceEpoch(
+            widget.trackStat.startTime.toInt()),
+        endTime: DateTime.fromMillisecondsSinceEpoch(
+            widget.trackStat.endTime.toInt()));
   }
 
   final _controller = DiTreDiController(
@@ -44,8 +43,10 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
         future: _recordFuture,
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
+            print('----${snapshot.data}');
             if (snapshot.data!.isNotEmpty) {
               for (var p in snapshot.data!) {
+                print('----p:${p}');
                 _points.add(Point3D(
                   vector.Vector3(
                     p.latitude,
@@ -69,7 +70,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
                 figures: _points,
                 controller: _controller,
                 config: const DiTreDiConfig(
-                  defaultPointWidth: 2,
+                  defaultPointWidth: 4,
                   supportZIndex: false,
                 ),
               ),
