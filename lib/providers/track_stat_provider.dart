@@ -1,5 +1,7 @@
 import 'package:flutter_my_tracker/models/enums/operation.dart';
 import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
+import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
+import 'package:flutter_my_tracker/pages/records/components/utils/time_util.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -89,5 +91,18 @@ class TrackStatProvider {
       await _database!.close();
       _database = null;
     }
+  }
+
+  Future<List<SubTabData>?> getSecondTabs(int? firstTabIndex) async {
+    DateTime endDate = DateTime.now(); // 当前时间
+    DateTime startDate = DateTime(2022, 12, 31);
+    if (firstTabIndex == 0) {
+      return getWeekDataList(startDate, endDate);
+    } else if (firstTabIndex == 1) {
+      return getMonthDataList(startDate, endDate);
+    } else if (firstTabIndex == 2) {
+      return getYearDataList(startDate, endDate);
+    }
+    return null;
   }
 }
