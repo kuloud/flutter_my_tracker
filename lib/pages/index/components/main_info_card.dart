@@ -30,8 +30,6 @@ class MainInfoCard extends StatelessWidget {
                   'title': formatPace(state.trackStat.lastPosition?.speed ?? 0),
                   'label': S.of(context).labelPace
                 },
-                // {'title': '0', 'label': S.of(context).labelStep},
-                // {'title': '0', 'label': '总时长'}
               ];
               return Card(
                 child: Padding(

@@ -5,6 +5,7 @@ import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/enums/operation.dart';
 import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
+import 'package:flutter_my_tracker/pages/detail/detail_page.dart';
 import 'package:flutter_my_tracker/pages/index/components/grid_tile.dart';
 import 'package:flutter_my_tracker/pages/index/components/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
@@ -54,13 +55,30 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            '${distanceFormat(S.of(context), stat.totalDistance)}, ${formatPace(stat.avgSpeed)}',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          Text(
-                            '最近运动, ${formatMillisecondsDateTime(stat.startTime.toInt())}',
-                            style: Theme.of(context).textTheme.bodySmall,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                          trackStat: stat,
+                                        )),
+                              );
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${distanceFormat(S.of(context), stat.totalDistance)}, ${formatPace(stat.avgSpeed)}',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                                Text(
+                                  '最近运动, ${formatMillisecondsDateTime(stat.startTime.toInt())}',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
+                              ],
+                            ),
                           ),
                           const Divider(),
                           ListTile(

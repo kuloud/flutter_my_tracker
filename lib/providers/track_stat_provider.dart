@@ -53,7 +53,6 @@ class TrackStatProvider {
 
   Future<int> insert(TrackStat trackStat) async {
     await open();
-    print('[insert]-----------${trackStat.toJson()}');
     return await _database!.insert('track_stats', trackStat.toJson());
   }
 

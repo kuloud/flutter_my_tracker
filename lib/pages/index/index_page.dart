@@ -12,17 +12,12 @@ import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/location/location_callback_handler.dart';
 import 'package:flutter_my_tracker/models/enums/operation.dart';
 import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
-import 'package:flutter_my_tracker/pages/index/components/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/pages/index/components/main_info_card.dart';
-import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
 import 'package:flutter_my_tracker/pages/index/components/recent_record_card.dart';
 import 'package:flutter_my_tracker/pages/index/components/trajectory/trajectory_panel.dart';
 import 'package:flutter_my_tracker/pages/settings/settings_page.dart';
 import 'package:flutter_my_tracker/providers/operation_record_provider.dart';
-import 'package:flutter_my_tracker/stat/track_stat.dart';
-import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
-import 'package:get_it/get_it.dart';
 import 'package:location_permissions/location_permissions.dart';
 
 class IndexPage extends StatefulWidget {
