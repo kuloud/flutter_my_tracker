@@ -51,7 +51,7 @@ class PositionProvider {
     await open();
 
     position.id = await db?.insert('locations', position.toJson());
-    print('insert----${position.toJson()}');
+
     return position;
   }
 
@@ -72,8 +72,6 @@ class PositionProvider {
       {DateTime? startTime, DateTime? endTime}) async {
     await open();
     List<Map<String, dynamic>>? maps;
-    print(
-        '-----==== ${startTime?.millisecondsSinceEpoch} ${endTime?.millisecondsSinceEpoch}');
     if (startTime != null && endTime != null) {
       maps = await db?.query(
         'locations',
@@ -98,7 +96,6 @@ class PositionProvider {
     } else {
       maps = await db?.query('locations');
     }
-    print('-----==== $maps');
     return maps?.map((map) => Position.fromJson(map)).toList();
   }
 

@@ -17,8 +17,6 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
-
-    print('----${widget.trackStat.toPrintJson()}');
   }
 
   @override

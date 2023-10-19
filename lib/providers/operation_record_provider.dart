@@ -40,7 +40,6 @@ class OperationRecordProvider {
 
   Future<OperationRecord> insert(OperationRecord record) async {
     record.id = await db?.insert('operation_records', record.toJson());
-    print('[insert]----${record.toJson()}');
     return record;
   }
 
@@ -58,7 +57,7 @@ class OperationRecordProvider {
 
   Future<List<OperationRecord>?> getOperationRecords() async {
     List<Map<String, dynamic>>? maps = await db?.query('operation_records');
-    print('[getOperationRecords]----${maps}');
+
     return maps?.map((map) => OperationRecord.fromJson(map)).toList();
   }
 

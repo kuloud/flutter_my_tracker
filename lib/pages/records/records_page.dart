@@ -33,7 +33,7 @@ class _RecordsPageState extends State<RecordsPage>
           title: const Text('运动记录'),
           bottom: TabBar(
             controller: _tabController,
-            tabs: [
+            tabs: const [
               Tab(text: '周'),
               Tab(text: '月'),
               Tab(text: '年'),

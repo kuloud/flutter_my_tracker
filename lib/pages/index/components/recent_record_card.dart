@@ -1,16 +1,9 @@
-import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/models/enums/operation.dart';
-import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
 import 'package:flutter_my_tracker/pages/detail/detail_page.dart';
-import 'package:flutter_my_tracker/pages/index/components/grid_tile.dart';
-import 'package:flutter_my_tracker/pages/index/components/highlighted_number_text.dart';
-import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
 import 'package:flutter_my_tracker/pages/records/records_page.dart';
-import 'package:flutter_my_tracker/providers/operation_record_provider.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
@@ -79,6 +72,9 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
                                 ),
                               ],
                             ),
+                          ),
+                          const SizedBox(
+                            height: 8,
                           ),
                           const Divider(),
                           ListTile(

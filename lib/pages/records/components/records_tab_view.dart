@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
+import 'package:flutter_my_tracker/pages/records/components/record_region_list_tab_view.dart';
+import 'package:flutter_my_tracker/pages/records/components/summary_tab_view.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 
 class RecordsTabView extends StatefulWidget {
@@ -11,14 +13,12 @@ class RecordsTabView extends StatefulWidget {
   State<RecordsTabView> createState() => _RecordsTabViewState();
 }
 
-class _RecordsTabViewState extends State<RecordsTabView>
-    with TickerProviderStateMixin {
+class _RecordsTabViewState extends State<RecordsTabView> {
   int pageType = 0; // 0 普通数据列表页 1 汇总页
   DateTime? startTime;
   DateTime? endTime;
 
   Future<List<SubTabData>?>? _getSecondTabs;
-  TabController? _tabController;
 
   @override
   void initState() {
@@ -46,12 +46,6 @@ class _RecordsTabViewState extends State<RecordsTabView>
   }
 
   @override
-  void dispose() {
-    _tabController?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     if (pageType == 0) {
       return FutureBuilder(
@@ -59,46 +53,16 @@ class _RecordsTabViewState extends State<RecordsTabView>
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final secondTabs = snapshot.data!;
-              _tabController = TabController(
-                  initialIndex: 0, length: secondTabs.length, vsync: this);
-              _tabController?.index = secondTabs.length - 1;
-              return NestedScrollView(
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  return [
-                    SliverAppBar(
-                      forceMaterialTransparency: true,
-                      automaticallyImplyLeading: false,
-                      floating: true,
-                      pinned: true,
-                      snap: true,
-                      primary: false,
-                      title: TabBar(
-                        controller: _tabController,
-                        isScrollable: true,
-                        tabs: secondTabs
-                            .map((e) => Tab(
-                                  text: e.title,
-                                ))
-                            .toList(),
-                      ),
-                    ),
-                  ];
-                },
-                body: TabBarView(
-                  controller: _tabController,
-                  children: secondTabs
-                      .map((e) => Center(
-                            child: Text(e.toString()),
-                          ))
-                      .toList(),
-                ),
+              return RecordRegionListTabView(
+                secondTabs: secondTabs,
               );
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           });
-    } else if (pageType == 1) {}
-    return SizedBox();
+    } else if (pageType == 1) {
+      return const SummaryTabView();
+    }
+    return const SizedBox();
   }
 }

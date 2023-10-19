@@ -3,6 +3,7 @@ import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
 import 'package:flutter_my_tracker/pages/records/components/utils/time_util.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
+import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -68,20 +69,33 @@ class TrackStatProvider {
     return null;
   }
 
+  Future<TrackStat?> getOldestTrackStat() async {
+    await open();
+    List<Map<String, dynamic>> maps = await _database!
+        .query('track_stats', limit: 1, orderBy: 'startTime ASC');
+    if (maps.isNotEmpty) {
+      return TrackStat.fromJson(maps.first);
+    }
+    return null;
+  }
+
   Future<List<TrackStat>> getAll() async {
     await open();
     List<Map<String, dynamic>> maps = await _database!.query('track_stats');
+
     return List.generate(maps.length, (i) {
       return TrackStat(
+        id: maps[i]['id'],
         positionsCount: maps[i]['positionsCount'],
         minSpeed: maps[i]['minSpeed'],
         maxSpeed: maps[i]['maxSpeed'],
         minAltitude: maps[i]['minAltitude'],
         maxAltitude: maps[i]['maxAltitude'],
         totalDistance: maps[i]['totalDistance'],
-        startTime: maps[i]['startTime'],
-        endTime: maps[i]['endTime'],
+        startTime: double.parse('${maps[i]['startTime']}'),
+        endTime: double.parse('${maps[i]['endTime']}'),
         totalTime: maps[i]['totalTime'],
+        avgSpeed: maps[i]['avgSpeed'],
       );
     });
   }

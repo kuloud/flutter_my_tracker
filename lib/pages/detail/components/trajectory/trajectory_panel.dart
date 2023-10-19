@@ -43,10 +43,8 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
         future: _recordFuture,
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
-            print('----${snapshot.data}');
             if (snapshot.data!.isNotEmpty) {
               for (var p in snapshot.data!) {
-                print('----p:${p}');
                 _points.add(Point3D(
                   vector.Vector3(
                     p.latitude,

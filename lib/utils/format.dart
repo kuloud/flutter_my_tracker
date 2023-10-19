@@ -31,7 +31,12 @@ String formatMillisecondsCN(int milliseconds) {
 }
 
 String formatMillisecondsDateTime(int milliseconds) {
-  return DateFormat('yyyy:MM:dd HH:mm')
+  return DateFormat('yyyy/MM/dd HH:mm')
+      .format(DateTime.fromMillisecondsSinceEpoch(milliseconds.toInt()));
+}
+
+String formatMillisecondsDate(int milliseconds) {
+  return DateFormat('yyyy/MM/dd')
       .format(DateTime.fromMillisecondsSinceEpoch(milliseconds.toInt()));
 }
 
