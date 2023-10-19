@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
+import 'package:flutter_my_tracker/pages/records/components/record_list_view.dart';
 
 class RecordRegionListTabView extends StatefulWidget {
   const RecordRegionListTabView({super.key, required this.secondTabs});
@@ -55,11 +56,8 @@ class _RecordRegionListTabViewState extends State<RecordRegionListTabView>
       },
       body: TabBarView(
         controller: _tabController,
-        children: widget.secondTabs
-            .map((e) => Center(
-                  child: Text(e.toString()),
-                ))
-            .toList(),
+        children:
+            widget.secondTabs.map((e) => RecordListView(data: e)).toList(),
       ),
     );
   }

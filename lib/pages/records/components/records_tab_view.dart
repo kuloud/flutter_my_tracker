@@ -54,6 +54,7 @@ class _RecordsTabViewState extends State<RecordsTabView> {
             if (snapshot.hasData) {
               final secondTabs = snapshot.data!;
               return RecordRegionListTabView(
+                key: UniqueKey(),
                 secondTabs: secondTabs,
               );
             } else {

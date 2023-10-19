@@ -39,7 +39,7 @@ List<SubTabData> getMonthDataList(DateTime startDate, DateTime endDate) {
   DateTime currentMonthStart = DateTime(startDate.year, startDate.month);
 
   while (currentMonthStart.isBefore(endDate)) {
-    String month = DateFormat('MM').format(currentMonthStart);
+    String month = DateFormat('M月').format(currentMonthStart);
     var currentMonthEnd =
         DateTime(currentMonthStart.year, currentMonthStart.month + 1)
             .subtract(const Duration(days: 1));

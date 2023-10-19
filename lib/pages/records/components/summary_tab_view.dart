@@ -13,7 +13,7 @@ class SummaryTabView extends StatelessWidget {
       child: ListView(
         children: [
           Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: FutureBuilder(
                 future: TrackStatProvider.instance().getOldestTrackStat(),
                 builder: (context, snapshot) {
