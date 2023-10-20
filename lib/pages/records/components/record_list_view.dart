@@ -21,7 +21,8 @@ class _RecordListViewState extends State<RecordListView> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FutureBuilder(
-          future: TrackStatProvider.instance().getAll(),
+          future: TrackStatProvider.instance().getAll(
+              startTime: widget.data.startDate, endTime: widget.data.endDate),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final records = snapshot.data;
@@ -35,7 +36,8 @@ class _RecordListViewState extends State<RecordListView> {
                         child: ListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Text(
-                            '${distanceFormat(S.of(context), records![index].totalDistance)}',
+                            distanceFormat(
+                                S.of(context), records![index].totalDistance),
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           trailing: const Icon(Icons.chevron_right),

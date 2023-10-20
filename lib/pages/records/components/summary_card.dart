@@ -2,6 +2,7 @@ import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/components/grid_tile_2.dart';
 import 'package:flutter_my_tracker/data/query/stat.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 
 class SummaryCard extends StatefulWidget {
@@ -35,7 +36,11 @@ class _SummaryCardState extends State<SummaryCard> {
                 'title': formatMilliseconds(stat['totalTime'].toInt()),
                 'label': '总时长'
               },
-              {'title': formatPace(stat['totalDistance'] ?? 0), 'label': '总距离'},
+              {
+                'title': distanceFormat(S.of(context),
+                    double.parse('${stat['totalDistance'] ?? 0}')),
+                'label': '总距离'
+              },
             ];
 
             return Card(

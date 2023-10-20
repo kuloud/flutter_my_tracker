@@ -60,7 +60,7 @@ List<SubTabData> getYearDataList(DateTime startDate, DateTime endDate) {
   DateTime currentYearStart = DateTime(startDate.year);
 
   while (currentYearStart.isBefore(endDate)) {
-    String year = DateFormat('yyyy').format(currentYearStart);
+    String year = DateFormat('yyyy年').format(currentYearStart);
     var currentYearEnd =
         DateTime(currentYearStart.year + 1).subtract(const Duration(days: 1));
     SubTabData yearData = SubTabData(

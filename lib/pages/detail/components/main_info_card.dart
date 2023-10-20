@@ -1,10 +1,8 @@
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/pages/index/components/grid_tile.dart';
-import 'package:flutter_my_tracker/pages/index/components/highlighted_number_text.dart';
+import 'package:flutter_my_tracker/components/grid_tile.dart';
+import 'package:flutter_my_tracker/components/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
@@ -36,8 +34,7 @@ class MainInfoCard extends StatelessWidget {
           Row(
             children: [
               HighlightNumberText(
-                text:
-                    '${distanceFormat(S.of(context), trackStat.totalDistance)}',
+                text: distanceFormat(S.of(context), trackStat.totalDistance),
                 hightlightTextStyle: Theme.of(context).textTheme.displayMedium,
                 textStyle: Theme.of(context).textTheme.bodyLarge,
               ),

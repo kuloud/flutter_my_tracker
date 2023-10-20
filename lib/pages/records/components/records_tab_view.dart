@@ -3,6 +3,7 @@ import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.d
 import 'package:flutter_my_tracker/pages/records/components/record_region_list_tab_view.dart';
 import 'package:flutter_my_tracker/pages/records/components/summary_tab_view.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
+import 'package:async/async.dart';
 
 class RecordsTabView extends StatefulWidget {
   const RecordsTabView({super.key, this.controller});
@@ -25,15 +26,17 @@ class _RecordsTabViewState extends State<RecordsTabView> {
     super.initState();
 
     widget.controller?.addListener(() {
-      onFirstTabChanged();
+      if (widget.controller?.indexIsChanging ?? false) {
+        onFirstTabChanged();
+      }
     });
     onFirstTabChanged();
   }
 
   void onFirstTabChanged() {
-    final firstTabIndex = widget.controller?.index;
     if (mounted) {
       setState(() {
+        final firstTabIndex = widget.controller?.index;
         if (firstTabIndex == 3) {
           pageType = 1;
         } else {
@@ -49,12 +52,12 @@ class _RecordsTabViewState extends State<RecordsTabView> {
   Widget build(BuildContext context) {
     if (pageType == 0) {
       return FutureBuilder(
+          key: UniqueKey(),
           future: _getSecondTabs,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final secondTabs = snapshot.data!;
               return RecordRegionListTabView(
-                key: UniqueKey(),
                 secondTabs: secondTabs,
               );
             } else {

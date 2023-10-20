@@ -79,13 +79,41 @@ class TrackStatProvider {
     return null;
   }
 
-  Future<List<TrackStat>> getAll() async {
+  Future<List<TrackStat>> getAll(
+      {DateTime? startTime, DateTime? endTime}) async {
     await open();
-    List<Map<String, dynamic>> maps = await _database!.query('track_stats');
+    List<Map<String, dynamic>>? maps;
+    if (startTime != null && endTime != null) {
+      maps = await _database?.query(
+        'track_stats',
+        where: 'startTime >= ? AND startTime <= ?',
+        whereArgs: [
+          startTime.millisecondsSinceEpoch,
+          endTime.millisecondsSinceEpoch
+        ],
+      );
+    } else if (startTime != null) {
+      maps = await _database?.query(
+        'track_stats',
+        where: 'startTime >= ?',
+        whereArgs: [startTime.millisecondsSinceEpoch],
+      );
+    } else if (endTime != null) {
+      maps = await _database?.query(
+        'track_stats',
+        where: 'startTime <= ?',
+        whereArgs: [endTime.millisecondsSinceEpoch],
+      );
+    } else {
+      maps = await _database?.query('track_stats');
+    }
+    if (maps?.isEmpty ?? true) {
+      return [];
+    }
 
-    return List.generate(maps.length, (i) {
+    return List.generate(maps!.length, (i) {
       return TrackStat(
-        id: maps[i]['id'],
+        id: maps![i]['id'],
         positionsCount: maps[i]['positionsCount'],
         minSpeed: maps[i]['minSpeed'],
         maxSpeed: maps[i]['maxSpeed'],
@@ -109,7 +137,13 @@ class TrackStatProvider {
 
   Future<List<SubTabData>?> getSecondTabs(int? firstTabIndex) async {
     DateTime endDate = DateTime.now(); // 当前时间
-    DateTime startDate = DateTime(2022, 12, 31);
+    final oldestTrackStat =
+        await TrackStatProvider.instance().getOldestTrackStat();
+    DateTime startDate = DateTime.now();
+    if (oldestTrackStat?.startTime != null) {
+      startDate = DateTime.fromMillisecondsSinceEpoch(
+          oldestTrackStat!.startTime.toInt());
+    }
     if (firstTabIndex == 0) {
       return getWeekDataList(startDate, endDate);
     } else if (firstTabIndex == 1) {

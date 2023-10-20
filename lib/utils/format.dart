@@ -40,7 +40,7 @@ String formatMillisecondsDate(int milliseconds) {
       .format(DateTime.fromMillisecondsSinceEpoch(milliseconds.toInt()));
 }
 
-Object distanceFormat(S s, double meters) {
+String distanceFormat(S s, double meters) {
   if (meters > 1000) {
     return '${dp(meters / 1000, 2)} ${s.unitKm}';
   }
