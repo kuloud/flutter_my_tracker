@@ -13,20 +13,18 @@ class AboutPage extends StatelessWidget {
         child: FutureBuilder(
             future: getAppVersion(),
             builder: ((context, snapshot) {
-              return Expanded(
-                child: Align(
-                  alignment: const FractionalOffset(0.5, 0.3),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        height: 120,
-                        width: 120,
-                        child: EmptyView(),
-                      ),
-                      Text(snapshot.data ?? ''),
-                    ],
-                  ),
+              return Align(
+                alignment: const FractionalOffset(0.5, 0.3),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 120,
+                      width: 120,
+                      child: EmptyView(),
+                    ),
+                    Text(snapshot.data ?? ''),
+                  ],
                 ),
               );
             })),

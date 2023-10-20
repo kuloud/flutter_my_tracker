@@ -10,18 +10,20 @@ class SkyGridTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridTile(
-        footer: Text(
-          data['title']!,
-          textAlign: textAlign,
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(color: Theme.of(context).colorScheme.primary),
-        ),
-        child: Text(
-          data['label']!,
-          textAlign: textAlign,
-          style: Theme.of(context).textTheme.labelSmall,
-        ));
+        child: GridTileBar(
+      title: Text(
+        data['label']!,
+        textAlign: textAlign,
+        style: Theme.of(context).textTheme.labelSmall,
+      ),
+      subtitle: Text(
+        data['title']!,
+        textAlign: textAlign,
+        style: Theme.of(context)
+            .textTheme
+            .titleMedium
+            ?.copyWith(color: Theme.of(context).colorScheme.primary),
+      ),
+    ));
   }
 }

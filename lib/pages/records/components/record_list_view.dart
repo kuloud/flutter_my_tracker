@@ -38,13 +38,16 @@ class _RecordListViewState extends State<RecordListView> {
                           title: Text(
                             distanceFormat(
                                 S.of(context), records![index].totalDistance),
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(formatMillisecondsDateShort(S.of(context),
-                                  records[index].startTime.toInt())),
+                              Text(
+                                formatMillisecondsDateShort(S.of(context),
+                                    records[index].startTime.toInt()),
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
                               const Icon(Icons.chevron_right)
                             ],
                           ),

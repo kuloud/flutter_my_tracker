@@ -58,27 +58,32 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
                                         )),
                               );
                             },
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: double.maxFinite,
-                                  child: Text(
-                                    '${distanceFormat(S.of(context), stat.totalDistance)}, ${formatPace(stat.avgSpeed)}',
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: double.maxFinite,
+                                    child: Text(
+                                      '${distanceFormat(S.of(context), stat.totalDistance)}, 平均配速 ${formatPace(stat.avgSpeed)}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: double.maxFinite,
-                                  child: Text(
-                                    '最近运动, ${formatMillisecondsDateTime(stat.startTime.toInt())}',
-                                    style:
-                                        Theme.of(context).textTheme.bodySmall,
+                                  SizedBox(
+                                    width: double.maxFinite,
+                                    child: Text(
+                                      '最近运动, ${formatMillisecondsDateTime(stat.startTime.toInt())}',
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -89,7 +94,7 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
                             contentPadding: EdgeInsets.zero,
                             title: Text(
                               '全部运动记录',
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                             trailing: const Icon(Icons.chevron_right),
                             onTap: () {

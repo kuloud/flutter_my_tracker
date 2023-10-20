@@ -43,13 +43,18 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
         titlesData: FlTitlesData(
             topTitles:
                 const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            leftTitles:
-                const AxisTitles(sideTitles: SideTitles(showTitles: true)),
+            leftTitles: AxisTitles(
+              sideTitles: SideTitles(
+                  reservedSize: 40,
+                  showTitles: true,
+                  getTitlesWidget: buildLeftTitlesWidget),
+            ),
             rightTitles:
                 const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
               showTitles: true,
+              reservedSize: 24,
               getTitlesWidget: buildBottomTitlesWidget,
             ))),
         lineBarsData: [
@@ -63,6 +68,18 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
         ],
         borderData: FlBorderData(
             show: true, border: Border.all(color: Colors.blueGrey.shade200)));
+  }
+
+  Widget buildLeftTitlesWidget(double value, TitleMeta meta) {
+    return SideTitleWidget(
+      fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
+      axisSide: meta.axisSide,
+      child: Text(
+        meta.formattedValue,
+        textAlign: TextAlign.right,
+        style: Theme.of(context).textTheme.labelSmall,
+      ),
+    );
   }
 
   Widget buildBottomTitlesWidget(double value, TitleMeta meta) {

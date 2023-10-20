@@ -57,7 +57,7 @@ class _SummaryCardState extends State<SummaryCard> {
                         children: [
                           Text(
                             '运动总结',
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                           Text(
                             '运动${stat['totalMotionTimes']}次',

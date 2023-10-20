@@ -46,15 +46,15 @@ Iterable<Point3D> _generateCubes() sync* {
     Colors.lightBlue.shade900,
   ];
 
-  const count = 5;
+  const count = 4;
   for (var x = count; x > 0; x--) {
     for (var y = count; y > 0; y--) {
       for (var z = count; z > 0; z--) {
         yield Point3D(
           vector.Vector3(
-            x.toDouble() * 2,
-            y.toDouble() * 2,
-            z.toDouble() * 2,
+            x.toDouble(),
+            y.toDouble(),
+            z.toDouble(),
           ),
           color: colors[(colors.length - y) % colors.length],
         );

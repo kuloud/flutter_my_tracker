@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
+import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
 
