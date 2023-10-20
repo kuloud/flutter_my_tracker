@@ -62,13 +62,21 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '${distanceFormat(S.of(context), stat.totalDistance)}, ${formatPace(stat.avgSpeed)}',
-                                  style: Theme.of(context).textTheme.bodyMedium,
+                                SizedBox(
+                                  width: double.maxFinite,
+                                  child: Text(
+                                    '${distanceFormat(S.of(context), stat.totalDistance)}, ${formatPace(stat.avgSpeed)}',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
                                 ),
-                                Text(
-                                  '最近运动, ${formatMillisecondsDateTime(stat.startTime.toInt())}',
-                                  style: Theme.of(context).textTheme.bodySmall,
+                                SizedBox(
+                                  width: double.maxFinite,
+                                  child: Text(
+                                    '最近运动, ${formatMillisecondsDateTime(stat.startTime.toInt())}',
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                  ),
                                 ),
                               ],
                             ),

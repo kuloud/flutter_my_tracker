@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
+import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/pages/detail/components/main_info_card.dart';
 import 'package:flutter_my_tracker/pages/detail/components/trajectory/trajectory_panel.dart';
+import 'package:flutter_my_tracker/providers/location_provider.dart';
+import 'package:flutter_my_tracker/stat/chart/line_chart_altitude.dart';
+import 'package:flutter_my_tracker/stat/chart/line_chart_altitude.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 
 class DetailPage extends StatefulWidget {
@@ -14,9 +18,16 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  Future<List<Position>?>? _fetchTrackPoints;
+
   @override
   void initState() {
     super.initState();
+    _fetchTrackPoints = PositionProvider.instance().getAllPositions(
+        startTime: DateTime.fromMillisecondsSinceEpoch(
+            widget.trackStat.startTime.toInt()),
+        endTime: DateTime.fromMillisecondsSinceEpoch(
+            widget.trackStat.endTime.toInt()));
   }
 
   @override
@@ -29,7 +40,6 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).appName),
-          actions: [],
         ),
         bottomSheet: Container(
           color: Theme.of(context).colorScheme.background,
@@ -51,7 +61,18 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                       MainInfoCard(
                         trackStat: widget.trackStat,
-                      )
+                      ),
+                      FutureBuilder(
+                          future: _fetchTrackPoints,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return LineChartAltitude(
+                                  trackStat: widget.trackStat,
+                                  points: snapshot.data!);
+                            } else {
+                              return const SizedBox();
+                            }
+                          })
                     ],
                   ),
                 ),

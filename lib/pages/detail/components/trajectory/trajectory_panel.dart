@@ -81,62 +81,6 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
             return const SizedBox();
           }
         }));
-    // return BlocBuilder<TrackStatCubit, TrackStatState>(
-    //     bloc: BlocProvider.of<TrackStatCubit>(context, listen: false),
-    //     builder: (context, state) {
-    //       switch (state) {
-    //         case TrackStatUpdated():
-    //           final p = state.trackStat.lastPosition;
-    //           if (p != null) {
-    //             if (state.trackStat.positionsCount <= 1) {
-    //               _points.clear();
-    //             }
-    //             _points.add(Point3D(
-    //               vector.Vector3(
-    //                 p.latitude,
-    //                 p.longitude,
-    //                 p.altitude,
-    //               ),
-    //               color: generateSpeedColor(p.speed),
-    //             ));
-    //           }
-
-    //           return DiTreDiDraggable(
-    //             controller: _controller,
-    //             child: DiTreDi(
-    //               figures: _points,
-    //               controller: _controller,
-    //               config: const DiTreDiConfig(
-    //                 defaultPointWidth: 4,
-    //                 supportZIndex: false,
-    //               ),
-    //             ),
-    //           );
-    //         default:
-    //           _points.clear();
-    //           // if (lowpolytree != null) {
-    //           //   _points.add(lowpolytree!);
-    //           // } else {
-    //           _points.addAll(_generateCubes()
-    //               .map((e) => e.toLines())
-    //               .flatten()
-    //               .map((e) => e.copyWith(color: Colors.lightBlue.withAlpha(30)))
-    //               .toList());
-    //           // }
-
-    //           return DiTreDiDraggable(
-    //             controller: _controller,
-    //             child: DiTreDi(
-    //               figures: _points,
-    //               controller: _controller,
-    //               config: const DiTreDiConfig(
-    //                 defaultPointWidth: 2,
-    //                 supportZIndex: false,
-    //               ),
-    //             ),
-    //           );
-    //       }
-    //     });
   }
 }
 

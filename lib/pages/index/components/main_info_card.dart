@@ -38,8 +38,8 @@ class MainInfoCard extends StatelessWidget {
                     Row(
                       children: [
                         HighlightNumberText(
-                          text:
-                              '${distanceFormat(S.of(context), state.trackStat.totalDistance)}',
+                          text: distanceFormat(
+                              S.of(context), state.trackStat.totalDistance),
                           hightlightTextStyle:
                               Theme.of(context).textTheme.displayMedium,
                           textStyle: Theme.of(context).textTheme.bodyLarge,
