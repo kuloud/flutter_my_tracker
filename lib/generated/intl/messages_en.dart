@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Map"),
         "bottomNavigationBarLabelTracks":
             MessageLookupByLibrary.simpleMessage("Tracks"),
+        "labelAvgPace": MessageLookupByLibrary.simpleMessage("Avg Pace"),
         "labelPace": MessageLookupByLibrary.simpleMessage("Pace"),
         "labelStep": MessageLookupByLibrary.simpleMessage("Step"),
         "unitKm": MessageLookupByLibrary.simpleMessage("KM"),

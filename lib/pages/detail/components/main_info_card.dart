@@ -23,8 +23,8 @@ class MainInfoCard extends StatelessWidget {
         'label': '总时长'
       },
       {
-        'title': formatPace(trackStat.avgSpeed ?? 0),
-        'label': S.of(context).labelPace
+        'title': formatPace(trackStat.avgSpeed),
+        'label': S.of(context).labelAvgPace
       },
     ];
     return Card(

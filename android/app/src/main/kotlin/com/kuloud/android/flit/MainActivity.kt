@@ -1,4 +1,4 @@
-package com.example.flutter_my_tracker
+package com.kuloud.android.flit
 
 import io.flutter.embedding.android.FlutterActivity
 

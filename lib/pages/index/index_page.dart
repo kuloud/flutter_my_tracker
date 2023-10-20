@@ -18,7 +18,7 @@ import 'package:flutter_my_tracker/pages/index/components/trajectory/trajectory_
 import 'package:flutter_my_tracker/pages/settings/settings_page.dart';
 import 'package:flutter_my_tracker/providers/operation_record_provider.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
-import 'package:location_permissions/location_permissions.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
@@ -177,15 +177,25 @@ class _IndexPageState extends State<IndexPage> {
   }
 
   Future<bool> _checkLocationPermission() async {
-    final access = await LocationPermissions().checkPermissionStatus();
+    final locationStatusGranted = await _checkPermission(Permission.location);
+    if (locationStatusGranted) {
+      return await _checkPermission(Permission.locationAlways);
+    }
+    return locationStatusGranted;
+  }
+
+  Future<bool> _checkPermission(Permission permission) async {
+    final access = await permission.status;
+    logger.d('----$access');
+
     switch (access) {
-      case PermissionStatus.unknown:
       case PermissionStatus.denied:
       case PermissionStatus.restricted:
-        final permission = await LocationPermissions().requestPermissions(
-          permissionLevel: LocationPermissionLevel.locationAlways,
-        );
-        return (permission == PermissionStatus.granted);
+        final permissionStatus = await permission.request();
+        logger.d('--===--$permissionStatus');
+        return (permissionStatus == PermissionStatus.granted);
+      case PermissionStatus.permanentlyDenied:
+        return false;
       case PermissionStatus.granted:
         return true;
       default:
@@ -210,7 +220,7 @@ class _IndexPageState extends State<IndexPage> {
             accuracy: LocationAccuracy.NAVIGATION,
             interval: 5,
             distanceFilter: 0,
-            client: LocationClient.google,
+            client: LocationClient.android,
             androidNotificationSettings: AndroidNotificationSettings(
                 notificationChannelName: 'Location tracking',
                 notificationTitle: 'Start Location Tracking',

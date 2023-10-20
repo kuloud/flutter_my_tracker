@@ -40,6 +40,11 @@ String formatMillisecondsDate(int milliseconds) {
       .format(DateTime.fromMillisecondsSinceEpoch(milliseconds.toInt()));
 }
 
+String formatMillisecondsDateShort(S s, int milliseconds) {
+  return DateFormat('MM/dd')
+      .format(DateTime.fromMillisecondsSinceEpoch(milliseconds));
+}
+
 String distanceFormat(S s, double meters) {
   if (meters > 1000) {
     return '${dp(meters / 1000, 2)} ${s.unitKm}';

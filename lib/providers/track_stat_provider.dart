@@ -84,28 +84,25 @@ class TrackStatProvider {
     await open();
     List<Map<String, dynamic>>? maps;
     if (startTime != null && endTime != null) {
-      maps = await _database?.query(
-        'track_stats',
-        where: 'startTime >= ? AND startTime <= ?',
-        whereArgs: [
-          startTime.millisecondsSinceEpoch,
-          endTime.millisecondsSinceEpoch
-        ],
-      );
+      maps = await _database?.query('track_stats',
+          where: 'startTime >= ? AND startTime <= ?',
+          whereArgs: [
+            startTime.millisecondsSinceEpoch,
+            endTime.millisecondsSinceEpoch
+          ],
+          orderBy: 'startTime DESC');
     } else if (startTime != null) {
-      maps = await _database?.query(
-        'track_stats',
-        where: 'startTime >= ?',
-        whereArgs: [startTime.millisecondsSinceEpoch],
-      );
+      maps = await _database?.query('track_stats',
+          where: 'startTime >= ?',
+          whereArgs: [startTime.millisecondsSinceEpoch],
+          orderBy: 'startTime DESC');
     } else if (endTime != null) {
-      maps = await _database?.query(
-        'track_stats',
-        where: 'startTime <= ?',
-        whereArgs: [endTime.millisecondsSinceEpoch],
-      );
+      maps = await _database?.query('track_stats',
+          where: 'startTime <= ?',
+          whereArgs: [endTime.millisecondsSinceEpoch],
+          orderBy: 'startTime DESC');
     } else {
-      maps = await _database?.query('track_stats');
+      maps = await _database?.query('track_stats', orderBy: 'startTime DESC');
     }
     if (maps?.isEmpty ?? true) {
       return [];

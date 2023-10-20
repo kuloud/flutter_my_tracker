@@ -8,5 +8,6 @@
     "unitKm":"KM",
     "unitM":"M",
     "labelPace":"Pace",
+    "labelAvgPace":"Avg Pace",
     "labelStep":"Step"
 }

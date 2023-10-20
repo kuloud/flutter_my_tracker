@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
 
   intl: ^0.18.1
-  location_permissions: ^4.0.1
   path_provider: ^2.1.1
   sqflite: ^2.3.0
   background_locator_2: ^2.0.6
@@ -28,6 +27,7 @@ dependencies:
   injectable: ^2.3.2
   package_info: ^2.0.2
   fl_chart: ^0.64.0
+  permission_handler: ^11.0.1
 
 dev_dependencies:
   flutter_test:

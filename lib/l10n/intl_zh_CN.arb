@@ -8,5 +8,6 @@
     "unitKm":"公里",
     "unitM":"米",
     "labelPace":"配速",
+    "labelAvgPace":"平均配速",
     "labelStep":"步数"
 }

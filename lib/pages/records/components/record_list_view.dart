@@ -40,7 +40,14 @@ class _RecordListViewState extends State<RecordListView> {
                                 S.of(context), records![index].totalDistance),
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
-                          trailing: const Icon(Icons.chevron_right),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(formatMillisecondsDateShort(S.of(context),
+                                  records[index].startTime.toInt())),
+                              const Icon(Icons.chevron_right)
+                            ],
+                          ),
                           onTap: () {
                             Navigator.push(
                               context,

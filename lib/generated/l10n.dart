@@ -120,6 +120,16 @@ class S {
     );
   }
 
+  /// `Avg Pace`
+  String get labelAvgPace {
+    return Intl.message(
+      'Avg Pace',
+      name: 'labelAvgPace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Step`
   String get labelStep {
     return Intl.message(
