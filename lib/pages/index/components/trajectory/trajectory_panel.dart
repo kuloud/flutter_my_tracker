@@ -97,7 +97,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel>
               controller: _controller,
               config: const DiTreDiConfig(
                 defaultPointWidth: 4,
-                supportZIndex: false,
+                // supportZIndex: false,
               ),
             ),
           );

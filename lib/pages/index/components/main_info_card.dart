@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/components/grid_tile.dart';
+import 'package:flutter_my_tracker/components/grid_tile_label_title.dart';
 import 'package:flutter_my_tracker/components/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
@@ -57,7 +57,7 @@ class MainInfoCard extends StatelessWidget {
                         crossAxisCount: 3,
                         childAspectRatio: 2,
                         children: items
-                            .mapIndexed((e, i) => SkyGridTile(
+                            .mapIndexed((e, i) => SkyGridTileLabelTitle(
                                   data: e,
                                   textAlign: _determineTextAlign(i),
                                 ))
@@ -71,9 +71,9 @@ class MainInfoCard extends StatelessWidget {
         });
   }
 
-  TextAlign _determineTextAlign(int i) {
+  CrossAxisAlignment _determineTextAlign(int i) {
     return (i % 3 == 0)
-        ? TextAlign.start
-        : ((i % 3 == 1) ? TextAlign.center : TextAlign.end);
+        ? CrossAxisAlignment.start
+        : ((i % 3 == 1) ? CrossAxisAlignment.center : CrossAxisAlignment.end);
   }
 }

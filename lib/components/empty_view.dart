@@ -26,7 +26,7 @@ class _EmptyViewState extends State<EmptyView> {
           controller: _controller,
           config: const DiTreDiConfig(
             defaultPointWidth: 4,
-            supportZIndex: false,
+            // supportZIndex: false,
           ),
         ),
       ),

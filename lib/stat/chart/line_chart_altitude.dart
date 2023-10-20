@@ -1,7 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
+import 'package:flutter_my_tracker/stat/card_title_bar.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
+import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 
 class LineChartAltitude extends StatefulWidget {
@@ -36,7 +38,8 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
     final minAltitude = widget.trackStat.minAltitude; // 米
 
     final spots = widget.points.map((e) {
-      return FlSpot((e.time / 1000) - startTime, e.altitude - minAltitude);
+      return FlSpot(
+          (e.time / 1000) - startTime, dp(e.altitude - minAltitude, 1));
     }).toList();
 
     data = LineChartData(
@@ -44,6 +47,7 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
             topTitles:
                 const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             leftTitles: AxisTitles(
+              // axisNameWidget: Text('海拔'),
               sideTitles: SideTitles(
                   reservedSize: 40,
                   showTitles: true,
@@ -52,6 +56,7 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
             rightTitles:
                 const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             bottomTitles: AxisTitles(
+                // axisNameWidget: Text('时间'),
                 sideTitles: SideTitles(
               showTitles: true,
               reservedSize: 24,
@@ -106,7 +111,7 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
     }
     if (seconds > 0 && seconds % intervalInSeconds == 0) {
       title =
-          '${(seconds / intervalInSeconds) * (intervalInSeconds / 60)}$suffix';
+          '${((seconds / intervalInSeconds) * (intervalInSeconds / 60)).toInt()}$suffix';
     }
 
     return SideTitleWidget(
@@ -122,15 +127,27 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: AspectRatio(
-        aspectRatio: 1.70,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: LineChart(
-            data,
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        CardTitleBar(title: '海拔', subtitle: '(米)', items: [
+          {
+            'title': '${dp(widget.trackStat.minAltitude, 1)}',
+            'label': '最低海拔',
+          },
+          {
+            'title': '${dp(widget.trackStat.maxAltitude, 1)}',
+            'label': '最高海拔',
+          }
+        ]),
+        Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+          child: AspectRatio(
+            aspectRatio: 2,
+            child: LineChart(
+              data,
+            ),
           ),
-        ),
-      ),
+        )
+      ]),
     );
   }
 }

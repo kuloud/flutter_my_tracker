@@ -1,6 +1,6 @@
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_my_tracker/components/grid_tile_2.dart';
+import 'package:flutter_my_tracker/components/grid_tile_label_title.dart';
 import 'package:flutter_my_tracker/data/query/stat.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
@@ -76,8 +76,9 @@ class _SummaryCardState extends State<SummaryCard> {
                           crossAxisCount: 2,
                           childAspectRatio: 2.5,
                           children: items
-                              .mapIndexed((e, i) => SkyGridTile(
+                              .mapIndexed((e, i) => SkyGridTileLabelTitle(
                                     data: e,
+                                    textAlign: CrossAxisAlignment.center,
                                   ))
                               .toList())
                     ]),
