@@ -6,6 +6,7 @@ import 'package:flutter_my_tracker/pages/detail/components/trajectory/trajectory
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/stat/chart/line_chart_altitude.dart';
 import 'package:flutter_my_tracker/stat/chart/line_chart_altitude.dart';
+import 'package:flutter_my_tracker/stat/chart/line_chart_pace.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 
 class DetailPage extends StatefulWidget {
@@ -42,6 +43,8 @@ class _DetailPageState extends State<DetailPage> {
           title: Text(S.of(context).appName),
         ),
         bottomSheet: Container(
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewPadding.bottom),
           color: Theme.of(context).colorScheme.background,
           child: DraggableScrollableSheet(
             // maxChildSize: 0.6,
@@ -66,9 +69,16 @@ class _DetailPageState extends State<DetailPage> {
                           future: _fetchTrackPoints,
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
-                              return LineChartAltitude(
-                                  trackStat: widget.trackStat,
-                                  points: snapshot.data!);
+                              return Column(
+                                children: [
+                                  LineChartPace(
+                                      trackStat: widget.trackStat,
+                                      points: snapshot.data!),
+                                  LineChartAltitude(
+                                      trackStat: widget.trackStat,
+                                      points: snapshot.data!)
+                                ],
+                              );
                             } else {
                               return const SizedBox();
                             }

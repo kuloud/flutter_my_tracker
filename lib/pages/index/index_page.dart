@@ -97,6 +97,8 @@ class _IndexPageState extends State<IndexPage> {
         ),
         bottomSheet: Container(
           color: Theme.of(context).colorScheme.background,
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewPadding.bottom),
           child: DraggableScrollableSheet(
             // maxChildSize: 0.6,
             minChildSize: 0.4,
