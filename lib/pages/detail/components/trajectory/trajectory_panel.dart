@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:ditredi/ditredi.dart';
@@ -11,9 +12,11 @@ import 'package:flutter_my_tracker/utils/render.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 class TrajectoryPanel extends StatefulWidget {
-  const TrajectoryPanel({Key? key, required this.trackStat}) : super(key: key);
+  const TrajectoryPanel({Key? key, required this.trackStat, this.onAxisShow})
+      : super(key: key);
 
   final TrackStat trackStat;
+  final Function(bool show)? onAxisShow;
 
   @override
   State<TrajectoryPanel> createState() => _TrajectoryPanelState();
@@ -23,6 +26,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
   final List<Model3D<Model3D<dynamic>>> _points = [];
 
   Future<List<Position>?>? _recordFuture;
+  bool _showAxis = false;
 
   @override
   void initState() {
@@ -33,15 +37,26 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
             widget.trackStat.startTime.toInt()),
         endTime: DateTime.fromMillisecondsSinceEpoch(
             widget.trackStat.endTime.toInt()));
+    _controller.addListener(() {
+      logger.d(
+          '---${_controller.rotationX},${_controller.rotationY},${_controller.rotationZ}');
+      if (_showAxis != (_controller.rotationX != -90)) {
+        widget.onAxisShow?.call(_controller.rotationX != -90);
+        setState(() {
+          _showAxis = _controller.rotationX != -90;
+        });
+      }
+    });
   }
 
-  final _controller = DiTreDiController();
+  final _controller =
+      DiTreDiController(rotationX: -90, rotationY: 0, rotationZ: 0);
 
   vector.Vector3 createVector3(Position p) {
     return vector.Vector3(
       p.latitude,
-      p.longitude,
       p.altitude * 0.000009,
+      p.longitude,
     );
   }
 
@@ -51,13 +66,18 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
         future: _recordFuture,
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
+            logger.d('--------------------');
+            _points.clear();
             if (snapshot.data!.isNotEmpty) {
-              _points.addAll(snapshot.data!.map((e) => e.toPoint3D()));
+              final points = snapshot.data!.map((e) => e.toPoint3D());
+              _points.addAll(points);
+              if (_showAxis) {
+                _points.addAll(points.bottomGrid());
+              }
             } else {
               _points.addAll(
                   _generateCubes().map((e) => e.toLines()).flatten().toList());
             }
-            _controller.update();
 
             return DiTreDiDraggable(
               controller: _controller,

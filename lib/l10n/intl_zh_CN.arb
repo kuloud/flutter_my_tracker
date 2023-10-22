@@ -10,7 +10,7 @@
     "titleAbout": "关于",
     "labelAppDescription": "一款极简风格的运动轨迹记录软件，100%遵循Material You的设计语言。",
     "viewReadme": "查看自述文件",
-    "versionBuild": "版本 {{ version }}, 编译号 #{{ buildNumber }}",
+    "versionBuild": "版本 {{ version }}, 构建号 #{{ buildNumber }}",
   "authorYear": "版权所有 © {{ author }}, {{ year }}",
   "viewChangelog": "查看更新日志",
   "totalDuration": "总时长",

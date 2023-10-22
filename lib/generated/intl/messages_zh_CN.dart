@@ -27,7 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(unit) => "(${unit})";
 
   static String m3(version, buildNumber) =>
-      "版本 {${version}}, 编译号 #{${buildNumber}}";
+      "版本 {${version}}, 构建号 #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{

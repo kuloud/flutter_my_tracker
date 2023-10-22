@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/pages/detail/components/main_info_card.dart';
+import 'package:flutter_my_tracker/pages/detail/components/trajectory/color_label.dart';
 import 'package:flutter_my_tracker/pages/detail/components/trajectory/trajectory_panel.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/stat/chart/line_chart_altitude.dart';
@@ -20,6 +21,7 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   Future<List<Position>?>? _fetchTrackPoints;
+  bool isAxisShow = false;
 
   @override
   void initState() {
@@ -93,17 +95,24 @@ class _DetailPageState extends State<DetailPage> {
         body: SizedBox.expand(
             child: Stack(
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: TrajectoryPanel(
-                    trackStat: widget.trackStat,
-                  ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: TrajectoryPanel(
+                  onAxisShow: (show) {
+                    setState(() {
+                      isAxisShow = show;
+                    });
+                  },
+                  trackStat: widget.trackStat,
                 ),
-              ],
-            )
+              ),
+            ),
+            if (isAxisShow)
+              const Positioned(top: 0, right: 0, child: ColorLabels()),
           ],
         )));
   }
