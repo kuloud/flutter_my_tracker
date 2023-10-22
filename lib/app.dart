@@ -1,7 +1,9 @@
 import 'dart:isolate';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:background_locator_2/background_locator.dart';
+import 'package:background_locator_2/keys.dart';
 import 'package:background_locator_2/location_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,6 +72,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.light(
           useMaterial3: true,
         ).copyWith(
@@ -93,20 +96,18 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
   }
 
   Future<void> updateUI(dynamic data) async {
-    LocationDto? locationDto =
-        (data != null) ? LocationDto.fromJson(data) : null;
-    await _updateNotificationText(locationDto);
-  }
-
-  Future<void> _updateNotificationText(LocationDto? data) async {
     if (data == null) {
       return;
     }
+    LocationDto locationDto = LocationDto.fromJson(data);
+    await _updateNotificationText(locationDto);
+  }
 
+  Future<void> _updateNotificationText(LocationDto data) async {
     logger.d("${data.toJson()}");
 
     await BackgroundLocator.updateNotificationText(
-        title: "new location received",
+        title: "New location received",
         msg: "${DateTime.now()}",
         bigMsg: "${data.latitude}, ${data.longitude}");
   }

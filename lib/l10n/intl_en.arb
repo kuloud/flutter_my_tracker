@@ -1,9 +1,17 @@
 {
+    "@@locale": "en",
+
     "appName": "Flit",
 
     "bottomNavigationBarLabelMap":"Map",
     "bottomNavigationBarLabelTracks":"Tracks",
     "bottomNavigationBarLabelHistory":"History",
+
+    "titleAbout": "关于",
+    "labelAppDescription": "A minimalist movement tracking software that 100% follows the Material You design language.",
+    "viewReadme": "View Readme",
+    "versionBuild": "Version {{ version }}, build #{{ buildNumber }}",
+  "authorYear": "Copyright © {{ author }}, {{ year }}",
 
     "unitKm":"KM",
     "unitM":"M",

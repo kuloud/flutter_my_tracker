@@ -1,34 +1,46 @@
+import 'package:about/about.dart' as about;
+import 'package:about/about.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/components/empty_view.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
+import 'package:flutter_my_tracker/pubspec.dart';
 import 'package:flutter_my_tracker/utils/app.dart';
 
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('关于'),
+    return about.AboutPage(
+      values: {
+        'version': Pubspec.version,
+        'buildNumber': Pubspec.versionBuild.toString(),
+        'year': '2023',
+        'author': Pubspec.authorsname,
+      },
+      title: Text(S.of(context).titleAbout),
+      applicationVersion:
+          S.of(context).versionBuild('{version}', '{buildNumber}'),
+      applicationDescription: Text(
+        S.of(context).labelAppDescription,
+        textAlign: TextAlign.justify,
       ),
-      body: Material(
-        child: FutureBuilder(
-            future: getAppVersion(),
-            builder: ((context, snapshot) {
-              return Align(
-                alignment: const FractionalOffset(0.5, 0.3),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      height: 120,
-                      width: 120,
-                      child: EmptyView(),
-                    ),
-                    Text(snapshot.data ?? ''),
-                  ],
-                ),
-              );
-            })),
+      applicationIcon: Container(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+        clipBehavior: Clip.hardEdge,
+        child: Image.asset(
+          'assets/images/app_logo.png',
+          width: 96,
+          height: 96,
+          fit: BoxFit.contain,
+        ),
       ),
+      applicationLegalese: S.of(context).authorYear('{author}', '{year}'),
+      children: <Widget>[
+        MarkdownPageListTile(
+          filename: 'README.md',
+          title: Text(S.of(context).viewReadme),
+          icon: const Icon(Icons.description),
+        ),
+      ],
     );
   }
 }

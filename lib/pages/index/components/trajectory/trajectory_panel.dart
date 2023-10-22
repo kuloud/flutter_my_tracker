@@ -10,10 +10,14 @@ import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/color.dart';
 import 'package:flutter_my_tracker/utils/file.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
+import 'package:flutter_my_tracker/utils/render.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 class TrajectoryPanel extends StatefulWidget {
-  const TrajectoryPanel({Key? key}) : super(key: key);
+  const TrajectoryPanel({Key? key, this.isServiceRunning = false})
+      : super(key: key);
+
+  final bool isServiceRunning;
 
   @override
   State<TrajectoryPanel> createState() => _TrajectoryPanelState();
@@ -48,98 +52,87 @@ class _TrajectoryPanelState extends State<TrajectoryPanel>
                 startTime: DateTime.fromMillisecondsSinceEpoch(
                     _trackStat!.startTime.toInt()))
             .then((value) {
-          _cachePoints = value;
+          if (mounted) {
+            setState(() {
+              _cachePoints = value;
+            });
+          }
         });
       }
     }
   }
 
-  final _controller = DiTreDiController(
-    rotationX: -20,
-    rotationY: 30,
-    light: vector.Vector3(-0.5, -0.5, 0.5),
-  );
+  final _controller = DiTreDiController();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TrackStatCubit, TrackStatState>(
-        bloc: BlocProvider.of<TrackStatCubit>(context, listen: false),
         builder: (context, state) {
-          final cachePoints =
-              _cachePoints?.map((e) => creatPoint3D(e)).toList();
-          _cachePoints = null;
-          if (cachePoints?.isNotEmpty ?? false) {
-            _points.clear();
-            _points.addAll(cachePoints!);
-          }
-          if (state is TrackStatUpdated) {
-            _trackStat = state.trackStat;
-            // 运动中
-            final p = state.trackStat.lastPosition;
-            if (p != null) {
-              _points.add(creatPoint3D(p));
-            }
-          } else if (state is TrackStatStart) {
-            _points.clear();
-          } else if (state is TrackStatStop || state is TrackStatInitial) {
-            _points.clear();
-            _points.addAll(_generateCubes()
-                .map((e) => e.toLines())
-                .flatten()
-                .map((e) => e.copyWith(color: Colors.lightBlue.withAlpha(30)))
-                .toList());
-          }
+      final cachePoints = _cachePoints?.map((e) => e.toPoint3D()).toList();
+      _cachePoints = null;
+      if (cachePoints?.isNotEmpty ?? false) {
+        _points.clear();
+        _points.addAll(cachePoints!);
+      }
+      if (state is TrackStatUpdated) {
+        _trackStat = state.trackStat;
+        logger.d('[trackStat] _trackStat: ${_trackStat}');
+        // 运动中
+        final p = state.trackStat.lastPosition;
+        if (p != null) {
+          logger.d('[trackStat] lastPosition: ${p.toJson()}');
+          _points.add(p.toPoint3D());
+        }
+      } else if (state is TrackStatStart) {
+        _points.clear();
+      } else if (state is TrackStatStop || state is TrackStatInitial) {
+        logger.d('[trackStat] _trackStat: ${state}');
+        _points.clear();
+        if (!widget.isServiceRunning) {
+          _points.addAll(
+              _generateCubes().map((e) => e.toLines()).flatten().toList());
+        }
+      }
 
-          return DiTreDiDraggable(
-            controller: _controller,
-            child: DiTreDi(
-              figures: _points,
-              controller: _controller,
-              config: const DiTreDiConfig(
-                defaultPointWidth: 4,
-                // supportZIndex: false,
-              ),
-            ),
-          );
-        });
-  }
-
-  Point3D creatPoint3D(Position p) {
-    return Point3D(
-      vector.Vector3(
-        p.latitude,
-        p.longitude,
-        p.altitude,
-      ),
-      color: generateSpeedColor(p.speed),
-    );
+      return DiTreDiDraggable(
+        controller: _controller,
+        child: DiTreDi(
+          figures: _points,
+          controller: _controller,
+          config: const DiTreDiConfig(
+            defaultPointWidth: 4,
+            supportZIndex: true,
+          ),
+        ),
+      );
+    });
   }
 }
 
 Iterable<Cube3D> _generateCubes() sync* {
   final colors = [
-    Colors.grey.shade200,
-    Colors.grey.shade300,
-    Colors.grey.shade400,
-    Colors.grey.shade500,
-    Colors.grey.shade600,
-    Colors.grey.shade700,
-    Colors.grey.shade800,
-    Colors.grey.shade900,
+    Colors.lightBlue.shade200,
+    Colors.lightBlue.shade300,
+    Colors.lightBlue.shade400,
+    Colors.lightBlue.shade500,
+    Colors.lightBlue.shade600,
+    Colors.lightBlue.shade700,
+    Colors.lightBlue.shade800,
+    Colors.lightBlue.shade900,
   ];
 
-  const count = 4;
+  const count = 3;
   for (var x = count; x > 0; x--) {
     for (var y = count; y > 0; y--) {
       for (var z = count; z > 0; z--) {
         yield Cube3D(
           0.9,
           vector.Vector3(
-            x.toDouble() * 2,
-            y.toDouble() * 2,
-            z.toDouble() * 2,
+            x.toDouble(),
+            y.toDouble(),
+            z.toDouble(),
           ),
-          color: colors[(colors.length - y) % colors.length],
+          color: colors[(colors.length - z) % colors.length].withOpacity(0.2),
         );
       }
     }

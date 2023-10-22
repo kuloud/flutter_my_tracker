@@ -1,6 +1,7 @@
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/components/grid_tile_label_title.dart';
+import 'package:flutter_my_tracker/components/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/data/query/stat.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
@@ -59,9 +60,16 @@ class _SummaryCardState extends State<SummaryCard> {
                             '运动总结',
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
-                          Text(
-                            '运动${stat['totalMotionTimes']}次',
-                            style: Theme.of(context).textTheme.bodySmall,
+                          HighlightNumberText(
+                            text: '运动${stat['totalMotionTimes']}次',
+                            hightlightTextStyle: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontWeight: FontWeight.bold),
+                            textStyle: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
                       ),

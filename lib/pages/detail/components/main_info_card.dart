@@ -1,5 +1,6 @@
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/components/grid_tile_title_label.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/components/grid_tile_label_title.dart';
 import 'package:flutter_my_tracker/components/highlighted_number_text.dart';
@@ -51,7 +52,7 @@ class MainInfoCard extends StatelessWidget {
               crossAxisCount: 3,
               childAspectRatio: 2,
               children: items
-                  .mapIndexed((e, i) => SkyGridTileLabelTitle(
+                  .mapIndexed((e, i) => SkyGridTileTitleLabel(
                         data: e,
                         textAlign: _determineTextAlign(i),
                       ))

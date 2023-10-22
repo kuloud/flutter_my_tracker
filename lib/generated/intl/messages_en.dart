@@ -20,19 +20,30 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(author, year) => "Copyright © {${author}}, {${year}}";
+
+  static String m1(version, buildNumber) =>
+      "Version {${version}}, build #{${buildNumber}}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Flit"),
+        "authorYear": m0,
         "bottomNavigationBarLabelHistory":
             MessageLookupByLibrary.simpleMessage("History"),
         "bottomNavigationBarLabelMap":
             MessageLookupByLibrary.simpleMessage("Map"),
         "bottomNavigationBarLabelTracks":
             MessageLookupByLibrary.simpleMessage("Tracks"),
+        "labelAppDescription": MessageLookupByLibrary.simpleMessage(
+            "A minimalist movement tracking software that 100% follows the Material You design language."),
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("Avg Pace"),
         "labelPace": MessageLookupByLibrary.simpleMessage("Pace"),
         "labelStep": MessageLookupByLibrary.simpleMessage("Step"),
+        "titleAbout": MessageLookupByLibrary.simpleMessage("关于"),
         "unitKm": MessageLookupByLibrary.simpleMessage("KM"),
-        "unitM": MessageLookupByLibrary.simpleMessage("M")
+        "unitM": MessageLookupByLibrary.simpleMessage("M"),
+        "versionBuild": m1,
+        "viewReadme": MessageLookupByLibrary.simpleMessage("View Readme")
       };
 }

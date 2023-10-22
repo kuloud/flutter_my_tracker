@@ -33,10 +33,12 @@ class LocationServiceRepository {
   }
 
   Future<void> callback(LocationDto locationDto) async {
-    await PositionProvider.instance()
+    final position = await PositionProvider.instance()
         .insert(Position.fromJson(locationDto.toJson()));
 
+    logger.d('[LocationService] callback: ${position.toJson()}');
+
     final SendPort? send = IsolateNameServer.lookupPortByName(isolateName);
-    send?.send(locationDto.toJson());
+    send?.send(position.toJson());
   }
 }

@@ -4,9 +4,12 @@ import 'package:intl/intl.dart';
 List<SubTabData> getWeekDataList(DateTime startDate, DateTime endDate) {
   List<SubTabData> weekDataList = [];
 
-  DateTime currentStartDate = startDate;
-  DateTime currentEndDate =
-      getNextWeekStartDate(startDate).subtract(const Duration(days: 1));
+  DateTime currentStartDate =
+      DateTime(startDate.year, startDate.month, startDate.day);
+
+  DateTime currentEndDate = getNextWeekStartDate(startDate)
+      .subtract(const Duration(days: 1))
+      .add(Duration(hours: 23, minutes: 59, seconds: 59));
 
   while (
       currentEndDate.isBefore(endDate) || !currentStartDate.isAfter(endDate)) {
@@ -22,7 +25,8 @@ List<SubTabData> getWeekDataList(DateTime startDate, DateTime endDate) {
     weekDataList.add(weekData);
 
     currentStartDate = getNextWeekStartDate(currentStartDate);
-    currentEndDate = currentStartDate.add(const Duration(days: 6));
+    currentEndDate = currentStartDate
+        .add(const Duration(days: 6, hours: 23, minutes: 59, seconds: 59));
   }
 
   return weekDataList;
@@ -42,7 +46,8 @@ List<SubTabData> getMonthDataList(DateTime startDate, DateTime endDate) {
     String month = DateFormat('M月').format(currentMonthStart);
     var currentMonthEnd =
         DateTime(currentMonthStart.year, currentMonthStart.month + 1)
-            .subtract(const Duration(days: 1));
+            .subtract(const Duration(days: 1))
+            .add(Duration(hours: 23, minutes: 59, seconds: 59));
     SubTabData monthData = SubTabData(
         startDate: currentMonthStart,
         title: month.toString(),
@@ -61,8 +66,9 @@ List<SubTabData> getYearDataList(DateTime startDate, DateTime endDate) {
 
   while (currentYearStart.isBefore(endDate)) {
     String year = DateFormat('yyyy年').format(currentYearStart);
-    var currentYearEnd =
-        DateTime(currentYearStart.year + 1).subtract(const Duration(days: 1));
+    var currentYearEnd = DateTime(currentYearStart.year + 1)
+        .subtract(const Duration(days: 1))
+        .add(Duration(hours: 23, minutes: 59, seconds: 59));
     SubTabData yearData = SubTabData(
         startDate: currentYearStart, title: year, endDate: currentYearEnd);
     yearDataList.add(yearData);

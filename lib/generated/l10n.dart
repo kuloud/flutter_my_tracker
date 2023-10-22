@@ -90,6 +90,56 @@ class S {
     );
   }
 
+  /// `关于`
+  String get titleAbout {
+    return Intl.message(
+      '关于',
+      name: 'titleAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A minimalist movement tracking software that 100% follows the Material You design language.`
+  String get labelAppDescription {
+    return Intl.message(
+      'A minimalist movement tracking software that 100% follows the Material You design language.',
+      name: 'labelAppDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Readme`
+  String get viewReadme {
+    return Intl.message(
+      'View Readme',
+      name: 'viewReadme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Version {{ version }}, build #{{ buildNumber }}`
+  String versionBuild(Object version, Object buildNumber) {
+    return Intl.message(
+      'Version {$version}, build #{$buildNumber}',
+      name: 'versionBuild',
+      desc: '',
+      args: [version, buildNumber],
+    );
+  }
+
+  /// `Copyright © {{ author }}, {{ year }}`
+  String authorYear(Object author, Object year) {
+    return Intl.message(
+      'Copyright © {$author}, {$year}',
+      name: 'authorYear',
+      desc: '',
+      args: [author, year],
+    );
+  }
+
   /// `KM`
   String get unitKm {
     return Intl.message(

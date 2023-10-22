@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/color.dart';
+import 'package:flutter_my_tracker/utils/logger.dart';
+import 'package:flutter_my_tracker/utils/render.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 class TrajectoryPanel extends StatefulWidget {
@@ -31,11 +35,15 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
             widget.trackStat.endTime.toInt()));
   }
 
-  final _controller = DiTreDiController(
-    rotationX: -20,
-    rotationY: 30,
-    light: vector.Vector3(-0.5, -0.5, 0.5),
-  );
+  final _controller = DiTreDiController();
+
+  vector.Vector3 createVector3(Position p) {
+    return vector.Vector3(
+      p.latitude,
+      p.longitude,
+      p.altitude * 0.000009,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,23 +52,12 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.isNotEmpty) {
-              for (var p in snapshot.data!) {
-                _points.add(Point3D(
-                  vector.Vector3(
-                    p.latitude,
-                    p.longitude,
-                    p.altitude,
-                  ),
-                  color: generateSpeedColor(p.speed),
-                ));
-              }
+              _points.addAll(snapshot.data!.map((e) => e.toPoint3D()));
             } else {
-              _points.addAll(_generateCubes()
-                  .map((e) => e.toLines())
-                  .flatten()
-                  .map((e) => e.copyWith(color: Colors.lightBlue.withAlpha(30)))
-                  .toList());
+              _points.addAll(
+                  _generateCubes().map((e) => e.toLines()).flatten().toList());
             }
+            _controller.update();
 
             return DiTreDiDraggable(
               controller: _controller,
@@ -69,7 +66,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
                 controller: _controller,
                 config: const DiTreDiConfig(
                   defaultPointWidth: 4,
-                  // supportZIndex: false,
+                  supportZIndex: true,
                 ),
               ),
             );
@@ -86,14 +83,14 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
 
 Iterable<Cube3D> _generateCubes() sync* {
   final colors = [
-    Colors.grey.shade200,
-    Colors.grey.shade300,
-    Colors.grey.shade400,
-    Colors.grey.shade500,
-    Colors.grey.shade600,
-    Colors.grey.shade700,
-    Colors.grey.shade800,
-    Colors.grey.shade900,
+    Colors.lightBlue.shade200,
+    Colors.lightBlue.shade300,
+    Colors.lightBlue.shade400,
+    Colors.lightBlue.shade500,
+    Colors.lightBlue.shade600,
+    Colors.lightBlue.shade700,
+    Colors.lightBlue.shade800,
+    Colors.lightBlue.shade900,
   ];
 
   const count = 4;
@@ -107,7 +104,7 @@ Iterable<Cube3D> _generateCubes() sync* {
             y.toDouble() * 2,
             z.toDouble() * 2,
           ),
-          color: colors[(colors.length - y) % colors.length],
+          color: colors[(colors.length - y) % colors.length].withOpacity(0.3),
         );
       }
     }

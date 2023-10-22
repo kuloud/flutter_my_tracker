@@ -2,6 +2,7 @@ name: flutter_my_tracker
 description: A new Flutter project.
 publish_to: 'none'
 version: 0.0.1+1
+authorsName: 'Kuloud'
 
 environment:
   sdk: '>=3.1.3 <4.0.0'
@@ -18,30 +19,37 @@ dependencies:
   background_locator_2: ^2.0.6
   path: ^1.8.3
   logger: ^2.0.2+1
-  ditredi: ^2.0.0
   bloc: ^8.1.2
   flutter_bloc: ^8.1.3
-  pedometer: ^4.0.1
   get_it: ^7.6.4
   shared_preferences: ^2.2.2
   injectable: ^2.3.2
-  package_info: ^2.0.2
   fl_chart: ^0.64.0
   permission_handler: ^11.0.1
-
+  ditredi: ^2.0.0
+  vector_math: ^2.1.4
+  about: ^2.1.3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  build_runner: ^2.3.3
+  build_runner: ^2.4.6
   injectable_generator: ^2.1.6
+  pubspec_extract: ^2.0.5
   
 
 flutter:
   uses-material-design: true
   generate: true
 
-  # assets:
-  #   - assets/mesh_3d/lowpolytree.obj
+  assets:
+    - assets/images/app_logo.png
+    # - CHANGELOG.md
+    # - CODE_OF_CONDUCT.md
+    # - CONTRIBUTING.md
+    # - LICENSE.md
+    - README-zh_CN.md
+    - README.md
 flutter_intl:
   enabled: true

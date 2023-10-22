@@ -10,6 +10,7 @@ class SkyGridTileTitleLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
         child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: textAlign ?? CrossAxisAlignment.start,
       children: [
         Text(

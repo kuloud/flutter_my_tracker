@@ -53,6 +53,9 @@ class _IndexPageState extends State<IndexPage> {
         isRunning = isServiceRunning;
       });
     }
+    if (isServiceRunning) {
+      //
+    }
   }
 
   @override
@@ -74,8 +77,7 @@ class _IndexPageState extends State<IndexPage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            final trackStatCubit =
-                BlocProvider.of<TrackStatCubit>(context, listen: false);
+            final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
             if (isRunning) {
               _onStop().then((value) {
                 OperationRecordProvider.instance().insert(OperationRecord(
@@ -120,7 +122,7 @@ class _IndexPageState extends State<IndexPage> {
             },
           ),
         ),
-        body: const SizedBox.expand(
+        body: SizedBox.expand(
             child: Stack(
           children: [
             Column(
@@ -128,7 +130,7 @@ class _IndexPageState extends State<IndexPage> {
               children: [
                 AspectRatio(
                   aspectRatio: 1,
-                  child: TrajectoryPanel(),
+                  child: TrajectoryPanel(isServiceRunning: isRunning),
                 ),
               ],
             )
@@ -159,7 +161,7 @@ class _IndexPageState extends State<IndexPage> {
       await _startLocator();
       final isServiceRunning = await BackgroundLocator.isServiceRunning();
 
-      _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      _timer = Timer.periodic(const Duration(milliseconds: 800), (Timer timer) {
         // 每秒触发一次的逻辑
         final trackStatCubit =
             BlocProvider.of<TrackStatCubit>(context, listen: false);
