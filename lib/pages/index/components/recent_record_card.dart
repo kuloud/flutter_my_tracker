@@ -68,7 +68,7 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
                                   SizedBox(
                                     width: double.maxFinite,
                                     child: Text(
-                                      '${distanceFormat(S.of(context), stat.totalDistance)}, 平均配速 ${formatPace(stat.avgSpeed)}',
+                                      '${distanceFormat(S.of(context), stat.totalDistance)}${S.of(context).comma} ${S.of(context).averagePace} ${formatPace(stat.avgSpeed)}',
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleMedium,
@@ -77,7 +77,7 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
                                   SizedBox(
                                     width: double.maxFinite,
                                     child: Text(
-                                      '最近运动, ${formatMillisecondsDateTime(stat.startTime.toInt())}',
+                                      '${S.of(context).recentActivity}${S.of(context).comma} ${formatMillisecondsDateTime(stat.startTime.toInt())}',
                                       style:
                                           Theme.of(context).textTheme.bodySmall,
                                     ),
@@ -93,7 +93,7 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
                           ListTile(
                             contentPadding: EdgeInsets.zero,
                             title: Text(
-                              '全部运动记录',
+                              S.of(context).allActivities,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             trailing: const Icon(Icons.chevron_right),

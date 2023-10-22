@@ -3,7 +3,6 @@ import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.d
 import 'package:flutter_my_tracker/pages/records/components/record_region_list_tab_view.dart';
 import 'package:flutter_my_tracker/pages/records/components/summary_tab_view.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
-import 'package:async/async.dart';
 
 class RecordsTabView extends StatefulWidget {
   const RecordsTabView({super.key, this.controller});

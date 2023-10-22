@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/records/components/records_tab_view.dart';
 
 class RecordsPage extends StatefulWidget {
@@ -30,14 +31,14 @@ class _RecordsPageState extends State<RecordsPage>
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('运动记录'),
+          title: Text(S.of(context).allActivities),
           bottom: TabBar(
             controller: _tabController,
-            tabs: const [
-              Tab(text: '周'),
-              Tab(text: '月'),
-              Tab(text: '年'),
-              Tab(text: '总'),
+            tabs: [
+              Tab(text: S.of(context).week),
+              Tab(text: S.of(context).month),
+              Tab(text: S.of(context).year),
+              Tab(text: S.of(context).total),
             ],
           ),
         ),

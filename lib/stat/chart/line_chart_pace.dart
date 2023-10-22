@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/stat/card_title_bar.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
@@ -386,16 +387,19 @@ class _LineChartPaceState extends State<LineChartPace> {
   Widget build(BuildContext context) {
     return Card(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        CardTitleBar(title: '配速', subtitle: '(分/公里)', items: [
-          {
-            'title': formatPace(widget.trackStat.minSpeed),
-            'label': '最低配速',
-          },
-          {
-            'title': formatPace(widget.trackStat.maxSpeed),
-            'label': '最高配速',
-          }
-        ]),
+        CardTitleBar(
+            title: S.of(context).pace,
+            subtitle: S.of(context).unit(S.of(context).minutePerKilometer),
+            items: [
+              {
+                'title': formatPace(widget.trackStat.minSpeed),
+                'label': S.of(context).minPace,
+              },
+              {
+                'title': formatPace(widget.trackStat.maxSpeed),
+                'label': S.of(context).maxPace,
+              }
+            ]),
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: AspectRatio(

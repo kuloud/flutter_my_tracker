@@ -1,10 +1,8 @@
 import 'package:about/about.dart' as about;
 import 'package:about/about.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_my_tracker/components/empty_view.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pubspec.dart';
-import 'package:flutter_my_tracker/utils/app.dart';
 
 class AboutPage extends StatelessWidget {
   @override
@@ -16,7 +14,7 @@ class AboutPage extends StatelessWidget {
         'year': '2023',
         'author': Pubspec.authorsname,
       },
-      title: Text(S.of(context).titleAbout),
+      title: Text(S.of(context).about),
       applicationVersion:
           S.of(context).versionBuild('{version}', '{buildNumber}'),
       applicationDescription: Text(
@@ -39,6 +37,11 @@ class AboutPage extends StatelessWidget {
           filename: 'README.md',
           title: Text(S.of(context).viewReadme),
           icon: const Icon(Icons.description),
+        ),
+        MarkdownPageListTile(
+          filename: 'CHANGELOG.md',
+          title: Text(S.of(context).viewChangelog),
+          icon: const Icon(Icons.tips_and_updates),
         ),
       ],
     );

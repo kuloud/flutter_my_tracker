@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/stat/card_title_bar.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
@@ -128,16 +129,19 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
   Widget build(BuildContext context) {
     return Card(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        CardTitleBar(title: '海拔', subtitle: '(米)', items: [
-          {
-            'title': '${dp(widget.trackStat.minAltitude, 1)}',
-            'label': '最低海拔',
-          },
-          {
-            'title': '${dp(widget.trackStat.maxAltitude, 1)}',
-            'label': '最高海拔',
-          }
-        ]),
+        CardTitleBar(
+            title: S.of(context).altitude,
+            subtitle: S.of(context).unit(S.of(context).meter),
+            items: [
+              {
+                'title': '${dp(widget.trackStat.minAltitude, 1)}',
+                'label': S.of(context).minAltitude,
+              },
+              {
+                'title': '${dp(widget.trackStat.maxAltitude, 1)}',
+                'label': S.of(context).maxAltitude,
+              }
+            ]),
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: AspectRatio(

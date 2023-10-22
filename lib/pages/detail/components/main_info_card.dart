@@ -21,11 +21,11 @@ class MainInfoCard extends StatelessWidget {
     final List<Map<String, String>> items = [
       {
         'title': formatMilliseconds(trackStat.totalTime.toInt()),
-        'label': '总时长'
+        'label': S.of(context).totalDuration
       },
       {
         'title': formatPace(trackStat.avgSpeed),
-        'label': S.of(context).labelAvgPace
+        'label': S.of(context).averagePace
       },
     ];
     return Card(

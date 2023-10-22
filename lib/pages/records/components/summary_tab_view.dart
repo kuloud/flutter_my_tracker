@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/records/components/summary_card.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
@@ -23,7 +24,7 @@ class SummaryTabView extends StatelessWidget {
                         snapshot.data!.startTime.toInt());
                   }
                   return Text(
-                    '$sinceTime至今',
+                    '$sinceTime ${S.of(context).toNow}',
                     style: Theme.of(context).textTheme.labelSmall,
                   );
                 }),

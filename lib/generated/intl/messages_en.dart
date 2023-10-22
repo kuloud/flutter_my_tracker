@@ -20,30 +20,69 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(author, year) => "Copyright © {${author}}, {${year}}";
+  static String m0(times) => "${times} Activities";
 
-  static String m1(version, buildNumber) =>
+  static String m1(author, year) => "Copyright © {${author}}, {${year}}";
+
+  static String m2(unit) => "(${unit})";
+
+  static String m3(version, buildNumber) =>
       "Version {${version}}, build #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "appName": MessageLookupByLibrary.simpleMessage("Flit"),
-        "authorYear": m0,
+        "about": MessageLookupByLibrary.simpleMessage("About"),
+        "activitySummary":
+            MessageLookupByLibrary.simpleMessage("Activity Summary"),
+        "activityTimes": m0,
+        "allActivities": MessageLookupByLibrary.simpleMessage("All Activities"),
+        "altitude": MessageLookupByLibrary.simpleMessage("Altitude"),
+        "appName": MessageLookupByLibrary.simpleMessage("Flove"),
+        "authorYear": m1,
+        "averagePace": MessageLookupByLibrary.simpleMessage("Average Pace"),
         "bottomNavigationBarLabelHistory":
             MessageLookupByLibrary.simpleMessage("History"),
         "bottomNavigationBarLabelMap":
             MessageLookupByLibrary.simpleMessage("Map"),
         "bottomNavigationBarLabelTracks":
             MessageLookupByLibrary.simpleMessage("Tracks"),
+        "comma": MessageLookupByLibrary.simpleMessage(","),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("Dark Theme"),
+        "fast": MessageLookupByLibrary.simpleMessage("Fast"),
+        "kilometer": MessageLookupByLibrary.simpleMessage("km"),
+        "kilometerPerHour": MessageLookupByLibrary.simpleMessage("km/h"),
+        "kilometers": MessageLookupByLibrary.simpleMessage("km"),
         "labelAppDescription": MessageLookupByLibrary.simpleMessage(
             "A minimalist movement tracking software that 100% follows the Material You design language."),
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("Avg Pace"),
         "labelPace": MessageLookupByLibrary.simpleMessage("Pace"),
         "labelStep": MessageLookupByLibrary.simpleMessage("Step"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("Light Theme"),
+        "maxAltitude": MessageLookupByLibrary.simpleMessage("Max Altitude"),
+        "maxPace": MessageLookupByLibrary.simpleMessage("Max Pace"),
+        "meter": MessageLookupByLibrary.simpleMessage("m"),
+        "meters": MessageLookupByLibrary.simpleMessage("m"),
+        "minAltitude": MessageLookupByLibrary.simpleMessage("Min Altitude"),
+        "minPace": MessageLookupByLibrary.simpleMessage("Min Pace"),
+        "minutePerKilometer": MessageLookupByLibrary.simpleMessage("min/km"),
+        "month": MessageLookupByLibrary.simpleMessage("Month"),
+        "pace": MessageLookupByLibrary.simpleMessage("Pace"),
+        "recentActivity":
+            MessageLookupByLibrary.simpleMessage("Recent Activity"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "slow": MessageLookupByLibrary.simpleMessage("Slow"),
         "titleAbout": MessageLookupByLibrary.simpleMessage("关于"),
+        "toNow": MessageLookupByLibrary.simpleMessage("to Now"),
+        "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "totalDistance": MessageLookupByLibrary.simpleMessage("Total Distance"),
+        "totalDuration": MessageLookupByLibrary.simpleMessage("Total Duration"),
+        "unit": m2,
         "unitKm": MessageLookupByLibrary.simpleMessage("KM"),
         "unitM": MessageLookupByLibrary.simpleMessage("M"),
-        "versionBuild": m1,
-        "viewReadme": MessageLookupByLibrary.simpleMessage("View Readme")
+        "versionBuild": m3,
+        "viewChangelog": MessageLookupByLibrary.simpleMessage("View Changelog"),
+        "viewReadme": MessageLookupByLibrary.simpleMessage("View Readme"),
+        "week": MessageLookupByLibrary.simpleMessage("Week"),
+        "year": MessageLookupByLibrary.simpleMessage("Year")
       };
 }

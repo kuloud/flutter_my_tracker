@@ -69,7 +69,8 @@ class _IndexPageState extends State<IndexPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SettingsPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const SettingsPage()),
                   );
                 },
                 icon: const Icon(Icons.settings))
@@ -190,13 +191,13 @@ class _IndexPageState extends State<IndexPage> {
 
   Future<bool> _checkPermission(Permission permission) async {
     final access = await permission.status;
-    logger.d('----$access');
+    logger.d('[checkPermission] access: $access');
 
     switch (access) {
       case PermissionStatus.denied:
       case PermissionStatus.restricted:
         final permissionStatus = await permission.request();
-        logger.d('--===--$permissionStatus');
+        logger.d('[checkPermission] permissionStatus: $permissionStatus');
         return (permissionStatus == PermissionStatus.granted);
       case PermissionStatus.permanentlyDenied:
         return false;
@@ -208,7 +209,7 @@ class _IndexPageState extends State<IndexPage> {
   }
 
   Future<void> _startLocator() async {
-    logger.d('_startLocator');
+    logger.d('[_startLocator]');
     Map<String, dynamic> data = {'countInit': 1};
     return await BackgroundLocator.registerLocationUpdate(
         LocationCallbackHandler.callback,

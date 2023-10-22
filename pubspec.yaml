@@ -49,7 +49,9 @@ flutter:
     # - CODE_OF_CONDUCT.md
     # - CONTRIBUTING.md
     # - LICENSE.md
-    - README-zh_CN.md
+    - CHANGELOG.md
+    - CHANGELOG-zh_CN.md
     - README.md
+    - README-zh_CN.md
 flutter_intl:
   enabled: true

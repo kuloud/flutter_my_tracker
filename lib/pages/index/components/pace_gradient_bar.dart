@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 
 class PaceGradientBar extends StatelessWidget {
   const PaceGradientBar({
@@ -10,7 +11,7 @@ class PaceGradientBar extends StatelessWidget {
     return Row(
       children: [
         Text(
-          '慢',
+          S.of(context).slow,
           style: Theme.of(context).textTheme.labelMedium,
         ),
         Expanded(
@@ -34,7 +35,7 @@ class PaceGradientBar extends StatelessWidget {
           ),
         ),
         Text(
-          '快',
+          S.of(context).fast,
           style: Theme.of(context).textTheme.labelMedium,
         ),
       ],

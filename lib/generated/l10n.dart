@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Flit`
+  /// `Flove`
   String get appName {
     return Intl.message(
-      'Flit',
+      'Flove',
       name: 'appName',
       desc: '',
       args: [],
@@ -137,6 +137,336 @@ class S {
       name: 'authorYear',
       desc: '',
       args: [author, year],
+    );
+  }
+
+  /// `View Changelog`
+  String get viewChangelog {
+    return Intl.message(
+      'View Changelog',
+      name: 'viewChangelog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Duration`
+  String get totalDuration {
+    return Intl.message(
+      'Total Duration',
+      name: 'totalDuration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slow`
+  String get slow {
+    return Intl.message(
+      'Slow',
+      name: 'slow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fast`
+  String get fast {
+    return Intl.message(
+      'Fast',
+      name: 'fast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pace`
+  String get pace {
+    return Intl.message(
+      'Pace',
+      name: 'pace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min Pace`
+  String get minPace {
+    return Intl.message(
+      'Min Pace',
+      name: 'minPace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max Pace`
+  String get maxPace {
+    return Intl.message(
+      'Max Pace',
+      name: 'maxPace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Altitude`
+  String get altitude {
+    return Intl.message(
+      'Altitude',
+      name: 'altitude',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min Altitude`
+  String get minAltitude {
+    return Intl.message(
+      'Min Altitude',
+      name: 'minAltitude',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max Altitude`
+  String get maxAltitude {
+    return Intl.message(
+      'Max Altitude',
+      name: 'maxAltitude',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `({unit})`
+  String unit(Object unit) {
+    return Intl.message(
+      '($unit)',
+      name: 'unit',
+      desc: '',
+      args: [unit],
+    );
+  }
+
+  /// `Average Pace`
+  String get averagePace {
+    return Intl.message(
+      'Average Pace',
+      name: 'averagePace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Activity`
+  String get recentActivity {
+    return Intl.message(
+      'Recent Activity',
+      name: 'recentActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Activities`
+  String get allActivities {
+    return Intl.message(
+      'All Activities',
+      name: 'allActivities',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Week`
+  String get week {
+    return Intl.message(
+      'Week',
+      name: 'week',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Month`
+  String get month {
+    return Intl.message(
+      'Month',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year`
+  String get year {
+    return Intl.message(
+      'Year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message(
+      'Total',
+      name: 'total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `m`
+  String get meters {
+    return Intl.message(
+      'm',
+      name: 'meters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `km`
+  String get kilometers {
+    return Intl.message(
+      'km',
+      name: 'kilometers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Now`
+  String get toNow {
+    return Intl.message(
+      'to Now',
+      name: 'toNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activity Summary`
+  String get activitySummary {
+    return Intl.message(
+      'Activity Summary',
+      name: 'activitySummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{times} Activities`
+  String activityTimes(Object times) {
+    return Intl.message(
+      '$times Activities',
+      name: 'activityTimes',
+      desc: '',
+      args: [times],
+    );
+  }
+
+  /// `Total Distance`
+  String get totalDistance {
+    return Intl.message(
+      'Total Distance',
+      name: 'totalDistance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Light Theme`
+  String get lightTheme {
+    return Intl.message(
+      'Light Theme',
+      name: 'lightTheme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark Theme`
+  String get darkTheme {
+    return Intl.message(
+      'Dark Theme',
+      name: 'darkTheme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `,`
+  String get comma {
+    return Intl.message(
+      ',',
+      name: 'comma',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min/km`
+  String get minutePerKilometer {
+    return Intl.message(
+      'min/km',
+      name: 'minutePerKilometer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `km/h`
+  String get kilometerPerHour {
+    return Intl.message(
+      'km/h',
+      name: 'kilometerPerHour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `m`
+  String get meter {
+    return Intl.message(
+      'm',
+      name: 'meter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `km`
+  String get kilometer {
+    return Intl.message(
+      'km',
+      name: 'kilometer',
+      desc: '',
+      args: [],
     );
   }
 

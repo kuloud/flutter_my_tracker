@@ -24,11 +24,11 @@ class MainInfoCard extends StatelessWidget {
                 {
                   'title':
                       formatMilliseconds(state.trackStat.totalTime.toInt()),
-                  'label': '总时长'
+                  'label': S.of(context).totalDuration
                 },
                 {
                   'title': formatPace(state.trackStat.lastPosition?.speed ?? 0),
-                  'label': S.of(context).labelPace
+                  'label': S.of(context).pace
                 },
               ];
               return Card(

@@ -35,12 +35,12 @@ class _SummaryCardState extends State<SummaryCard> {
             final List<Map<String, String>> items = [
               {
                 'title': formatMilliseconds(stat['totalTime'].toInt()),
-                'label': '总时长'
+                'label': S.of(context).totalDuration
               },
               {
                 'title': distanceFormat(S.of(context),
                     double.parse('${stat['totalDistance'] ?? 0}')),
-                'label': '总距离'
+                'label': S.of(context).totalDistance
               },
             ];
 
@@ -57,11 +57,13 @@ class _SummaryCardState extends State<SummaryCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '运动总结',
+                            S.of(context).activitySummary,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           HighlightNumberText(
-                            text: '运动${stat['totalMotionTimes']}次',
+                            text: S
+                                .of(context)
+                                .activityTimes(stat['totalMotionTimes']),
                             hightlightTextStyle: Theme.of(context)
                                 .textTheme
                                 .bodySmall

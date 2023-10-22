@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/detail/detail_page.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
-import 'package:flutter_my_tracker/pages/records/records_page.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 

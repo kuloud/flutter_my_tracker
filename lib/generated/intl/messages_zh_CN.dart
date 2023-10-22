@@ -20,30 +20,67 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh_CN';
 
-  static String m0(author, year) => "版权所有 © {${author}}, {${year}}";
+  static String m0(times) => "运动${times}次";
 
-  static String m1(version, buildNumber) =>
+  static String m1(author, year) => "版权所有 © {${author}}, {${year}}";
+
+  static String m2(unit) => "(${unit})";
+
+  static String m3(version, buildNumber) =>
       "版本 {${version}}, 编译号 #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("关于"),
+        "activitySummary": MessageLookupByLibrary.simpleMessage("运动总结"),
+        "activityTimes": m0,
+        "allActivities": MessageLookupByLibrary.simpleMessage("全部运动记录"),
+        "altitude": MessageLookupByLibrary.simpleMessage("海拔"),
         "appName": MessageLookupByLibrary.simpleMessage("飞乐"),
-        "authorYear": m0,
+        "authorYear": m1,
+        "averagePace": MessageLookupByLibrary.simpleMessage("平均配速"),
         "bottomNavigationBarLabelHistory":
             MessageLookupByLibrary.simpleMessage("History"),
         "bottomNavigationBarLabelMap":
             MessageLookupByLibrary.simpleMessage("Map"),
         "bottomNavigationBarLabelTracks":
             MessageLookupByLibrary.simpleMessage("Tracks"),
+        "comma": MessageLookupByLibrary.simpleMessage("，"),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("深色主题"),
+        "fast": MessageLookupByLibrary.simpleMessage("快"),
+        "kilometer": MessageLookupByLibrary.simpleMessage("千米"),
+        "kilometerPerHour": MessageLookupByLibrary.simpleMessage("公里/小时"),
+        "kilometers": MessageLookupByLibrary.simpleMessage("千米"),
         "labelAppDescription": MessageLookupByLibrary.simpleMessage(
             "一款极简风格的运动轨迹记录软件，100%遵循Material You的设计语言。"),
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("平均配速"),
         "labelPace": MessageLookupByLibrary.simpleMessage("配速"),
         "labelStep": MessageLookupByLibrary.simpleMessage("步数"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("浅色主题"),
+        "maxAltitude": MessageLookupByLibrary.simpleMessage("最高海拔"),
+        "maxPace": MessageLookupByLibrary.simpleMessage("最高配速"),
+        "meter": MessageLookupByLibrary.simpleMessage("米"),
+        "meters": MessageLookupByLibrary.simpleMessage("米"),
+        "minAltitude": MessageLookupByLibrary.simpleMessage("最低海拔"),
+        "minPace": MessageLookupByLibrary.simpleMessage("最低配速"),
+        "minutePerKilometer": MessageLookupByLibrary.simpleMessage("分/千米"),
+        "month": MessageLookupByLibrary.simpleMessage("月"),
+        "pace": MessageLookupByLibrary.simpleMessage("配速"),
+        "recentActivity": MessageLookupByLibrary.simpleMessage("最近运动"),
+        "settings": MessageLookupByLibrary.simpleMessage("设置"),
+        "slow": MessageLookupByLibrary.simpleMessage("慢"),
         "titleAbout": MessageLookupByLibrary.simpleMessage("关于"),
+        "toNow": MessageLookupByLibrary.simpleMessage("至今"),
+        "total": MessageLookupByLibrary.simpleMessage("总"),
+        "totalDistance": MessageLookupByLibrary.simpleMessage("总距离"),
+        "totalDuration": MessageLookupByLibrary.simpleMessage("总时长"),
+        "unit": m2,
         "unitKm": MessageLookupByLibrary.simpleMessage("公里"),
         "unitM": MessageLookupByLibrary.simpleMessage("米"),
-        "versionBuild": m1,
-        "viewReadme": MessageLookupByLibrary.simpleMessage("查看自述文件")
+        "versionBuild": m3,
+        "viewChangelog": MessageLookupByLibrary.simpleMessage("查看更新日志"),
+        "viewReadme": MessageLookupByLibrary.simpleMessage("查看自述文件"),
+        "week": MessageLookupByLibrary.simpleMessage("周"),
+        "year": MessageLookupByLibrary.simpleMessage("年")
       };
 }
