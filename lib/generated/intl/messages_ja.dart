@@ -36,7 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "activityTimes": m0,
         "allActivities": MessageLookupByLibrary.simpleMessage("すべての活動履歴"),
         "altitude": MessageLookupByLibrary.simpleMessage("高度"),
-        "appName": MessageLookupByLibrary.simpleMessage("フェイロ"),
+        "appName": MessageLookupByLibrary.simpleMessage("Flove"),
         "appSlogan": MessageLookupByLibrary.simpleMessage("成長を飛躍させ、楽しみましょう。"),
         "authorYear": m1,
         "averagePace": MessageLookupByLibrary.simpleMessage("平均ペース"),
