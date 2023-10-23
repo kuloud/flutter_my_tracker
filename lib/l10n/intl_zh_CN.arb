@@ -49,6 +49,7 @@
   "east": "东",
   "north": "北",
   "sky": "天",
+  "toastDistanceTooShort": "距离太短，数据将不会被记录。",
     
     "unitKm":"公里",
     "unitM":"米",

@@ -510,6 +510,16 @@ class S {
     );
   }
 
+  /// `The distance is too short and the data will not be recorded.`
+  String get toastDistanceTooShort {
+    return Intl.message(
+      'The distance is too short and the data will not be recorded.',
+      name: 'toastDistanceTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `KM`
   String get unitKm {
     return Intl.message(

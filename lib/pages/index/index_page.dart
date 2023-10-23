@@ -89,7 +89,7 @@ class _IndexPageState extends State<IndexPage> {
               _onStop().then((value) {
                 OperationRecordProvider.instance().insert(OperationRecord(
                     time: DateTime.now(), operation: Operation.stop));
-                trackStatCubit.stop();
+                trackStatCubit.stop(context);
               });
             } else {
               _onStart().then((value) {

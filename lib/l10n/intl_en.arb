@@ -49,6 +49,7 @@
   "east": "East",
   "north": "North",
   "sky": "Sky",
+  "toastDistanceTooShort": "The distance is too short and the data will not be recorded.",
 
     "unitKm":"KM",
     "unitM":"M",

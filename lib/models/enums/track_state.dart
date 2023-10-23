@@ -1,7 +1,8 @@
 enum TrackState {
   unkonwn('unkonwn'),
   started('started'),
-  finish('finish');
+  finish('finish'),
+  ignored('ignored');
 
   const TrackState(this.name);
 

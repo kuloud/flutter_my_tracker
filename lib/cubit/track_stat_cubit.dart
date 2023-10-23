@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/enums/track_state.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
@@ -44,11 +46,19 @@ class TrackStatCubit extends Cubit<TrackStatState> {
   }
 
   /// 结束本次记录
-  stop() {
+  stop(BuildContext context) {
     if (_trackStat != null) {
       try {
-        TrackStatProvider.instance()
-            .update(_trackStat!..state = TrackState.finish);
+        if ((_trackStat?.totalDistance ?? 0) < 100) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(S.of(context).toastDistanceTooShort)));
+          TrackStatProvider.instance()
+              .update(_trackStat!..state = TrackState.ignored);
+        } else {
+          TrackStatProvider.instance()
+              .update(_trackStat!..state = TrackState.finish);
+        }
+
         emit(TrackStatStop(trackStat: _trackStat!));
       } catch (e) {
         logger.e('[TrackStatCubit] [stop] error', error: e);

@@ -74,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "slow": MessageLookupByLibrary.simpleMessage("慢"),
         "titleAbout": MessageLookupByLibrary.simpleMessage("关于"),
         "toNow": MessageLookupByLibrary.simpleMessage("至今"),
+        "toastDistanceTooShort":
+            MessageLookupByLibrary.simpleMessage("距离太短，数据将不会被记录。"),
         "total": MessageLookupByLibrary.simpleMessage("总"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("总距离"),
         "totalDuration": MessageLookupByLibrary.simpleMessage("总时长"),
