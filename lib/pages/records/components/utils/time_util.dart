@@ -1,5 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
 import 'package:intl/intl.dart';
+
+SubTabData getWeekData(DateTime date) {
+  final nextWeekStartDate = getNextWeekStartDate(date);
+
+  DateTime currentStartDate =
+      nextWeekStartDate.subtract(const Duration(days: 7));
+  DateTime currentEndDate =
+      getNextWeekStartDate(date).subtract(const Duration(seconds: 1));
+
+  String title =
+      '${DateFormat('M/d').format(currentStartDate)}-${DateFormat('M/d').format(currentEndDate)}';
+
+  SubTabData weekData = SubTabData(
+    title: title,
+    startDate: currentStartDate,
+    endDate: currentEndDate,
+  );
+
+  return weekData;
+}
+
+SubTabData getMonthData(DateTime date) {
+  DateTime currentMonthStart = DateTime(date.year, date.month);
+  DateTime currentMonthEnd =
+      DateTime(date.year, date.month + 1).subtract(const Duration(seconds: 1));
+  String month = DateFormat('M').format(currentMonthStart);
+  SubTabData monthData = SubTabData(
+      startDate: currentMonthStart,
+      title: month.toString(),
+      endDate: currentMonthEnd);
+
+  return monthData;
+}
+
+SubTabData getYearData(DateTime date) {
+  DateTime currentYearStart = DateTime(date.year);
+  DateTime currentYearEnd =
+      DateTime(date.year + 1).subtract(const Duration(seconds: 1));
+  String year = DateFormat('yyyy').format(currentYearStart);
+  SubTabData yearData = SubTabData(
+      startDate: currentYearStart, title: year, endDate: currentYearEnd);
+
+  return yearData;
+}
 
 List<SubTabData> getWeekDataList(DateTime startDate, DateTime endDate) {
   List<SubTabData> weekDataList = [];
@@ -7,9 +53,8 @@ List<SubTabData> getWeekDataList(DateTime startDate, DateTime endDate) {
   DateTime currentStartDate =
       DateTime(startDate.year, startDate.month, startDate.day);
 
-  DateTime currentEndDate = getNextWeekStartDate(startDate)
-      .subtract(const Duration(days: 1))
-      .add(const Duration(hours: 23, minutes: 59, seconds: 59));
+  DateTime currentEndDate =
+      getNextWeekStartDate(startDate).subtract(const Duration(seconds: 1));
 
   while (
       currentEndDate.isBefore(endDate) || !currentStartDate.isAfter(endDate)) {

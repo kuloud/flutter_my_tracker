@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/enums/operation.dart';
 import 'package:flutter_my_tracker/models/enums/track_state.dart';
 import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
@@ -173,21 +175,24 @@ class TrackStatProvider {
   }
 
   Future<List<SubTabData>?> getSecondTabs(int? firstTabIndex) async {
-    DateTime endDate = DateTime.now(); // 当前时间
-    final oldestTrackStat =
-        await TrackStatProvider.instance().getOldestTrackStat();
-    DateTime startDate = DateTime.now();
-    if (oldestTrackStat?.startTime != null) {
-      startDate = DateTime.fromMillisecondsSinceEpoch(
-          oldestTrackStat!.startTime.toInt());
+    final result = <SubTabData>[];
+    final allTrackStats = await TrackStatProvider.instance().getAll();
+    for (var e in allTrackStats) {
+      final startTime =
+          DateTime.fromMillisecondsSinceEpoch(e.startTime.toInt());
+      if (firstTabIndex == 0 && !result.contains(getWeekData(startTime))) {
+        result.add(getWeekData(startTime));
+      } else if (firstTabIndex == 1 &&
+          !result.contains(getMonthData(startTime))) {
+        result.add(getMonthData(startTime));
+      } else if (firstTabIndex == 2 &&
+          !result.contains(getYearData(startTime))) {
+        result.add(getYearData(startTime));
+      }
     }
-    if (firstTabIndex == 0) {
-      return getWeekDataList(startDate, endDate);
-    } else if (firstTabIndex == 1) {
-      return getMonthDataList(startDate, endDate);
-    } else if (firstTabIndex == 2) {
-      return getYearDataList(startDate, endDate);
-    }
-    return null;
+
+    logger.d('[getSecondTabs] firstTabIndex: $firstTabIndex $result');
+
+    return result;
   }
 }
