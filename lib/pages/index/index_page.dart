@@ -35,7 +35,15 @@ class _IndexPageState extends State<IndexPage> {
   @override
   void initState() {
     super.initState();
-    syncServiceRunningState();
+    syncServiceRunningState().then((isServiceRunning) {
+      if (isServiceRunning) {
+        OperationRecordProvider.instance().insert(OperationRecord(
+            time: DateTime.now(), operation: Operation.autoResume));
+        // final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
+        // trackStatCubit.start();
+        _tickTimer();
+      }
+    });
   }
 
   @override
@@ -46,16 +54,14 @@ class _IndexPageState extends State<IndexPage> {
     }
   }
 
-  Future<void> syncServiceRunningState() async {
+  Future<bool> syncServiceRunningState() async {
     final isServiceRunning = await BackgroundLocator.isServiceRunning();
-    if (context.mounted) {
+    if (mounted) {
       setState(() {
         isRunning = isServiceRunning;
       });
     }
-    if (isServiceRunning) {
-      //
-    }
+    return isServiceRunning;
   }
 
   @override
@@ -162,12 +168,7 @@ class _IndexPageState extends State<IndexPage> {
       await _startLocator();
       final isServiceRunning = await BackgroundLocator.isServiceRunning();
 
-      _timer = Timer.periodic(const Duration(milliseconds: 800), (Timer timer) {
-        // 每秒触发一次的逻辑
-        final trackStatCubit =
-            BlocProvider.of<TrackStatCubit>(context, listen: false);
-        trackStatCubit.tick();
-      });
+      _tickTimer();
 
       setState(() {
         isRunning = isServiceRunning;
@@ -179,6 +180,18 @@ class _IndexPageState extends State<IndexPage> {
       // show error
     }
     return false;
+  }
+
+  void _tickTimer() {
+    if (_timer?.isActive ?? false) {
+      return;
+    }
+    _timer = Timer.periodic(const Duration(milliseconds: 800), (Timer timer) {
+      // 每秒触发一次的逻辑
+      final trackStatCubit =
+          BlocProvider.of<TrackStatCubit>(context, listen: false);
+      trackStatCubit.tick();
+    });
   }
 
   Future<bool> _checkLocationPermission() async {

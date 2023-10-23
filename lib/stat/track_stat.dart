@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_my_tracker/calc/distance_calc.dart';
+import 'package:flutter_my_tracker/models/enums/track_state.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 
@@ -20,6 +21,8 @@ class TrackStat {
   double avgSpeed;
   Position? lastPosition;
 
+  TrackState state;
+
   TrackStat({
     this.id,
     this.positionsCount = 0,
@@ -32,6 +35,7 @@ class TrackStat {
     this.avgSpeed = 0,
     this.endTime = 0,
     this.totalTime = 0,
+    this.state = TrackState.unkonwn,
   });
 
   TrackStat addPosition(Position position) {
@@ -85,6 +89,7 @@ class TrackStat {
       'endTime': endTime.toInt(),
       'totalTime': totalTime,
       'avgSpeed': avgSpeed,
+      'state': state.name,
     };
   }
 
@@ -101,6 +106,7 @@ class TrackStat {
       endTime: double.parse('${json['endTime']}'),
       totalTime: json['totalTime'],
       avgSpeed: json['avgSpeed'],
+      state: TrackState.getTypeByName(json['state']),
     );
   }
 
@@ -115,6 +121,7 @@ class TrackStat {
       'startTime': DateTime.fromMillisecondsSinceEpoch(startTime.toInt()),
       'endTime': DateTime.fromMillisecondsSinceEpoch(endTime.toInt()),
       'totalTime': formatMilliseconds(totalTime.toInt()),
+      'state': state.name
     };
   }
 }

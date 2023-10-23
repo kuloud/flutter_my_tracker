@@ -1,4 +1,5 @@
 import 'package:flutter_my_tracker/models/enums/operation.dart';
+import 'package:flutter_my_tracker/models/enums/track_state.dart';
 import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
 import 'package:flutter_my_tracker/pages/records/components/utils/time_util.dart';
@@ -26,7 +27,7 @@ class TrackStatProvider {
       String dbPath = join(path, 'track_stats_database.db');
       _database = await openDatabase(
         dbPath,
-        version: 1,
+        version: 2,
         onCreate: (Database db, int version) async {
           await db.execute('''
             CREATE TABLE track_stats (
@@ -40,29 +41,59 @@ class TrackStatProvider {
               startTime INTEGER,
               endTime INTEGER,
               totalTime REAL,
-              avgSpeed REAL
+              avgSpeed REAL,
+              state TEXT,
             )
           ''');
         },
         onUpgrade: (db, oldVersion, newVersion) async {
-          // if (oldVersion < 2) {
-          //   // 如果旧版本小于2，则执行升级操作
-          //   await db.execute('ALTER TABLE track_stats ADD COLUMN avgSpeed REAL');
-          // }
+          if (oldVersion < 2) {
+            // 版本 2 添加 state，持久化Tracker状态，历史记录默认变成已完成状态
+            await db.execute(
+                'ALTER TABLE track_stats ADD COLUMN state TEXT DEFAULT "${TrackState.finish.name}"');
+          }
         },
       );
     }
   }
 
-  Future<int> insert(TrackStat trackStat) async {
-    await open();
-    return await _database!.insert('track_stats', trackStat.toJson());
+  Future<TrackStat?> getRunningTrackStat() async {
+    return await getLastestTrackStatByState(TrackState.started);
   }
 
-  Future<TrackStat?> getLastestTrackStat() async {
+  Future<TrackStat> insert(TrackStat trackStat) async {
     await open();
-    List<Map<String, dynamic>> maps = await _database!
-        .query('track_stats', limit: 1, orderBy: 'startTime DESC');
+    trackStat.id = await _database!.insert('track_stats', trackStat.toJson());
+    return trackStat;
+  }
+
+  Future<TrackStat> update(TrackStat trackStat) async {
+    await open();
+    await _database!.update(
+      'track_stats',
+      trackStat.toJson(),
+      where: 'id = ?',
+      whereArgs: [trackStat.id],
+    );
+    return trackStat;
+  }
+
+  @Deprecated("use getLastestFinishedTrackStat")
+  Future<TrackStat?> getLastestTrackStat() async {
+    return getLastestTrackStatByState(TrackState.finish);
+  }
+
+  Future<TrackStat?> getLastestFinishedTrackStat() async {
+    return getLastestTrackStatByState(TrackState.finish);
+  }
+
+  Future<TrackStat?> getLastestTrackStatByState(TrackState state) async {
+    await open();
+    List<Map<String, dynamic>> maps = await _database!.query('track_stats',
+        where: 'state = ?',
+        whereArgs: [state.name],
+        limit: 1,
+        orderBy: 'startTime DESC');
     if (maps.isNotEmpty) {
       return TrackStat.fromJson(maps.first);
     }
@@ -71,8 +102,11 @@ class TrackStatProvider {
 
   Future<TrackStat?> getOldestTrackStat() async {
     await open();
-    List<Map<String, dynamic>> maps = await _database!
-        .query('track_stats', limit: 1, orderBy: 'startTime ASC');
+    List<Map<String, dynamic>> maps = await _database!.query('track_stats',
+        where: 'state = ?',
+        whereArgs: [TrackState.finish.name],
+        limit: 1,
+        orderBy: 'startTime ASC');
     if (maps.isNotEmpty) {
       return TrackStat.fromJson(maps.first);
     }

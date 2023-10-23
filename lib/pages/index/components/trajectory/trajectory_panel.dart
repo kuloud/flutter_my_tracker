@@ -74,9 +74,9 @@ class _TrajectoryPanelState extends State<TrajectoryPanel>
         _points.clear();
         _points.addAll(cachePoints!);
       }
+      logger.d('[trackStat] state: $state');
       if (state is TrackStatUpdated) {
         _trackStat = state.trackStat;
-        logger.d('[trackStat] _trackStat: ${_trackStat}');
         // 运动中
         final p = state.trackStat.lastPosition;
         if (p != null) {
@@ -86,7 +86,6 @@ class _TrajectoryPanelState extends State<TrajectoryPanel>
       } else if (state is TrackStatStart) {
         _points.clear();
       } else if (state is TrackStatStop || state is TrackStatInitial) {
-        logger.d('[trackStat] _trackStat: ${state}');
         _points.clear();
         if (!widget.isServiceRunning) {
           _points.addAll(

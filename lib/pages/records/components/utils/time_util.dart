@@ -9,7 +9,7 @@ List<SubTabData> getWeekDataList(DateTime startDate, DateTime endDate) {
 
   DateTime currentEndDate = getNextWeekStartDate(startDate)
       .subtract(const Duration(days: 1))
-      .add(Duration(hours: 23, minutes: 59, seconds: 59));
+      .add(const Duration(hours: 23, minutes: 59, seconds: 59));
 
   while (
       currentEndDate.isBefore(endDate) || !currentStartDate.isAfter(endDate)) {
@@ -47,7 +47,7 @@ List<SubTabData> getMonthDataList(DateTime startDate, DateTime endDate) {
     var currentMonthEnd =
         DateTime(currentMonthStart.year, currentMonthStart.month + 1)
             .subtract(const Duration(days: 1))
-            .add(Duration(hours: 23, minutes: 59, seconds: 59));
+            .add(const Duration(hours: 23, minutes: 59, seconds: 59));
     SubTabData monthData = SubTabData(
         startDate: currentMonthStart,
         title: month.toString(),
@@ -68,7 +68,7 @@ List<SubTabData> getYearDataList(DateTime startDate, DateTime endDate) {
     String year = DateFormat('yyyy年').format(currentYearStart);
     var currentYearEnd = DateTime(currentYearStart.year + 1)
         .subtract(const Duration(days: 1))
-        .add(Duration(hours: 23, minutes: 59, seconds: 59));
+        .add(const Duration(hours: 23, minutes: 59, seconds: 59));
     SubTabData yearData = SubTabData(
         startDate: currentYearStart, title: year, endDate: currentYearEnd);
     yearDataList.add(yearData);
