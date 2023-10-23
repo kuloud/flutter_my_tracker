@@ -1,5 +1,8 @@
 
-# 0.0.2
+# 1.0.0
+
+Adjust the version naming format based on the version number required by the AppStore
+
 - Feat:
     - Records shorter than 100 meters will not be recorded
 - Fixed:
