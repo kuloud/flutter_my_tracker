@@ -10,9 +10,11 @@ class ThemeBloc extends Cubit<ThemeState> {
 
   void loadTheme() async {
     bool isDarkMode = _shared.getBool('kIsDarkMode') ?? false;
-    _shared.setBool('kIsDarkMode', isDarkMode);
     changeTheme(isDarkMode ? DarkTheme() : LightTheme());
   }
 
-  void changeTheme(ThemeState state) => emit(state);
+  void changeTheme(ThemeState state) {
+    _shared.setBool('kIsDarkMode', state is DarkTheme);
+    emit(state);
+  }
 }

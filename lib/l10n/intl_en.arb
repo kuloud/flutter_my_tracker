@@ -2,6 +2,7 @@
     "@@locale": "en",
 
     "appName": "Flove",
+    "appSlogan": "Love, yourself.",
 
     "bottomNavigationBarLabelMap":"Map",
     "bottomNavigationBarLabelTracks":"Tracks",
@@ -50,6 +51,7 @@
   "north": "North",
   "sky": "Sky",
   "toastDistanceTooShort": "The distance is too short and the data will not be recorded.",
+
 
     "unitKm":"KM",
     "unitM":"M",

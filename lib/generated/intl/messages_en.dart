@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allActivities": MessageLookupByLibrary.simpleMessage("All Activities"),
         "altitude": MessageLookupByLibrary.simpleMessage("Altitude"),
         "appName": MessageLookupByLibrary.simpleMessage("Flove"),
+        "appSlogan": MessageLookupByLibrary.simpleMessage("Love, yourself."),
         "authorYear": m1,
         "averagePace": MessageLookupByLibrary.simpleMessage("Average Pace"),
         "bottomNavigationBarLabelHistory":

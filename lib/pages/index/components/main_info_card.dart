@@ -16,7 +16,7 @@ class MainInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TrackStatCubit, TrackStatState>(
-        bloc: BlocProvider.of<TrackStatCubit>(context, listen: false),
+        bloc: BlocProvider.of<TrackStatCubit>(context, listen: true),
         builder: (context, state) {
           switch (state) {
             case TrackStatUpdated():
@@ -66,7 +66,16 @@ class MainInfoCard extends StatelessWidget {
                 ),
               );
             default:
-              return const SizedBox();
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  S.of(context).appSlogan,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                ),
+              );
           }
         });
   }

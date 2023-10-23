@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `Love, yourself.`
+  String get appSlogan {
+    return Intl.message(
+      'Love, yourself.',
+      name: 'appSlogan',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Map`
   String get bottomNavigationBarLabelMap {
     return Intl.message(

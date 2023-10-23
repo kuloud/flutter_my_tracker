@@ -2,6 +2,7 @@
     "@@locale": "zh_CN",
 
     "appName": "飞乐",
+    "appSlogan": "飞跃成长，自得其乐。",
 
     "bottomNavigationBarLabelMap":"Map",
     "bottomNavigationBarLabelTracks":"Tracks",

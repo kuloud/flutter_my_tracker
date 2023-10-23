@@ -36,6 +36,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
   @override
   void initState() {
     super.initState();
+    context.read<ThemeBloc>().loadTheme();
     if (IsolateNameServer.lookupPortByName(
             LocationServiceRepository.isolateName) !=
         null) {

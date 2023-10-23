@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allActivities": MessageLookupByLibrary.simpleMessage("全部运动记录"),
         "altitude": MessageLookupByLibrary.simpleMessage("海拔"),
         "appName": MessageLookupByLibrary.simpleMessage("飞乐"),
+        "appSlogan": MessageLookupByLibrary.simpleMessage("飞跃成长，自得其乐。"),
         "authorYear": m1,
         "averagePace": MessageLookupByLibrary.simpleMessage("平均配速"),
         "bottomNavigationBarLabelHistory":
