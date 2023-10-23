@@ -52,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("平均配速"),
         "labelPace": MessageLookupByLibrary.simpleMessage("配速"),
         "labelStep": MessageLookupByLibrary.simpleMessage("步数"),
+        "language": MessageLookupByLibrary.simpleMessage("语言"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("浅色主题"),
         "maxAltitude": MessageLookupByLibrary.simpleMessage("最高海拔"),
         "maxPace": MessageLookupByLibrary.simpleMessage("最高配速"),

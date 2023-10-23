@@ -4,6 +4,7 @@ import 'package:flutter_my_tracker/cubit/theme/theme_bloc.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/about/about_page.dart';
+import 'package:flutter_my_tracker/pages/settings/lang/lang_selector_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -31,6 +32,17 @@ class SettingsPage extends StatelessWidget {
                   : const Icon(Icons.light_mode),
             );
           }),
+          ListTile(
+            leading: const Icon(Icons.language),
+            title: Text(S.of(context).language),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const LanguageSettingsPage()),
+              );
+            },
+          ),
           ListTile(
             leading: const Icon(Icons.info),
             title: Text(S.of(context).about),

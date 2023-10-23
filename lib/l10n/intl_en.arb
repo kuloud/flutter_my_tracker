@@ -49,5 +49,6 @@
   "labelPace": "Pace",
   "labelAvgPace": "Avg Pace",
   "workoutsTimes": "workouts",
+  "language": "Language",
   "labelStep": "Step"
 }

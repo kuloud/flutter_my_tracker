@@ -8,6 +8,7 @@ import 'package:background_locator_2/location_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_my_tracker/cubit/locale/locale_cubit.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_bloc.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
 import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
@@ -72,27 +73,31 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.light(
-          useMaterial3: true,
-        ).copyWith(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue)),
-        darkTheme: ThemeData.dark(
-          useMaterial3: true,
-        ),
-        themeMode: (state is DarkTheme) ? ThemeMode.dark : ThemeMode.light,
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        home: const IndexPage(),
-        // home: const TrajectoryPage(),
-        // home: MyApp(),
-      );
+      return BlocBuilder<LocaleCubit, LocaleState>(
+          builder: (context, localeState) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.light(
+            useMaterial3: true,
+          ).copyWith(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue)),
+          darkTheme: ThemeData.dark(
+            useMaterial3: true,
+          ),
+          themeMode: (state is DarkTheme) ? ThemeMode.dark : ThemeMode.light,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          locale: localeState.locale,
+          home: const IndexPage(),
+          // home: const TrajectoryPage(),
+          // home: MyApp(),
+        );
+      });
     });
   }
 

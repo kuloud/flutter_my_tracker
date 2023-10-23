@@ -20,7 +20,7 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ja';
 
-  static String m0(times) => "${times}回のアクティビティ";
+  static String m0(times) => "${times}回の活動";
 
   static String m1(author, year) => "著作権所有 © {${author}}, {${year}}";
 
@@ -32,9 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("について"),
-        "activitySummary": MessageLookupByLibrary.simpleMessage("アクティビティの概要"),
+        "activitySummary": MessageLookupByLibrary.simpleMessage("活動概要"),
         "activityTimes": m0,
-        "allActivities": MessageLookupByLibrary.simpleMessage("すべてのアクティビティ"),
+        "allActivities": MessageLookupByLibrary.simpleMessage("すべての活動履歴"),
         "altitude": MessageLookupByLibrary.simpleMessage("高度"),
         "appName": MessageLookupByLibrary.simpleMessage("フェイロ"),
         "appSlogan": MessageLookupByLibrary.simpleMessage("成長を飛躍させ、楽しみましょう。"),
@@ -48,10 +48,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "kilometerPerHour": MessageLookupByLibrary.simpleMessage("キロメートル/時"),
         "kilometers": MessageLookupByLibrary.simpleMessage("キロメートル"),
         "labelAppDescription": MessageLookupByLibrary.simpleMessage(
-            "シンプルなデザインのトラック記録アプリで、Material Youのデザイン言語に100%準拠しています。"),
+            "シンプルなデザインの運動トラッキングアプリで、Material Youのデザイン言語に100%準拠しています。"),
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("平均ペース"),
         "labelPace": MessageLookupByLibrary.simpleMessage("ペース"),
         "labelStep": MessageLookupByLibrary.simpleMessage("歩数"),
+        "language": MessageLookupByLibrary.simpleMessage("言語"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("ライトテーマ"),
         "maxAltitude": MessageLookupByLibrary.simpleMessage("最高高度"),
         "maxPace": MessageLookupByLibrary.simpleMessage("最高ペース"),
@@ -63,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "month": MessageLookupByLibrary.simpleMessage("月"),
         "north": MessageLookupByLibrary.simpleMessage("北"),
         "pace": MessageLookupByLibrary.simpleMessage("ペース"),
-        "recentActivity": MessageLookupByLibrary.simpleMessage("最近のアクティビティ"),
+        "recentActivity": MessageLookupByLibrary.simpleMessage("最近の活動"),
         "settings": MessageLookupByLibrary.simpleMessage("設定"),
         "sky": MessageLookupByLibrary.simpleMessage("空"),
         "slow": MessageLookupByLibrary.simpleMessage("遅い"),
@@ -72,7 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("距離が短すぎて、データは記録されません。"),
         "total": MessageLookupByLibrary.simpleMessage("合計"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("総距離"),
-        "totalDuration": MessageLookupByLibrary.simpleMessage("総時間"),
+        "totalDuration": MessageLookupByLibrary.simpleMessage("合計時間"),
         "unit": m2,
         "unitKm": MessageLookupByLibrary.simpleMessage("キロメートル"),
         "unitM": MessageLookupByLibrary.simpleMessage("メートル"),
@@ -82,7 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("プライバシーポリシーを表示"),
         "viewReadme": MessageLookupByLibrary.simpleMessage("自述ファイルを表示"),
         "week": MessageLookupByLibrary.simpleMessage("週"),
-        "workoutsTimes": MessageLookupByLibrary.simpleMessage("鍛え"),
+        "workoutsTimes": MessageLookupByLibrary.simpleMessage("回"),
         "year": MessageLookupByLibrary.simpleMessage("年")
       };
 }

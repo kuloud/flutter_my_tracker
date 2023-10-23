@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("Avg Pace"),
         "labelPace": MessageLookupByLibrary.simpleMessage("Pace"),
         "labelStep": MessageLookupByLibrary.simpleMessage("Step"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Light Theme"),
         "maxAltitude": MessageLookupByLibrary.simpleMessage("Max Altitude"),
         "maxPace": MessageLookupByLibrary.simpleMessage("Max Pace"),

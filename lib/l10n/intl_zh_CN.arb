@@ -49,5 +49,6 @@
   "workoutsTimes": "次",
   "labelPace": "配速",
   "labelAvgPace": "平均配速",
+  "language": "语言",
   "labelStep": "步数"
 }
