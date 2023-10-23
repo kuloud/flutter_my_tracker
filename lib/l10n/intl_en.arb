@@ -48,5 +48,6 @@
   "unitM": "M",
   "labelPace": "Pace",
   "labelAvgPace": "Avg Pace",
+  "workoutsTimes": "workouts",
   "labelStep": "Step"
 }

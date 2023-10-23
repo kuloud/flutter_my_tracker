@@ -46,6 +46,7 @@
   "toastDistanceTooShort": "距离太短，数据将不会被记录。",
   "unitKm": "公里",
   "unitM": "米",
+  "workoutsTimes": "次",
   "labelPace": "配速",
   "labelAvgPace": "平均配速",
   "labelStep": "步数"

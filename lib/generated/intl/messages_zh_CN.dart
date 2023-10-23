@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "viewPrivacyPolicy": MessageLookupByLibrary.simpleMessage("查看隐私政策"),
         "viewReadme": MessageLookupByLibrary.simpleMessage("查看自述文件"),
         "week": MessageLookupByLibrary.simpleMessage("周"),
+        "workoutsTimes": MessageLookupByLibrary.simpleMessage("次"),
         "year": MessageLookupByLibrary.simpleMessage("年")
       };
 }

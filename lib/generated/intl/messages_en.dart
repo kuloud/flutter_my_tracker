@@ -69,7 +69,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sky": MessageLookupByLibrary.simpleMessage("Sky"),
         "slow": MessageLookupByLibrary.simpleMessage("Slow"),
-        "titleAbout": MessageLookupByLibrary.simpleMessage("关于"),
         "toNow": MessageLookupByLibrary.simpleMessage("to Now"),
         "toastDistanceTooShort": MessageLookupByLibrary.simpleMessage(
             "The distance is too short and the data will not be recorded."),
@@ -85,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("View Privacy Policy"),
         "viewReadme": MessageLookupByLibrary.simpleMessage("View Readme"),
         "week": MessageLookupByLibrary.simpleMessage("Week"),
+        "workoutsTimes": MessageLookupByLibrary.simpleMessage("workouts"),
         "year": MessageLookupByLibrary.simpleMessage("Year")
       };
 }

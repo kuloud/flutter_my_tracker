@@ -82,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("プライバシーポリシーを表示"),
         "viewReadme": MessageLookupByLibrary.simpleMessage("自述ファイルを表示"),
         "week": MessageLookupByLibrary.simpleMessage("週"),
+        "workoutsTimes": MessageLookupByLibrary.simpleMessage("鍛え"),
         "year": MessageLookupByLibrary.simpleMessage("年")
       };
 }

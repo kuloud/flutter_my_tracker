@@ -83,6 +83,7 @@ class _IndexPageState extends State<IndexPage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          enableFeedback: true,
           onPressed: () {
             final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
             if (isRunning) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/detail/detail_page.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
+import 'package:flutter_my_tracker/pages/records/components/region_summary_card.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 
@@ -25,44 +26,52 @@ class _RecordListViewState extends State<RecordListView> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final records = snapshot.data;
-              return ListView.builder(
-                  itemCount: records?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 16, right: 16, top: 16, bottom: 8),
-                        child: ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            distanceFormat(
-                                S.of(context), records![index].totalDistance),
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                formatMillisecondsDateShort(S.of(context),
-                                    records[index].startTime.toInt()),
-                                style: Theme.of(context).textTheme.titleSmall,
+              return CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: RegionSummaryCard(trackStats: records!),
+                  ),
+                  SliverList.builder(
+                      itemCount: records?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 16, right: 16, top: 16, bottom: 8),
+                            child: ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: Text(
+                                distanceFormat(S.of(context),
+                                    records![index].totalDistance),
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
-                              const Icon(Icons.chevron_right)
-                            ],
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    formatMillisecondsDateShort(S.of(context),
+                                        records[index].startTime.toInt()),
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall,
+                                  ),
+                                  const Icon(Icons.chevron_right)
+                                ],
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailPage(
+                                            trackStat: records![index],
+                                          )),
+                                );
+                              },
+                            ),
                           ),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DetailPage(
-                                        trackStat: records![index],
-                                      )),
-                            );
-                          },
-                        ),
-                      ),
-                    );
-                  });
+                        );
+                      })
+                ],
+              );
             } else {
               return const SizedBox();
             }

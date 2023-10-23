@@ -70,16 +70,6 @@ class S {
     );
   }
 
-  /// `关于`
-  String get titleAbout {
-    return Intl.message(
-      '关于',
-      name: 'titleAbout',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `A minimalist movement tracking software that 100% follows the Material You design language.`
   String get labelAppDescription {
     return Intl.message(
@@ -535,6 +525,16 @@ class S {
     return Intl.message(
       'Avg Pace',
       name: 'labelAvgPace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `workouts`
+  String get workoutsTimes {
+    return Intl.message(
+      'workouts',
+      name: 'workoutsTimes',
       desc: '',
       args: [],
     );
