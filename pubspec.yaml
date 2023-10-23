@@ -45,10 +45,8 @@ flutter:
 
   assets:
     - assets/images/app_logo.png
-    # - CHANGELOG.md
-    # - CODE_OF_CONDUCT.md
-    # - CONTRIBUTING.md
-    # - LICENSE.md
+    - PRIVACY-POLICY.md
+    - PRIVACY-POLICY-zh_CN.md
     - CHANGELOG.md
     - CHANGELOG-zh_CN.md
     - README.md

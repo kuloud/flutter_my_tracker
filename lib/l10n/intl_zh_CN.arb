@@ -13,6 +13,7 @@
     "versionBuild": "版本 {{ version }}, 构建号 #{{ buildNumber }}",
   "authorYear": "版权所有 © {{ author }}, {{ year }}",
   "viewChangelog": "查看更新日志",
+  "viewPrivacyPolicy": "查看隐私政策",
   "totalDuration": "总时长",
   "slow": "慢",
   "fast": "快",

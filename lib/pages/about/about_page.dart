@@ -43,6 +43,11 @@ class AboutPage extends StatelessWidget {
           title: Text(S.of(context).viewChangelog),
           icon: const Icon(Icons.tips_and_updates),
         ),
+        MarkdownPageListTile(
+          filename: 'PRIVACY-POLICY.md',
+          title: Text(S.of(context).viewPrivacyPolicy),
+          icon: const Icon(Icons.privacy_tip),
+        ),
       ],
     );
   }

@@ -13,6 +13,7 @@
     "versionBuild": "Version {{ version }}, build #{{ buildNumber }}",
   "authorYear": "Copyright © {{ author }}, {{ year }}",
   "viewChangelog": "View Changelog",
+  "viewPrivacyPolicy": "View Privacy Policy",
   "totalDuration": "Total Duration",
   "slow": "Slow",
   "fast": "Fast",

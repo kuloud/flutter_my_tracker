@@ -79,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unitM": MessageLookupByLibrary.simpleMessage("米"),
         "versionBuild": m3,
         "viewChangelog": MessageLookupByLibrary.simpleMessage("查看更新日志"),
+        "viewPrivacyPolicy": MessageLookupByLibrary.simpleMessage("查看隐私政策"),
         "viewReadme": MessageLookupByLibrary.simpleMessage("查看自述文件"),
         "week": MessageLookupByLibrary.simpleMessage("周"),
         "year": MessageLookupByLibrary.simpleMessage("年")

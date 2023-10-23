@@ -150,6 +150,16 @@ class S {
     );
   }
 
+  /// `View Privacy Policy`
+  String get viewPrivacyPolicy {
+    return Intl.message(
+      'View Privacy Policy',
+      name: 'viewPrivacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Total Duration`
   String get totalDuration {
     return Intl.message(

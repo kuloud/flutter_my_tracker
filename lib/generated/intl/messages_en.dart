@@ -81,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unitM": MessageLookupByLibrary.simpleMessage("M"),
         "versionBuild": m3,
         "viewChangelog": MessageLookupByLibrary.simpleMessage("View Changelog"),
+        "viewPrivacyPolicy":
+            MessageLookupByLibrary.simpleMessage("View Privacy Policy"),
         "viewReadme": MessageLookupByLibrary.simpleMessage("View Readme"),
         "week": MessageLookupByLibrary.simpleMessage("Week"),
         "year": MessageLookupByLibrary.simpleMessage("Year")
