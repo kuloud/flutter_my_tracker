@@ -32,7 +32,7 @@ class TrackStatProvider {
         version: 2,
         onCreate: (Database db, int version) async {
           await db.execute('''
-            CREATE TABLE track_stats (
+            CREATE TABLE IF NOT EXISTS track_stats (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               positionsCount INTEGER,
               minSpeed REAL,
@@ -44,7 +44,7 @@ class TrackStatProvider {
               endTime INTEGER,
               totalTime REAL,
               avgSpeed REAL,
-              state TEXT,
+              state TEXT
             )
           ''');
         },
