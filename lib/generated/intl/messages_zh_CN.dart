@@ -40,12 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "appSlogan": MessageLookupByLibrary.simpleMessage("飞跃成长，自得其乐。"),
         "authorYear": m1,
         "averagePace": MessageLookupByLibrary.simpleMessage("平均配速"),
-        "bottomNavigationBarLabelHistory":
-            MessageLookupByLibrary.simpleMessage("History"),
-        "bottomNavigationBarLabelMap":
-            MessageLookupByLibrary.simpleMessage("Map"),
-        "bottomNavigationBarLabelTracks":
-            MessageLookupByLibrary.simpleMessage("Tracks"),
         "comma": MessageLookupByLibrary.simpleMessage("，"),
         "darkTheme": MessageLookupByLibrary.simpleMessage("深色主题"),
         "east": MessageLookupByLibrary.simpleMessage("东"),
@@ -73,7 +67,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("设置"),
         "sky": MessageLookupByLibrary.simpleMessage("天"),
         "slow": MessageLookupByLibrary.simpleMessage("慢"),
-        "titleAbout": MessageLookupByLibrary.simpleMessage("关于"),
         "toNow": MessageLookupByLibrary.simpleMessage("至今"),
         "toastDistanceTooShort":
             MessageLookupByLibrary.simpleMessage("距离太短，数据将不会被记录。"),

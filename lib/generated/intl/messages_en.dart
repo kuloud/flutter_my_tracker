@@ -41,12 +41,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "appSlogan": MessageLookupByLibrary.simpleMessage("Love, yourself."),
         "authorYear": m1,
         "averagePace": MessageLookupByLibrary.simpleMessage("Average Pace"),
-        "bottomNavigationBarLabelHistory":
-            MessageLookupByLibrary.simpleMessage("History"),
-        "bottomNavigationBarLabelMap":
-            MessageLookupByLibrary.simpleMessage("Map"),
-        "bottomNavigationBarLabelTracks":
-            MessageLookupByLibrary.simpleMessage("Tracks"),
         "comma": MessageLookupByLibrary.simpleMessage(","),
         "darkTheme": MessageLookupByLibrary.simpleMessage("Dark Theme"),
         "east": MessageLookupByLibrary.simpleMessage("East"),

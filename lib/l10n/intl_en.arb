@@ -1,17 +1,10 @@
 {
-    "@@locale": "en",
-
-    "appName": "Flove",
-    "appSlogan": "Love, yourself.",
-
-    "bottomNavigationBarLabelMap":"Map",
-    "bottomNavigationBarLabelTracks":"Tracks",
-    "bottomNavigationBarLabelHistory":"History",
-
-    "titleAbout": "关于",
-    "labelAppDescription": "A minimalist movement tracking software that 100% follows the Material You design language.",
-    "viewReadme": "View Readme",
-    "versionBuild": "Version {{ version }}, build #{{ buildNumber }}",
+  "@@locale": "en",
+  "appName": "Flove",
+  "appSlogan": "Love, yourself.",
+  "labelAppDescription": "A minimalist movement tracking software that 100% follows the Material You design language.",
+  "viewReadme": "View Readme",
+  "versionBuild": "Version {{ version }}, build #{{ buildNumber }}",
   "authorYear": "Copyright © {{ author }}, {{ year }}",
   "viewChangelog": "View Changelog",
   "viewPrivacyPolicy": "View Privacy Policy",
@@ -51,11 +44,9 @@
   "north": "North",
   "sky": "Sky",
   "toastDistanceTooShort": "The distance is too short and the data will not be recorded.",
-
-
-    "unitKm":"KM",
-    "unitM":"M",
-    "labelPace":"Pace",
-    "labelAvgPace":"Avg Pace",
-    "labelStep":"Step"
+  "unitKm": "KM",
+  "unitM": "M",
+  "labelPace": "Pace",
+  "labelAvgPace": "Avg Pace",
+  "labelStep": "Step"
 }

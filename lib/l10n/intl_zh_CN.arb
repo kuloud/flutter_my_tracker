@@ -1,17 +1,10 @@
 {
-    "@@locale": "zh_CN",
-
-    "appName": "飞乐",
-    "appSlogan": "飞跃成长，自得其乐。",
-
-    "bottomNavigationBarLabelMap":"Map",
-    "bottomNavigationBarLabelTracks":"Tracks",
-    "bottomNavigationBarLabelHistory":"History",
-
-    "titleAbout": "关于",
-    "labelAppDescription": "一款极简风格的运动轨迹记录软件，100%遵循Material You的设计语言。",
-    "viewReadme": "查看自述文件",
-    "versionBuild": "版本 {{ version }}, 构建号 #{{ buildNumber }}",
+  "@@locale": "zh_CN",
+  "appName": "飞乐",
+  "appSlogan": "飞跃成长，自得其乐。",
+  "labelAppDescription": "一款极简风格的运动轨迹记录软件，100%遵循Material You的设计语言。",
+  "viewReadme": "查看自述文件",
+  "versionBuild": "版本 {{ version }}, 构建号 #{{ buildNumber }}",
   "authorYear": "版权所有 © {{ author }}, {{ year }}",
   "viewChangelog": "查看更新日志",
   "viewPrivacyPolicy": "查看隐私政策",
@@ -51,15 +44,9 @@
   "north": "北",
   "sky": "天",
   "toastDistanceTooShort": "距离太短，数据将不会被记录。",
-    
-    "unitKm":"公里",
-    "unitM":"米",
-    "labelPace":"配速",
-    "labelAvgPace":"平均配速",
-    "labelStep":"步数"
-
-    
-
-
-    
+  "unitKm": "公里",
+  "unitM": "米",
+  "labelPace": "配速",
+  "labelAvgPace": "平均配速",
+  "labelStep": "步数"
 }

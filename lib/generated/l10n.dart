@@ -70,36 +70,6 @@ class S {
     );
   }
 
-  /// `Map`
-  String get bottomNavigationBarLabelMap {
-    return Intl.message(
-      'Map',
-      name: 'bottomNavigationBarLabelMap',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Tracks`
-  String get bottomNavigationBarLabelTracks {
-    return Intl.message(
-      'Tracks',
-      name: 'bottomNavigationBarLabelTracks',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `History`
-  String get bottomNavigationBarLabelHistory {
-    return Intl.message(
-      'History',
-      name: 'bottomNavigationBarLabelHistory',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `关于`
   String get titleAbout {
     return Intl.message(
@@ -587,6 +557,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ja'),
       Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
     ];
   }
