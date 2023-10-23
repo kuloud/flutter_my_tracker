@@ -480,6 +480,36 @@ class S {
     );
   }
 
+  /// `East`
+  String get east {
+    return Intl.message(
+      'East',
+      name: 'east',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `North`
+  String get north {
+    return Intl.message(
+      'North',
+      name: 'north',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sky`
+  String get sky {
+    return Intl.message(
+      'Sky',
+      name: 'sky',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `KM`
   String get unitKm {
     return Intl.message(

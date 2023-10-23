@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
 
 class ColorLabels extends StatelessWidget {
   const ColorLabels({super.key});
@@ -6,9 +7,9 @@ class ColorLabels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      {'color': Colors.green, 'label': '东'},
-      {'color': Colors.blue, 'label': '北'},
-      {'color': Colors.red, 'label': '天'}
+      {'color': Colors.green, 'label': S.of(context).east},
+      {'color': Colors.blue, 'label': S.of(context).north},
+      {'color': Colors.red, 'label': S.of(context).sky}
     ];
     return Padding(
       padding: const EdgeInsets.all(16.0),

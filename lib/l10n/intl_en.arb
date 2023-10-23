@@ -46,6 +46,9 @@
   "kilometerPerHour": "km/h",
   "meter": "m",
   "kilometer": "km",
+  "east": "East",
+  "north": "North",
+  "sky": "Sky",
 
     "unitKm":"KM",
     "unitM":"M",

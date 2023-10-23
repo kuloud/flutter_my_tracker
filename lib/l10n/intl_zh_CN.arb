@@ -46,6 +46,9 @@
   "kilometerPerHour": "公里/小时",
   "meter": "米",
   "kilometer": "千米",
+  "east": "东",
+  "north": "北",
+  "sky": "天",
     
     "unitKm":"公里",
     "unitM":"米",
