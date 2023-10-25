@@ -24,6 +24,9 @@ double getAvgSpeed(List<Position> sortedPoints) {
     // 累加时间
     totalTime += timeDifference;
   }
+  if (totalTime == 0) {
+    return 0;
+  }
 
   double avgSpeed = 1000 * totalDistance / totalTime;
 

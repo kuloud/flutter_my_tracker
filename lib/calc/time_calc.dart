@@ -12,11 +12,13 @@ List<List<Position>> groupPointsByMinute(List<Position> sortedPoints) {
   logger.d('[groupPointsByMinute] minutes: $minutes');
   List<List<Position>> groupPoints = List.generate(minutes, (index) => []);
 
+  int i = 0;
   // 遍历每个点
   for (Position point in sortedPoints) {
     int currentMinutes =
         ((point.time - sortedPoints.first.time) / millisecondsInMinute).ceil();
-    // logger.d('---- ${point.time} $currentMinutes');
+    // logger
+    //     .d('---- ${++i} ${sortedPoints.length} ${point.time} $currentMinutes');
     if (currentMinutes == 0) {
       logger.w('[groupPointsByMinute] same time.');
       currentMinutes = 1;
@@ -24,8 +26,12 @@ List<List<Position>> groupPointsByMinute(List<Position> sortedPoints) {
     groupPoints[currentMinutes - 1].add(point);
   }
 
-  logger.d(
-      '[groupPointsByMinute] groupPoints: ${groupPoints.map((e) => '${e.length} ${e.first.time}-${e.last.time}').toList()}');
+  try {
+    logger.d(
+        '[groupPointsByMinute] groupPoints: ${groupPoints.map((e) => '${e.length} ${e.first.time}-${e.last.time}').toList()}');
+  } catch (e) {
+    logger.w('[groupPointsByMinute]', error: e);
+  }
   return groupPoints;
 }
 

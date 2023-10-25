@@ -30,7 +30,7 @@ class _BarChartPaceState extends State<BarChartPace> {
     Colors.blue,
   ];
 
-  late BarChartData data;
+  BarChartData? data;
 
   final Duration animDuration = const Duration(milliseconds: 250);
 
@@ -45,15 +45,11 @@ class _BarChartPaceState extends State<BarChartPace> {
       buildChartData();
     } catch (e) {
       //
+      logger.w('[buildChartData]', error: e);
     }
   }
 
   void buildChartData() {
-    final startTime = widget.trackStat.startTime.toInt() / 1000; // s
-    final endTime = widget.trackStat.endTime.toInt() / 1000; // s
-    final maxAltitude = widget.trackStat.maxAltitude; // 米
-    final minAltitude = widget.trackStat.minAltitude; // 米
-
     final groupPoints = groupPointsByMinute(widget.points);
 
     data = BarChartData(
@@ -94,7 +90,7 @@ class _BarChartPaceState extends State<BarChartPace> {
                         colors: gradientColors,
                       ),
                       fromY: 0,
-                      toY: dp(getAvgSpeed(e), 1))
+                      toY: e.isNotEmpty ? dp(getAvgSpeed(e), 1) : 0)
                 ]))
             .toList());
   }
@@ -116,15 +112,16 @@ class _BarChartPaceState extends State<BarChartPace> {
                 'label': S.of(context).maxPace,
               }
             ]),
-        Container(
-          height: 200,
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-          // TODO: fl_chart 不支持水平条状图表
-          child: AspectRatio(
-            aspectRatio: 2,
-            child: BarChart(data),
-          ),
-        )
+        if (data != null)
+          Container(
+            height: 200,
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+            // TODO: fl_chart 不支持水平条状图表
+            child: AspectRatio(
+              aspectRatio: 2,
+              child: BarChart(data!),
+            ),
+          )
       ]),
     );
   }
