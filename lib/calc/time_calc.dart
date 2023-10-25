@@ -15,7 +15,7 @@ List<List<Position>> groupPointsByMinute(List<Position> sortedPoints) {
   for (Position point in sortedPoints) {
     int currentMinutes =
         ((point.time - sortedPoints.first.time) / millisecondsInMinute).ceil();
-    logger.d('---- ${point.time} $currentMinutes');
+    // logger.d('---- ${point.time} $currentMinutes');
     if (currentMinutes == 0) {
       logger.w('[groupPointsByMinute] same time.');
       currentMinutes = 1;

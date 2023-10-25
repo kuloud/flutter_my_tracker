@@ -72,8 +72,7 @@ class _BarChartRegionSummaryState extends State<BarChartRegionSummary> {
               ),
               dotData: const FlDotData(show: false))
         ],
-        borderData: FlBorderData(
-            show: true, border: Border.all(color: Colors.blueGrey.shade200)));
+        borderData: FlBorderData(show: false));
   }
 
   Widget buildLeftTitlesWidget(double value, TitleMeta meta) {

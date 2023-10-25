@@ -55,6 +55,10 @@ class _BarChartPaceState extends State<BarChartPace> {
     final groupPoints = groupPointsByMinute(widget.points);
 
     data = BarChartData(
+        borderData: FlBorderData(show: false),
+        gridData: const FlGridData(
+          show: false,
+        ),
         titlesData: const FlTitlesData(
             topTitles: AxisTitles(
                 sideTitles: SideTitles(

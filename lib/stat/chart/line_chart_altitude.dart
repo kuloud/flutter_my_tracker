@@ -51,7 +51,7 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
               // axisNameWidget: Text('海拔'),
               sideTitles: SideTitles(
                   reservedSize: 40,
-                  showTitles: true,
+                  showTitles: false,
                   getTitlesWidget: buildLeftTitlesWidget),
             ),
             rightTitles:
@@ -72,8 +72,8 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
               ),
               dotData: const FlDotData(show: false))
         ],
-        borderData: FlBorderData(
-            show: true, border: Border.all(color: Colors.blueGrey.shade200)));
+        gridData: const FlGridData(show: false),
+        borderData: FlBorderData(show: false));
   }
 
   Widget buildLeftTitlesWidget(double value, TitleMeta meta) {

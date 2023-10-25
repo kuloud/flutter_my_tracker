@@ -66,7 +66,6 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
         future: _recordFuture,
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
-            logger.d('--------------------');
             _points.clear();
             if (snapshot.data!.isNotEmpty) {
               final points = snapshot.data!.map((e) => e.toPoint3D());

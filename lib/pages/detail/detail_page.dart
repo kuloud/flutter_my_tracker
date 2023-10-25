@@ -6,8 +6,7 @@ import 'package:flutter_my_tracker/pages/detail/components/trajectory/color_labe
 import 'package:flutter_my_tracker/pages/detail/components/trajectory/trajectory_panel.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/stat/chart/line_chart_altitude.dart';
-import 'package:flutter_my_tracker/stat/chart/line_chart_altitude.dart';
-import 'package:flutter_my_tracker/stat/chart/line_chart_pace.dart';
+import 'package:flutter_my_tracker/stat/chart/bar_chart_pace.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 
 class DetailPage extends StatefulWidget {

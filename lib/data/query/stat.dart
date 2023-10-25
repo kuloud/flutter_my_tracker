@@ -15,9 +15,9 @@ Future<double> queryTotalDistance() async {
 }
 
 Future<Map<String, dynamic>> queryTotalSummary() async {
-  logger.d('-------queryTotalSummary');
+  // logger.d('-------queryTotalSummary');
   List<TrackStat> allTrackStats = await TrackStatProvider.instance().getAll();
-  logger.d('-------${allTrackStats}');
+  // logger.d('-------${allTrackStats}');
   int totalMotionTimes = allTrackStats.length;
   double totalTime =
       allTrackStats.fold(0, (sum, trackStat) => sum + trackStat.totalTime);
