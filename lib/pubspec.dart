@@ -3,7 +3,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, avoid_classes_with_only_static_members
 
 mixin Pubspec {
-  static final buildDate = DateTime.utc(2023, 10, 22, 8, 19, 37);
+  static final buildDate = DateTime.utc(2023, 10, 23, 13, 53, 51);
 
   static const name = 'flutter_my_tracker';
 
@@ -11,19 +11,19 @@ mixin Pubspec {
 
   static const publish_to = 'none';
 
-  static const versionFull = '0.0.1+1';
+  static const versionFull = '1.0.0+2';
 
-  static const version = '0.0.1';
+  static const version = '1.0.0';
 
-  static const versionSmall = '0.0';
+  static const versionSmall = '1.0';
 
-  static const versionMajor = 0;
+  static const versionMajor = 1;
 
   static const versionMinor = 0;
 
-  static const versionPatch = 1;
+  static const versionPatch = 0;
 
-  static const versionBuild = 1;
+  static const versionBuild = 2;
 
   static const versionPreRelease = '';
 
@@ -75,7 +75,12 @@ mixin Pubspec {
     'generate': true,
     'assets': <dynamic>[
       'assets/images/app_logo.png',
+      'PRIVACY-POLICY.md',
+      'PRIVACY-POLICY-zh_CN.md',
+      'CHANGELOG.md',
+      'CHANGELOG-zh_CN.md',
       'README.md',
+      'README-zh_CN.md',
     ],
   };
 

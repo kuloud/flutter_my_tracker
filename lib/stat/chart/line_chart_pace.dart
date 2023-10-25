@@ -1,5 +1,8 @@
+import 'package:ditredi/ditredi.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/calc/speed_calc.dart';
+import 'package:flutter_my_tracker/calc/time_calc.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/stat/card_title_bar.dart';
@@ -7,8 +10,8 @@ import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 
-class LineChartPace extends StatefulWidget {
-  const LineChartPace(
+class BarChartPace extends StatefulWidget {
+  const BarChartPace(
       {super.key, required this.trackStat, required this.points});
 
   final TrackStat trackStat;
@@ -18,10 +21,10 @@ class LineChartPace extends StatefulWidget {
   final Color touchedBarColor = Colors.green;
 
   @override
-  State<LineChartPace> createState() => _LineChartPaceState();
+  State<BarChartPace> createState() => _BarChartPaceState();
 }
 
-class _LineChartPaceState extends State<LineChartPace> {
+class _BarChartPaceState extends State<BarChartPace> {
   final List<Color> gradientColors = [
     Colors.cyan,
     Colors.blue,
@@ -38,7 +41,9 @@ class _LineChartPaceState extends State<LineChartPace> {
   @override
   void initState() {
     super.initState();
-    buildChartData();
+    try {
+      buildChartData();
+    } catch (e) {}
   }
 
   void buildChartData() {
@@ -47,340 +52,45 @@ class _LineChartPaceState extends State<LineChartPace> {
     final maxAltitude = widget.trackStat.maxAltitude; // 米
     final minAltitude = widget.trackStat.minAltitude; // 米
 
-    final spots = widget.points.map((e) {
-      return FlSpot(
-          (e.time / 1000) - startTime, dp(e.altitude - minAltitude, 1));
-    }).toList();
+    final groupPoints = groupPointsByMinute(widget.points);
 
     data = BarChartData(
-      titlesData: FlTitlesData(
-          topTitles:
-              const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          leftTitles: AxisTitles(
-            // axisNameWidget: Text('海拔'),
-            sideTitles: SideTitles(
-                reservedSize: 40,
-                showTitles: true,
-                getTitlesWidget: buildLeftTitlesWidget),
-          ),
-          rightTitles:
-              const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          bottomTitles: AxisTitles(
-              // axisNameWidget: Text('时间'),
-              sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 24,
-            getTitlesWidget: buildBottomTitlesWidget,
-          ))),
-      barTouchData: BarTouchData(
-        touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey,
-          tooltipHorizontalAlignment: FLHorizontalAlignment.right,
-          tooltipMargin: -10,
+        titlesData: const FlTitlesData(
+            topTitles: AxisTitles(
+                sideTitles: SideTitles(
+              showTitles: false,
+            )),
+            rightTitles: AxisTitles(
+                sideTitles: SideTitles(
+              showTitles: false,
+            )),
+            leftTitles: AxisTitles(
+                sideTitles: SideTitles(
+              showTitles: false,
+            ))),
+        barTouchData: BarTouchData(touchTooltipData: BarTouchTooltipData(
           getTooltipItem: (group, groupIndex, rod, rodIndex) {
-            String weekDay;
-            switch (group.x) {
-              case 0:
-                weekDay = 'Monday';
-                break;
-              case 1:
-                weekDay = 'Tuesday';
-                break;
-              case 2:
-                weekDay = 'Wednesday';
-                break;
-              case 3:
-                weekDay = 'Thursday';
-                break;
-              case 4:
-                weekDay = 'Friday';
-                break;
-              case 5:
-                weekDay = 'Saturday';
-                break;
-              case 6:
-                weekDay = 'Sunday';
-                break;
-              default:
-                throw Error();
-            }
             return BarTooltipItem(
-              '$weekDay\n',
-              const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: (rod.toY - 1).toString(),
-                  style: TextStyle(
-                    color: widget.touchedBarColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            );
+                formatPace(rod.toY),
+                Theme.of(context)
+                    .textTheme
+                    .labelMedium!
+                    .copyWith(color: gradientColors.first));
           },
-        ),
-        touchCallback: (FlTouchEvent event, barTouchResponse) {
-          setState(() {
-            if (!event.isInterestedForInteractions ||
-                barTouchResponse == null ||
-                barTouchResponse.spot == null) {
-              touchedIndex = -1;
-              return;
-            }
-            touchedIndex = barTouchResponse.spot!.touchedBarGroupIndex;
-          });
-        },
-      ),
-    );
-  }
-
-  BarChartGroupData makeGroupData(
-    int x,
-    double y, {
-    bool isTouched = false,
-    Color? barColor,
-    double width = 22,
-    List<int> showTooltips = const [],
-  }) {
-    barColor ??= widget.barColor;
-    return BarChartGroupData(
-      x: x,
-      barRods: [
-        BarChartRodData(
-          toY: isTouched ? y + 1 : y,
-          color: isTouched ? widget.touchedBarColor : barColor,
-          width: width,
-          borderSide: isTouched
-              ? BorderSide(color: widget.touchedBarColor)
-              : const BorderSide(color: Colors.white, width: 0),
-          backDrawRodData: BackgroundBarChartRodData(
-            show: true,
-            toY: 20,
-          ),
-        ),
-      ],
-      showingTooltipIndicators: showTooltips,
-    );
-  }
-
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, 5, isTouched: i == touchedIndex);
-          case 1:
-            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
-          case 2:
-            return makeGroupData(2, 5, isTouched: i == touchedIndex);
-          case 3:
-            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
-          case 4:
-            return makeGroupData(4, 9, isTouched: i == touchedIndex);
-          case 5:
-            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
-          case 6:
-            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
-          default:
-            return throw Error();
-        }
-      });
-
-  BarChartData mainBarData() {
-    return BarChartData(
-      barTouchData: BarTouchData(
-        touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey,
-          tooltipHorizontalAlignment: FLHorizontalAlignment.right,
-          tooltipMargin: -10,
-          getTooltipItem: (group, groupIndex, rod, rodIndex) {
-            String weekDay;
-            switch (group.x) {
-              case 0:
-                weekDay = 'Monday';
-                break;
-              case 1:
-                weekDay = 'Tuesday';
-                break;
-              case 2:
-                weekDay = 'Wednesday';
-                break;
-              case 3:
-                weekDay = 'Thursday';
-                break;
-              case 4:
-                weekDay = 'Friday';
-                break;
-              case 5:
-                weekDay = 'Saturday';
-                break;
-              case 6:
-                weekDay = 'Sunday';
-                break;
-              default:
-                throw Error();
-            }
-            return BarTooltipItem(
-              '$weekDay\n',
-              const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: (rod.toY - 1).toString(),
-                  style: TextStyle(
-                    color: widget.touchedBarColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-        touchCallback: (FlTouchEvent event, barTouchResponse) {
-          setState(() {
-            if (!event.isInterestedForInteractions ||
-                barTouchResponse == null ||
-                barTouchResponse.spot == null) {
-              touchedIndex = -1;
-              return;
-            }
-            touchedIndex = barTouchResponse.spot!.touchedBarGroupIndex;
-          });
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            getTitlesWidget: getTitles,
-            reservedSize: 38,
-          ),
-        ),
-        leftTitles: const AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: false,
-          ),
-        ),
-      ),
-      borderData: FlBorderData(
-        show: false,
-      ),
-      barGroups: showingGroups(),
-      gridData: const FlGridData(show: false),
-    );
-  }
-
-  Widget getTitles(double value, TitleMeta meta) {
-    const style = TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      fontSize: 14,
-    );
-    Widget text;
-    switch (value.toInt()) {
-      case 0:
-        text = const Text('M', style: style);
-        break;
-      case 1:
-        text = const Text('T', style: style);
-        break;
-      case 2:
-        text = const Text('W', style: style);
-        break;
-      case 3:
-        text = const Text('T', style: style);
-        break;
-      case 4:
-        text = const Text('F', style: style);
-        break;
-      case 5:
-        text = const Text('S', style: style);
-        break;
-      case 6:
-        text = const Text('S', style: style);
-        break;
-      default:
-        text = const Text('', style: style);
-        break;
-    }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16,
-      child: text,
-    );
-  }
-
-  Future<dynamic> refreshState() async {
-    setState(() {});
-    await Future<dynamic>.delayed(
-      animDuration + const Duration(milliseconds: 50),
-    );
-    if (isPlaying) {
-      await refreshState();
-    }
-  }
-
-  Widget buildLeftTitlesWidget(double value, TitleMeta meta) {
-    return SideTitleWidget(
-      fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
-      axisSide: meta.axisSide,
-      child: Text(
-        meta.formattedValue,
-        textAlign: TextAlign.right,
-        style: Theme.of(context).textTheme.labelSmall,
-      ),
-    );
-  }
-
-  Widget buildBottomTitlesWidget(double value, TitleMeta meta) {
-    int seconds = value.toInt();
-    String title = '';
-    int intervalInSeconds = 60;
-    String suffix = '';
-
-    if (seconds <= 10 * 60) {
-      intervalInSeconds = 60;
-      suffix = '分';
-    } else if (seconds <= 20 * 60) {
-      intervalInSeconds = 5 * 50;
-      suffix = '分';
-    } else if (seconds <= 60 * 60) {
-      intervalInSeconds = 10 * 60;
-      suffix = '分';
-    } else if (seconds <= 2 * 60 * 60) {
-      intervalInSeconds = 30 * 60;
-      suffix = '分';
-    } else {
-      intervalInSeconds = 60 * 60;
-      suffix = '小时';
-    }
-    if (seconds > 0 && seconds % intervalInSeconds == 0) {
-      title =
-          '${((seconds / intervalInSeconds) * (intervalInSeconds / 60)).toInt()}$suffix';
-    }
-
-    return SideTitleWidget(
-      fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
-      axisSide: meta.axisSide,
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.labelSmall,
-      ),
-    );
+        )),
+        barGroups: groupPoints
+            .mapIndexed((e, i) =>
+                BarChartGroupData(groupVertically: true, x: i, barRods: [
+                  BarChartRodData(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: gradientColors,
+                      ),
+                      fromY: 0,
+                      toY: dp(getAvgSpeed(e), 1))
+                ]))
+            .toList());
   }
 
   @override
@@ -400,17 +110,13 @@ class _LineChartPaceState extends State<LineChartPace> {
                 'label': S.of(context).maxPace,
               }
             ]),
-        Padding(
+        Container(
+          height: 200,
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+          // TODO: fl_chart 不支持水平条状图表
           child: AspectRatio(
             aspectRatio: 2,
-            child: Center(
-              child: Text('TODO'),
-            )
-            // BarChart(
-            //   data,
-            // )
-            ,
+            child: BarChart(data),
           ),
         )
       ]),

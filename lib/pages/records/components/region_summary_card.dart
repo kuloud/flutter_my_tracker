@@ -69,8 +69,8 @@ class _RegionSummaryCardState extends State<RegionSummaryCard> {
                 textStyle: Theme.of(context).textTheme.labelSmall,
               ),
             ],
-          )
-          // BarChart(data);
+          ),
+          // BarChart(BarChartData(barGroups: []))
         ],
       ),
     );

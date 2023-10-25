@@ -32,7 +32,7 @@ class _RecordListViewState extends State<RecordListView> {
                     child: RegionSummaryCard(trackStats: records!),
                   ),
                   SliverList.builder(
-                      itemCount: records?.length ?? 0,
+                      itemCount: records.length,
                       itemBuilder: (context, index) {
                         return Card(
                           child: Padding(

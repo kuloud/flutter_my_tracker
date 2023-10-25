@@ -73,7 +73,7 @@ class _DetailPageState extends State<DetailPage> {
                             if (snapshot.hasData) {
                               return Column(
                                 children: [
-                                  LineChartPace(
+                                  BarChartPace(
                                       trackStat: widget.trackStat,
                                       points: snapshot.data!),
                                   LineChartAltitude(
