@@ -19,6 +19,7 @@ class RegionSummaryCard extends StatefulWidget {
 
 class _RegionSummaryCardState extends State<RegionSummaryCard> {
   List<TrackStat>? selectedTrackStats;
+  TrackStat? touchedTrackStat;
 
   @override
   void initState() {
@@ -31,44 +32,79 @@ class _RegionSummaryCardState extends State<RegionSummaryCard> {
     final summary = summaryTrackStat(selectedTrackStats ?? []);
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                formatMilliseconds(summary.totalTime.toInt()),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.bold),
+        Container(
+          decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
               ),
-              HighlightNumberText(
-                text: distanceFormat(
-                    S.of(context), double.parse('${summary.totalDistance}')),
-                hightlightTextStyle: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(
+              color: touchedTrackStat != null
+                  ? Theme.of(context).colorScheme.secondaryContainer
+                  : Colors.transparent),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Text(
+                    formatMilliseconds(
+                        (touchedTrackStat?.totalTime ?? summary.totalTime)
+                            .toInt()),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.bold),
-                textStyle: Theme.of(context).textTheme.labelSmall,
-              ),
-              HighlightNumberText(
-                text: '${summary.totalTimes} ${S.of(context).workoutsTimes}',
-                hightlightTextStyle: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold),
-                textStyle: Theme.of(context).textTheme.labelSmall,
-              ),
-            ],
+                  ),
+                ),
+                Flexible(
+                    fit: FlexFit.tight,
+                    child: Center(
+                      child: HighlightNumberText(
+                        text: distanceFormat(
+                            S.of(context),
+                            double.parse(
+                                '${touchedTrackStat?.totalDistance ?? summary.totalDistance}')),
+                        hightlightTextStyle: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.bold),
+                        textStyle: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    )),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: (touchedTrackStat == null)
+                      ? Container(
+                          alignment: Alignment.centerRight,
+                          child: HighlightNumberText(
+                            text:
+                                '${touchedTrackStat?.totalDistance ?? summary.totalTimes} ${S.of(context).workoutsTimes}',
+                            hightlightTextStyle: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontWeight: FontWeight.bold),
+                            textStyle: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        )
+                      : const SizedBox(
+                          width: 60,
+                        ),
+                )
+              ],
+            ),
           ),
         ),
         BarChartRegionSummary(
-          trackStats: selectedTrackStats ?? [],
-        ),
+            trackStats: selectedTrackStats ?? [],
+            onTrackStatTouch: (trackStat) {
+              setState(() {
+                touchedTrackStat = trackStat;
+              });
+            }),
       ],
     );
   }
