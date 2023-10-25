@@ -32,7 +32,7 @@ class _BarChartRegionSummaryState extends State<BarChartRegionSummary> {
 
   void buildChartData() {
     summaryData = summaryTrackStat(widget.trackStats);
-    final groupTrackStats = groupTracksByDay(widget.trackStats);
+    final groupTrackStats = groupTracksByDay([...widget.trackStats]);
 
     data = BarChartData(
         borderData: FlBorderData(show: false),

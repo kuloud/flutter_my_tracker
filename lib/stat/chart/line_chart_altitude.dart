@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/stat/card_title_bar.dart';
+import 'package:flutter_my_tracker/stat/chart/widgets.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
@@ -61,7 +62,8 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
                 sideTitles: SideTitles(
               showTitles: true,
               reservedSize: 24,
-              getTitlesWidget: buildBottomTitlesWidget,
+              getTitlesWidget: (value, titleMeta) =>
+                  buildBottomTitlesWidget(context, value.toInt(), titleMeta),
             ))),
         lineBarsData: [
           LineChartBarData(
@@ -83,43 +85,6 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
       child: Text(
         meta.formattedValue,
         textAlign: TextAlign.right,
-        style: Theme.of(context).textTheme.labelSmall,
-      ),
-    );
-  }
-
-  Widget buildBottomTitlesWidget(double value, TitleMeta meta) {
-    int seconds = value.toInt();
-    String title = '';
-    int intervalInSeconds = 60;
-    String suffix = '';
-
-    if (seconds <= 10 * 60) {
-      intervalInSeconds = 60;
-      suffix = '分';
-    } else if (seconds <= 20 * 60) {
-      intervalInSeconds = 5 * 50;
-      suffix = '分';
-    } else if (seconds <= 60 * 60) {
-      intervalInSeconds = 10 * 60;
-      suffix = '分';
-    } else if (seconds <= 2 * 60 * 60) {
-      intervalInSeconds = 30 * 60;
-      suffix = '分';
-    } else {
-      intervalInSeconds = 60 * 60;
-      suffix = '小时';
-    }
-    if (seconds > 0 && seconds % intervalInSeconds == 0) {
-      title =
-          '${((seconds / intervalInSeconds) * (intervalInSeconds / 60)).toInt()}$suffix';
-    }
-
-    return SideTitleWidget(
-      fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
-      axisSide: meta.axisSide,
-      child: Text(
-        title,
         style: Theme.of(context).textTheme.labelSmall,
       ),
     );

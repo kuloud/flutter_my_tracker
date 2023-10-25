@@ -6,6 +6,7 @@ import 'package:flutter_my_tracker/calc/time_calc.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/stat/card_title_bar.dart';
+import 'package:flutter_my_tracker/stat/chart/widgets.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
@@ -57,18 +58,25 @@ class _BarChartPaceState extends State<BarChartPace> {
         gridData: const FlGridData(
           show: false,
         ),
-        titlesData: const FlTitlesData(
-            topTitles: AxisTitles(
+        titlesData: FlTitlesData(
+            topTitles: const AxisTitles(
                 sideTitles: SideTitles(
               showTitles: false,
             )),
-            rightTitles: AxisTitles(
+            rightTitles: const AxisTitles(
                 sideTitles: SideTitles(
               showTitles: false,
             )),
-            leftTitles: AxisTitles(
+            leftTitles: const AxisTitles(
                 sideTitles: SideTitles(
               showTitles: false,
+            )),
+            bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+              showTitles: true,
+              reservedSize: 24,
+              getTitlesWidget: (value, titleMeta) => buildBottomTitlesWidget(
+                  context, (value * 60).toInt(), titleMeta),
             ))),
         barTouchData: BarTouchData(touchTooltipData: BarTouchTooltipData(
           getTooltipItem: (group, groupIndex, rod, rodIndex) {

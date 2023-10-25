@@ -36,6 +36,10 @@ List<List<Position>> groupPointsByMinute(List<Position> sortedPoints) {
 }
 
 List<List<TrackStat>> groupTracksByDay(List<TrackStat> sortedTrackStats) {
+  if (sortedTrackStats.isEmpty) {
+    return List.generate(0, (index) => []);
+  }
+
   sortedTrackStats.sort((a, b) => a.startTime.compareTo(b.startTime));
 
   // 计算每分钟的毫秒数
@@ -61,7 +65,7 @@ List<List<TrackStat>> groupTracksByDay(List<TrackStat> sortedTrackStats) {
     groupPoints[currentDays - 1].add(point);
   }
 
-  logger.d(
-      '[groupTracksByDay] groupPoints: ${groupPoints.map((e) => '${e.length} ${e.first.startTime}-${e.last.startTime}').toList()}');
+  // logger.d(
+  //     '[groupTracksByDay] groupPoints: ${groupPoints.map((e) => '${e.length} ${e.first.startTime}-${e.last.startTime}').toList()}');
   return groupPoints;
 }

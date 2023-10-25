@@ -32,11 +32,17 @@ class MainInfoCard extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HighlightNumberText(
                 text: distanceFormat(S.of(context), trackStat.totalDistance),
                 hightlightTextStyle: Theme.of(context).textTheme.displayMedium,
                 textStyle: Theme.of(context).textTheme.bodyLarge,
+              ),
+              Text(
+                formatMillisecondsDateTime(trackStat.startTime.toInt()),
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ],
           ),

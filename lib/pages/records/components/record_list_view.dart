@@ -29,10 +29,10 @@ class _RecordListViewState extends State<RecordListView> {
               return CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-                    child: RegionSummaryCard(trackStats: records!),
+                    child: RegionSummaryCard(trackStats: records ?? []),
                   ),
                   SliverList.builder(
-                      itemCount: records.length,
+                      itemCount: records?.length ?? 0,
                       itemBuilder: (context, index) {
                         return Card(
                           child: Padding(
@@ -49,7 +49,8 @@ class _RecordListViewState extends State<RecordListView> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    formatMillisecondsDateShort(S.of(context),
+                                    formatMillisecondsDateWithTime(
+                                        S.of(context),
                                         records[index].startTime.toInt()),
                                     style:
                                         Theme.of(context).textTheme.titleSmall,
