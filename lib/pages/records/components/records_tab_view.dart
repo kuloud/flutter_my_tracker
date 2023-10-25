@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_my_tracker/cubit/locale/locale_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
 import 'package:flutter_my_tracker/pages/records/components/record_region_list_tab_view.dart';
@@ -41,8 +43,12 @@ class _RecordsTabViewState extends State<RecordsTabView> {
           pageType = 1;
         } else {
           pageType = 0;
-          _getSecondTabs =
-              TrackStatProvider.instance().getSecondTabs(firstTabIndex);
+          _getSecondTabs = TrackStatProvider.instance().getSecondTabs(
+              BlocProvider.of<LocaleCubit>(context)
+                  .state
+                  .locale
+                  .toLanguageTag(),
+              firstTabIndex);
         }
       });
     }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_my_tracker/cubit/locale/locale_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
+import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:intl/intl.dart';
 
 SubTabData getWeekData(DateTime date) {
@@ -23,11 +26,13 @@ SubTabData getWeekData(DateTime date) {
   return weekData;
 }
 
-SubTabData getMonthData(DateTime date) {
+SubTabData getMonthData(String? locale, DateTime date) {
   DateTime currentMonthStart = DateTime(date.year, date.month);
   DateTime currentMonthEnd =
       DateTime(date.year, date.month + 1).subtract(const Duration(seconds: 1));
-  String month = DateFormat('M').format(currentMonthStart);
+  logger.d('[getMonthData] $locale');
+
+  String month = DateFormat('M', locale).format(currentMonthStart);
   SubTabData monthData = SubTabData(
       startDate: currentMonthStart,
       title: month.toString(),

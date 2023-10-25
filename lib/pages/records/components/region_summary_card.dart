@@ -1,9 +1,7 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/calc/stat_calc.dart';
 import 'package:flutter_my_tracker/components/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/pages/records/components/pojos/region_summary_data.dart';
 import 'package:flutter_my_tracker/stat/chart/bar_chart_region_summary.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';

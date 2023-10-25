@@ -174,7 +174,8 @@ class TrackStatProvider {
     }
   }
 
-  Future<List<SubTabData>?> getSecondTabs(int? firstTabIndex) async {
+  Future<List<SubTabData>?> getSecondTabs(
+      String? locale, int? firstTabIndex) async {
     final result = <SubTabData>[];
     final allTrackStats = await TrackStatProvider.instance().getAll();
     for (var e in allTrackStats) {
@@ -183,8 +184,8 @@ class TrackStatProvider {
       if (firstTabIndex == 0 && !result.contains(getWeekData(startTime))) {
         result.add(getWeekData(startTime));
       } else if (firstTabIndex == 1 &&
-          !result.contains(getMonthData(startTime))) {
-        result.add(getMonthData(startTime));
+          !result.contains(getMonthData(locale, startTime))) {
+        result.add(getMonthData(locale, startTime));
       } else if (firstTabIndex == 2 &&
           !result.contains(getYearData(startTime))) {
         result.add(getYearData(startTime));
