@@ -1,127 +1,75 @@
+import 'package:ditredi/ditredi.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/calc/speed_calc.dart';
+import 'package:flutter_my_tracker/calc/stat_calc.dart';
+import 'package:flutter_my_tracker/calc/time_calc.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
+import 'package:flutter_my_tracker/pages/records/components/pojos/region_summary_data.dart';
 import 'package:flutter_my_tracker/stat/card_title_bar.dart';
+import 'package:flutter_my_tracker/stat/chart/gradient_colors.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 
 class BarChartRegionSummary extends StatefulWidget {
-  const BarChartRegionSummary(
-      {super.key, required this.trackStat, required this.points});
+  const BarChartRegionSummary({super.key, required this.trackStats});
 
-  final TrackStat trackStat;
-  final List<Position> points;
+  final List<TrackStat> trackStats;
 
   @override
   State<BarChartRegionSummary> createState() => _BarChartRegionSummaryState();
 }
 
 class _BarChartRegionSummaryState extends State<BarChartRegionSummary> {
-  final List<Color> gradientColors = [
-    Colors.cyan,
-    Colors.blue,
-  ];
-
-  late LineChartData data;
+  late RegionSummaryData summaryData;
+  late BarChartData data;
+  // TODO 选择时间、距离 自动切换图表视图
+  int selectedIndex = -1;
 
   @override
   void initState() {
     super.initState();
-    buildBarChartData();
+    buildChartData();
   }
 
-  void buildBarChartData() {
-    final startTime = widget.trackStat.startTime.toInt() / 1000; // s
-    final endTime = widget.trackStat.endTime.toInt() / 1000; // s
-    final maxAltitude = widget.trackStat.maxAltitude; // 米
-    final minAltitude = widget.trackStat.minAltitude; // 米
+  void buildChartData() {
+    summaryData = summaryTrackStat(widget.trackStats);
+    final groupTrackStats = groupTracksByDay(widget.trackStats);
 
-    final spots = widget.points.map((e) {
-      return FlSpot(
-          (e.time / 1000) - startTime, dp(e.altitude - minAltitude, 1));
-    }).toList();
-
-    data = LineChartData(
-        titlesData: FlTitlesData(
-            topTitles:
-                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            leftTitles: AxisTitles(
-              // axisNameWidget: Text('海拔'),
-              sideTitles: SideTitles(
-                  reservedSize: 40,
-                  showTitles: true,
-                  getTitlesWidget: buildLeftTitlesWidget),
-            ),
-            rightTitles:
-                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            bottomTitles: AxisTitles(
-                // axisNameWidget: Text('时间'),
+    data = BarChartData(
+        borderData: FlBorderData(show: false),
+        gridData: const FlGridData(
+          show: false,
+        ),
+        titlesData: const FlTitlesData(
+            topTitles: AxisTitles(
                 sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: 24,
-              getTitlesWidget: buildBottomTitlesWidget,
+              showTitles: false,
+            )),
+            rightTitles: AxisTitles(
+                sideTitles: SideTitles(
+              showTitles: false,
+            )),
+            leftTitles: AxisTitles(
+                sideTitles: SideTitles(
+              showTitles: false,
             ))),
-        lineBarsData: [
-          LineChartBarData(
-              isStrokeCapRound: true,
-              spots: spots,
-              gradient: LinearGradient(
-                colors: gradientColors,
-              ),
-              dotData: const FlDotData(show: false))
-        ],
-        borderData: FlBorderData(show: false));
-  }
-
-  Widget buildLeftTitlesWidget(double value, TitleMeta meta) {
-    return SideTitleWidget(
-      fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
-      axisSide: meta.axisSide,
-      child: Text(
-        meta.formattedValue,
-        textAlign: TextAlign.right,
-        style: Theme.of(context).textTheme.labelSmall,
-      ),
-    );
-  }
-
-  Widget buildBottomTitlesWidget(double value, TitleMeta meta) {
-    int seconds = value.toInt();
-    String title = '';
-    int intervalInSeconds = 60;
-    String suffix = '';
-
-    if (seconds <= 10 * 60) {
-      intervalInSeconds = 60;
-      suffix = '分';
-    } else if (seconds <= 20 * 60) {
-      intervalInSeconds = 5 * 50;
-      suffix = '分';
-    } else if (seconds <= 60 * 60) {
-      intervalInSeconds = 10 * 60;
-      suffix = '分';
-    } else if (seconds <= 2 * 60 * 60) {
-      intervalInSeconds = 30 * 60;
-      suffix = '分';
-    } else {
-      intervalInSeconds = 60 * 60;
-      suffix = '小时';
-    }
-    if (seconds > 0 && seconds % intervalInSeconds == 0) {
-      title =
-          '${((seconds / intervalInSeconds) * (intervalInSeconds / 60)).toInt()}$suffix';
-    }
-
-    return SideTitleWidget(
-      fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
-      axisSide: meta.axisSide,
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.labelSmall,
-      ),
-    );
+        barTouchData: BarTouchData(touchTooltipData: BarTouchTooltipData(
+          getTooltipItem: (group, groupIndex, rod, rodIndex) {
+            return BarTooltipItem(
+                distanceFormat(S.of(context), rod.toY),
+                Theme.of(context)
+                    .textTheme
+                    .labelMedium!
+                    .copyWith(color: commonGradientColors.first));
+          },
+        )),
+        barGroups: groupTrackStats
+            .mapIndexed((g, i) => BarChartGroupData(
+                groupVertically: true, x: i + 1, barRods: getBarRods(g)))
+            .toList());
   }
 
   @override
@@ -133,24 +81,40 @@ class _BarChartRegionSummaryState extends State<BarChartRegionSummary> {
             subtitle: S.of(context).unit(S.of(context).meter),
             items: [
               {
-                'title': '${dp(widget.trackStat.minAltitude, 1)}',
+                'title': '${dp(summaryData.minAltitude, 1)}',
                 'label': S.of(context).minAltitude,
               },
               {
-                'title': '${dp(widget.trackStat.maxAltitude, 1)}',
+                'title': '${dp(summaryData.maxAltitude, 1)}',
                 'label': S.of(context).maxAltitude,
               }
             ]),
         Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+          padding: const EdgeInsets.all(8.0),
           child: AspectRatio(
             aspectRatio: 2,
-            child: LineChart(
+            child: BarChart(
               data,
             ),
           ),
-        )
+        ),
       ]),
     );
+  }
+
+  List<BarChartRodData> getBarRods(List<TrackStat> g) {
+    double totalDistance = 0;
+    return g.mapIndexed((e, i) {
+      final rodData = BarChartRodData(
+          gradient: const LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: commonGradientColors,
+          ),
+          fromY: totalDistance,
+          toY: totalDistance + e.totalDistance);
+      totalDistance += e.totalDistance;
+      return rodData;
+    }).toList();
   }
 }

@@ -1,8 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/calc/stat_calc.dart';
 import 'package:flutter_my_tracker/components/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/region_summary_data.dart';
+import 'package:flutter_my_tracker/stat/chart/bar_chart_region_summary.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
 
@@ -26,19 +28,12 @@ class _RegionSummaryCardState extends State<RegionSummaryCard> {
 
   @override
   Widget build(BuildContext context) {
-    final summary = selectedTrackStats!.fold<RegionSummaryData>(
-        RegionSummaryData(totalTime: 0, totalDistance: 0, totalTimes: 0),
-        (d, t) {
-      d.totalTime += t.totalTime;
-      d.totalDistance += t.totalDistance;
-      d.totalTimes += 1;
-      return d;
-    });
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
+    final summary = summaryTrackStat(selectedTrackStats ?? []);
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -70,9 +65,11 @@ class _RegionSummaryCardState extends State<RegionSummaryCard> {
               ),
             ],
           ),
-          // BarChart(BarChartData(barGroups: []))
-        ],
-      ),
+        ),
+        BarChartRegionSummary(
+          trackStats: selectedTrackStats ?? [],
+        ),
+      ],
     );
   }
 }

@@ -43,7 +43,9 @@ class _BarChartPaceState extends State<BarChartPace> {
     super.initState();
     try {
       buildChartData();
-    } catch (e) {}
+    } catch (e) {
+      //
+    }
   }
 
   void buildChartData() {
