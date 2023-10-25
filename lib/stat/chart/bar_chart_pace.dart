@@ -84,7 +84,7 @@ class _BarChartPaceState extends State<BarChartPace> {
         )),
         barGroups: groupPoints
             .mapIndexed((e, i) =>
-                BarChartGroupData(groupVertically: true, x: i, barRods: [
+                BarChartGroupData(groupVertically: true, x: i + 1, barRods: [
                   BarChartRodData(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
