@@ -75,8 +75,9 @@ class _BarChartPaceState extends State<BarChartPace> {
                 sideTitles: SideTitles(
               showTitles: true,
               reservedSize: 24,
-              getTitlesWidget: (value, titleMeta) => buildBottomTitlesWidget(
-                  context, value.toInt(), titleMeta, groupPoints.length, 1),
+              getTitlesWidget: (value, titleMeta) =>
+                  buildBottomTimeTitlesWidget(
+                      context, value.toInt(), titleMeta, groupPoints.length, 1),
             ))),
         barTouchData: BarTouchData(touchTooltipData: BarTouchTooltipData(
           getTooltipItem: (group, groupIndex, rod, rodIndex) {

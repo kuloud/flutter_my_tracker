@@ -1,14 +1,13 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
 
-Widget buildBottomTitlesWidget(
+Widget buildBottomTimeTitlesWidget(
     BuildContext context, int index, TitleMeta meta, int size, int unit) {
   String title = '';
   int intervalInSeconds = 60;
   String suffix = S.of(context).min;
-  logger.d('buildBottomTitlesWidget: $index $size');
+  // logger.d('[buildBottomTimeTitlesWidget]: $index $size');
 
   if (size <= 10 * unit) {
     intervalInSeconds = 1 * unit;
