@@ -52,5 +52,6 @@
     "language": "言語",
     "labelStep": "歩数",
     "min": "分",
-    "hour": "时"
+    "hour": "时",
+    "lab":"实验室"
   }

@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "kilometer": MessageLookupByLibrary.simpleMessage("キロメートル"),
         "kilometerPerHour": MessageLookupByLibrary.simpleMessage("キロメートル/時"),
         "kilometers": MessageLookupByLibrary.simpleMessage("キロメートル"),
+        "lab": MessageLookupByLibrary.simpleMessage("实验室"),
         "labelAppDescription": MessageLookupByLibrary.simpleMessage(
             "シンプルなデザインの運動トラッキングアプリで、Material Youのデザイン言語に100%準拠しています。"),
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("平均ペース"),
