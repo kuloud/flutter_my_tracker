@@ -50,6 +50,8 @@
     "labelAvgPace": "Avg Pace",
     "workoutsTimes": "workouts",
     "language": "Language",
-    "labelStep": "Step"
+    "labelStep": "Step",
+    "min": "m",
+    "hour": "h"
   }
   

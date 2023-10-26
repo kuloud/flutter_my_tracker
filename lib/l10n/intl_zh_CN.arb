@@ -50,5 +50,7 @@
   "labelPace": "配速",
   "labelAvgPace": "平均配速",
   "language": "语言",
-  "labelStep": "步数"
+  "labelStep": "步数",
+  "min": "分",
+  "hour": "时"
 }

@@ -1,6 +1,5 @@
 import 'package:flutter_my_tracker/calc/distance_calc.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
 
 /// m/s
 double getAvgSpeed(List<Position> sortedPoints) {

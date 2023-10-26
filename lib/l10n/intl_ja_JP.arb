@@ -50,5 +50,7 @@
     "labelPace": "ペース",
     "labelAvgPace": "平均ペース",
     "language": "言語",
-    "labelStep": "歩数"
+    "labelStep": "歩数",
+    "min": "分",
+    "hour": "时"
   }

@@ -1,32 +1,28 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_tracker/generated/l10n.dart';
+import 'package:flutter_my_tracker/utils/logger.dart';
 
 Widget buildBottomTitlesWidget(
-    BuildContext context, int seconds, TitleMeta meta) {
+    BuildContext context, int index, TitleMeta meta, int size, int unit) {
   String title = '';
   int intervalInSeconds = 60;
-  String suffix = '';
+  String suffix = S.of(context).min;
+  logger.d('buildBottomTitlesWidget: $index $size');
 
-  if (seconds <= 10 * 60) {
-    intervalInSeconds = 60;
-    suffix = '分';
-  } else if (seconds <= 20 * 60) {
-    intervalInSeconds = 5 * 50;
-    suffix = '分';
-  } else if (seconds <= 60 * 60) {
-    intervalInSeconds = 10 * 60;
-    suffix = '分';
-  } else if (seconds <= 2 * 60 * 60) {
-    intervalInSeconds = 30 * 60;
-    suffix = '分';
+  if (size <= 10 * unit) {
+    intervalInSeconds = 1 * unit;
+  } else if (size <= 20 * unit) {
+    intervalInSeconds = 5 * unit;
+  } else if (size <= 60 * unit) {
+    intervalInSeconds = 10 * unit;
   } else {
-    intervalInSeconds = 60 * 60;
-    suffix = '小时';
+    intervalInSeconds = 60 * unit;
+    suffix = S.of(context).hour;
   }
 
-  if (seconds > 0 && seconds % intervalInSeconds == 0) {
-    title =
-        '${((seconds / intervalInSeconds) * (intervalInSeconds / 60)).toInt()}$suffix';
+  if (index % intervalInSeconds == 0) {
+    title = '${index ~/ unit}$suffix';
   }
 
   return SideTitleWidget(

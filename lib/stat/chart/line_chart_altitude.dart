@@ -62,8 +62,12 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
                 sideTitles: SideTitles(
               showTitles: true,
               reservedSize: 24,
-              getTitlesWidget: (value, titleMeta) =>
-                  buildBottomTitlesWidget(context, value.toInt(), titleMeta),
+              getTitlesWidget: (value, titleMeta) => buildBottomTitlesWidget(
+                  context,
+                  value.toInt(),
+                  titleMeta,
+                  (endTime - startTime).toInt(),
+                  60),
             ))),
         lineBarsData: [
           LineChartBarData(
