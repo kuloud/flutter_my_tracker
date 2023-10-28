@@ -44,17 +44,17 @@ class SettingsPage extends StatelessWidget {
               );
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.developer_board),
-            title: Text(S.of(context).lab),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const LabDashboardPage()),
-              );
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.developer_board),
+          //   title: Text(S.of(context).lab),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //           builder: (context) => const LabDashboardPage()),
+          //     );
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.info),
             title: Text(S.of(context).about),
