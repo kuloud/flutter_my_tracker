@@ -17,7 +17,9 @@ Widget buildBottomTimeTitlesWidget(
     intervalInSeconds = 10 * unit;
   } else {
     intervalInSeconds = 60 * unit;
-    suffix = S.of(context).hour;
+    if (index >= 60 * (60 * unit)) {
+      suffix = S.of(context).hour;
+    }
   }
 
   if (index % intervalInSeconds == 0) {

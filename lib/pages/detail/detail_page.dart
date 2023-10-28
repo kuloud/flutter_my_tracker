@@ -6,7 +6,7 @@ import 'package:flutter_my_tracker/pages/detail/components/trajectory/color_labe
 import 'package:flutter_my_tracker/pages/detail/components/trajectory/trajectory_panel.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/stat/chart/line_chart_altitude.dart';
-import 'package:flutter_my_tracker/stat/chart/bar_chart_pace.dart';
+import 'package:flutter_my_tracker/stat/chart/chart_pace.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 
 class DetailPage extends StatefulWidget {
@@ -72,7 +72,7 @@ class _DetailPageState extends State<DetailPage> {
                             if (snapshot.hasData) {
                               return Column(
                                 children: [
-                                  BarChartPace(
+                                  ChartPace(
                                       trackStat: widget.trackStat,
                                       points: snapshot.data!),
                                   LineChartAltitude(

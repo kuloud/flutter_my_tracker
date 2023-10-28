@@ -39,7 +39,7 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
     final maxAltitude = widget.trackStat.maxAltitude; // 米
     final minAltitude = widget.trackStat.minAltitude; // 米
 
-    final spots = widget.points.map((e) {
+    final spots = widget.points.where((e) => 'network' != e.provider).map((e) {
       return FlSpot((e.time / 1000) - startTime, dp(e.altitude, 1));
     }).toList();
 

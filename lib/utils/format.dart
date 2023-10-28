@@ -58,6 +58,9 @@ String distanceFormat(S s, double meters) {
 }
 
 double dp(double val, int places) {
+  if (val == double.infinity) {
+    return 0;
+  }
   double mod = pow(10.0, places) as double;
   return ((val * mod).round().toDouble() / mod);
 }
