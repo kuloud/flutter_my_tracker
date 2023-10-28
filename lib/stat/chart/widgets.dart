@@ -21,7 +21,7 @@ Widget buildBottomTimeTitlesWidget(
   }
 
   if (index % intervalInSeconds == 0) {
-    title = '${index ~/ unit}$suffix';
+    title = '${(index / intervalInSeconds) ~/ unit}$suffix';
   }
 
   return SideTitleWidget(

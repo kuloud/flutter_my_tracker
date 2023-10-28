@@ -40,14 +40,18 @@ class TrackStat {
 
   TrackStat addPosition(Position position) {
     positionsCount++;
-    minSpeed = (minSpeed != double.infinity)
-        ? min(minSpeed, position.speed)
-        : position.speed;
-    maxSpeed = max(maxSpeed, position.speed);
-    minAltitude = (minAltitude != double.infinity)
-        ? min(minAltitude, position.altitude)
-        : position.altitude;
-    maxAltitude = max(maxAltitude, position.altitude);
+
+    if ('network' != position.provider) {
+      minSpeed = (minSpeed != double.infinity)
+          ? min(minSpeed, position.speed)
+          : position.speed;
+      maxSpeed = max(maxSpeed, position.speed);
+      minAltitude = (minAltitude != double.infinity)
+          ? min(minAltitude, position.altitude)
+          : position.altitude;
+      maxAltitude = max(maxAltitude, position.altitude);
+    }
+
     startTime = (startTime != double.infinity)
         ? min(startTime, position.time)
         : position.time;
