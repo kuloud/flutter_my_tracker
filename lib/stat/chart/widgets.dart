@@ -6,6 +6,7 @@ Widget buildBottomTimeTitlesWidget(
     BuildContext context, int index, TitleMeta meta, int size, int unit) {
   String title = '';
   int intervalInSeconds = 60;
+  int value = index;
   String suffix = S.of(context).min;
   // logger.d('[buildBottomTimeTitlesWidget]: $index $size');
 
@@ -13,17 +14,20 @@ Widget buildBottomTimeTitlesWidget(
     intervalInSeconds = 1 * unit;
   } else if (size <= 20 * unit) {
     intervalInSeconds = 5 * unit;
+    value = index ~/ (5 * unit);
   } else if (size <= 60 * unit) {
     intervalInSeconds = 10 * unit;
+    value = index ~/ (10 * unit);
   } else {
     intervalInSeconds = 60 * unit;
+    value = index ~/ (60 * unit);
     if (index >= 60 * (60 * unit)) {
       suffix = S.of(context).hour;
     }
   }
 
   if (index % intervalInSeconds == 0) {
-    title = '${(index / intervalInSeconds) ~/ unit}$suffix';
+    title = '${value ~/ unit}$suffix';
   }
 
   return SideTitleWidget(

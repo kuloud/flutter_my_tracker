@@ -74,13 +74,13 @@ class _TrajectoryPanelState extends State<TrajectoryPanel>
         _points.clear();
         _points.addAll(cachePoints!);
       }
-      logger.d('[trackStat] state: $state');
+      // logger.d('[trackStat] state: $state');
       if (state is TrackStatUpdated) {
         _trackStat = state.trackStat;
         // 运动中
         final p = state.trackStat.lastPosition;
         if (p != null) {
-          logger.d('[trackStat] lastPosition: ${p.toJson()}');
+          // logger.d('[trackStat] lastPosition: ${p.toJson()}');
           _points.add(p.toPoint3D());
         }
       } else if (state is TrackStatStart) {

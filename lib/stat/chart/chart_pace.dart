@@ -53,9 +53,6 @@ class _ChartPaceState extends State<ChartPace> {
 
   void buildChartData() {
     final startTime = widget.trackStat.startTime.toInt() / 1000; // s
-    final endTime = widget.trackStat.endTime.toInt() / 1000; // s
-    final maxAltitude = widget.trackStat.maxAltitude; // 米
-    final minAltitude = widget.trackStat.minAltitude; // 米
 
     final groupPoints = groupPointsByMinute(widget.points);
 
@@ -69,27 +66,7 @@ class _ChartPaceState extends State<ChartPace> {
           gridData: const FlGridData(
             show: false,
           ),
-          titlesData: FlTitlesData(
-              topTitles: const AxisTitles(
-                  sideTitles: SideTitles(
-                showTitles: false,
-              )),
-              rightTitles: const AxisTitles(
-                  sideTitles: SideTitles(
-                showTitles: false,
-              )),
-              leftTitles: const AxisTitles(
-                  sideTitles: SideTitles(
-                showTitles: false,
-              )),
-              bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 24,
-                getTitlesWidget: (value, titleMeta) =>
-                    buildBottomTimeTitlesWidget(context, value.toInt(),
-                        titleMeta, groupPoints.length, 1),
-              ))),
+          titlesData: _buildTitleData(groupPoints),
           lineBarsData: [
             LineChartBarData(
                 isStrokeCapRound: true,
@@ -105,27 +82,7 @@ class _ChartPaceState extends State<ChartPace> {
           gridData: const FlGridData(
             show: false,
           ),
-          titlesData: FlTitlesData(
-              topTitles: const AxisTitles(
-                  sideTitles: SideTitles(
-                showTitles: false,
-              )),
-              rightTitles: const AxisTitles(
-                  sideTitles: SideTitles(
-                showTitles: false,
-              )),
-              leftTitles: const AxisTitles(
-                  sideTitles: SideTitles(
-                showTitles: false,
-              )),
-              bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 24,
-                getTitlesWidget: (value, titleMeta) =>
-                    buildBottomTimeTitlesWidget(context, value.toInt(),
-                        titleMeta, groupPoints.length, 1),
-              ))),
+          titlesData: _buildTitleData(groupPoints),
           barTouchData: BarTouchData(touchTooltipData: BarTouchTooltipData(
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
               return BarTooltipItem(
@@ -150,6 +107,29 @@ class _ChartPaceState extends State<ChartPace> {
                   ]))
               .toList());
     }
+  }
+
+  FlTitlesData _buildTitleData(List<List<Position>> groupPoints) {
+    return FlTitlesData(
+        topTitles: const AxisTitles(
+            sideTitles: SideTitles(
+          showTitles: false,
+        )),
+        rightTitles: const AxisTitles(
+            sideTitles: SideTitles(
+          showTitles: false,
+        )),
+        leftTitles: const AxisTitles(
+            sideTitles: SideTitles(
+          showTitles: false,
+        )),
+        bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+          showTitles: true,
+          reservedSize: 24,
+          getTitlesWidget: (value, titleMeta) => buildBottomTimeTitlesWidget(
+              context, value.toInt(), titleMeta, groupPoints.length, 1),
+        )));
   }
 
   @override

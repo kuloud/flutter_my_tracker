@@ -35,9 +35,7 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
 
   void buildLineChartData() {
     final startTime = widget.trackStat.startTime.toInt() / 1000; // s
-    final endTime = widget.trackStat.endTime.toInt() / 1000; // s
-    final maxAltitude = widget.trackStat.maxAltitude; // 米
-    final minAltitude = widget.trackStat.minAltitude; // 米
+    final endTime = widget.trackStat.endTime.toInt() / 1000; //s
 
     final spots = widget.points.where((e) => 'network' != e.provider).map((e) {
       return FlSpot((e.time / 1000) - startTime, dp(e.altitude, 1));
@@ -61,9 +59,10 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
                 sideTitles: SideTitles(
               showTitles: true,
               reservedSize: 24,
-              getTitlesWidget: (value, titleMeta) =>
-                  buildBottomTimeTitlesWidget(context, value.toInt(), titleMeta,
-                      (endTime - startTime).toInt(), 60),
+              getTitlesWidget: (value, titleMeta) {
+                return buildBottomTimeTitlesWidget(context, value.toInt(),
+                    titleMeta, (endTime - startTime).toInt(), 60);
+              },
             ))),
         lineBarsData: [
           LineChartBarData(

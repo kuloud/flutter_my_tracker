@@ -187,7 +187,7 @@ class _IndexPageState extends State<IndexPage> {
     if (_timer?.isActive ?? false) {
       return;
     }
-    _timer = Timer.periodic(const Duration(milliseconds: 800), (Timer timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 200), (Timer timer) {
       // 每秒触发一次的逻辑
       final trackStatCubit =
           BlocProvider.of<TrackStatCubit>(context, listen: false);

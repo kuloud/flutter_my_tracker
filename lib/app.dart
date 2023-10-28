@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_my_tracker/cubit/locale/locale_cubit.dart';
-import 'package:flutter_my_tracker/cubit/theme/theme_bloc.dart';
+import 'package:flutter_my_tracker/cubit/theme/theme_cubit.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
 import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
@@ -32,7 +32,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
   @override
   void initState() {
     super.initState();
-    context.read<ThemeBloc>().loadTheme();
+    context.read<ThemeCubit>().loadTheme();
     if (IsolateNameServer.lookupPortByName(
             LocationServiceRepository.isolateName) !=
         null) {
@@ -67,7 +67,7 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
+    return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
       return BlocBuilder<LocaleCubit, LocaleState>(
           builder: (context, localeState) {
         return MaterialApp(

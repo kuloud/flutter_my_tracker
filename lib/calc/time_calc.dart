@@ -26,12 +26,12 @@ List<List<Position>> groupPointsByMinute(List<Position> sortedPoints) {
     groupPoints[currentMinutes - 1].add(point);
   }
 
-  try {
-    logger.d(
-        '[groupPointsByMinute] groupPoints: ${groupPoints.map((e) => '${e.length} ${e.first.time}-${e.last.time}').toList()}');
-  } catch (e) {
-    logger.w('[groupPointsByMinute]', error: e);
-  }
+  // try {
+  //   logger.d(
+  //       '[groupPointsByMinute] groupPoints: ${groupPoints.map((e) => '${e.length} ${e.first.time}-${e.last.time}').toList()}');
+  // } catch (e) {
+  //   logger.w('[groupPointsByMinute]', error: e);
+  // }
   return groupPoints;
 }
 

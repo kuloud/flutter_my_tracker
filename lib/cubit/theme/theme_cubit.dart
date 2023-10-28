@@ -3,8 +3,8 @@ import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemeBloc extends Cubit<ThemeState> {
-  ThemeBloc() : super(LightTheme());
+class ThemeCubit extends Cubit<ThemeState> {
+  ThemeCubit() : super(LightTheme());
 
   final _shared = GetIt.instance.get<SharedPreferences>();
 
@@ -13,8 +13,8 @@ class ThemeBloc extends Cubit<ThemeState> {
     changeTheme(isDarkMode ? DarkTheme() : LightTheme());
   }
 
-  void changeTheme(ThemeState state) {
-    _shared.setBool('kIsDarkMode', state is DarkTheme);
+  void changeTheme(ThemeState state) async {
+    await _shared.setBool('kIsDarkMode', state is DarkTheme);
     emit(state);
   }
 }

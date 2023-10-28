@@ -19,7 +19,7 @@ class LocaleCubit extends Cubit<LocaleState> {
     Locale locale = S.delegate.supportedLocales.firstWhere(
         (e) => e.languageCode == langCode,
         orElse: () => S.delegate.supportedLocales.first);
-    logger.d('[loadLocales] ${langCode}_${countryCode}');
+    logger.d('[loadLocales] ${langCode}_$countryCode');
     changeLocale(LocaleState.findState(locale));
   }
 

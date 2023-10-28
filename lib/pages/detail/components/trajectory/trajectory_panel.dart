@@ -38,8 +38,8 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
         endTime: DateTime.fromMillisecondsSinceEpoch(
             widget.trackStat.endTime.toInt()));
     _controller.addListener(() {
-      logger.d(
-          '---${_controller.rotationX},${_controller.rotationY},${_controller.rotationZ}');
+      // logger.d(
+      //     '---${_controller.rotationX},${_controller.rotationY},${_controller.rotationZ}');
       if (_showAxis != (_controller.rotationX != -90)) {
         widget.onAxisShow?.call(_controller.rotationX != -90);
         setState(() {

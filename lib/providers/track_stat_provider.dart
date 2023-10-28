@@ -119,7 +119,7 @@ class TrackStatProvider {
       {DateTime? startTime, DateTime? endTime}) async {
     await open();
 
-    logger.d('[TrackStat] getAll, startTime: $startTime, endTime; $endTime');
+    // logger.d('[TrackStat] getAll, startTime: $startTime, endTime; $endTime');
     List<Map<String, dynamic>>? maps;
     if (startTime != null && endTime != null) {
       maps = await _database?.query('track_stats',

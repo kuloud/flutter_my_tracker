@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_my_tracker/cubit/theme/theme_bloc.dart';
+import 'package:flutter_my_tracker/cubit/theme/theme_cubit.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/about/about_page.dart';
@@ -18,13 +18,13 @@ class SettingsPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
+          BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
             return SwitchListTile(
               title: state is DarkTheme
                   ? Text(S.of(context).darkTheme)
                   : Text(S.of(context).lightTheme),
               onChanged: (open) {
-                final themeBloc = context.read<ThemeBloc>();
+                final themeBloc = context.read<ThemeCubit>();
                 themeBloc.changeTheme(open ? DarkTheme() : LightTheme());
               },
               value: state is DarkTheme,
