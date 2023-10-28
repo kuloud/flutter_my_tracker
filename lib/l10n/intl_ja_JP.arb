@@ -53,5 +53,11 @@
     "labelStep": "歩数",
     "min": "分",
     "hour": "时",
-    "lab":"实验室"
+    "lab":"实验室",
+    "refuse": "拒否する",
+    "agree": "同意する",
+    "unauthorizedLocation": "位置情報の許可がありません",
+    "unauthorizedLocationDescription": "屋外での活動中に位置情報にアクセスできません。Flelo - アクセス許可設定で位置情報の許可を設定してください。",
+    "locationServiceDisabled": "位置情報サービスが無効です",
+    "goOpen": "開く"
   }

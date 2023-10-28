@@ -589,6 +589,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Refuse`
+  String get refuse {
+    return Intl.message(
+      'Refuse',
+      name: 'refuse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agree`
+  String get agree {
+    return Intl.message(
+      'Agree',
+      name: 'agree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unauthorized Location`
+  String get unauthorizedLocation {
+    return Intl.message(
+      'Unauthorized Location',
+      name: 'unauthorizedLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to access your location while outdoor activities. Please grant permission to access location in Flelo - Permission Settings.`
+  String get unauthorizedLocationDescription {
+    return Intl.message(
+      'Unable to access your location while outdoor activities. Please grant permission to access location in Flelo - Permission Settings.',
+      name: 'unauthorizedLocationDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location Service Disabled`
+  String get locationServiceDisabled {
+    return Intl.message(
+      'Location Service Disabled',
+      name: 'locationServiceDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Open`
+  String get goOpen {
+    return Intl.message(
+      'Go Open',
+      name: 'goOpen',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

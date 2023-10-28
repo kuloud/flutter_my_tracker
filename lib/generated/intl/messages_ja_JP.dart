@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("について"),
         "activitySummary": MessageLookupByLibrary.simpleMessage("活動概要"),
         "activityTimes": m0,
+        "agree": MessageLookupByLibrary.simpleMessage("同意する"),
         "allActivities": MessageLookupByLibrary.simpleMessage("すべての活動履歴"),
         "altitude": MessageLookupByLibrary.simpleMessage("高度"),
         "appName": MessageLookupByLibrary.simpleMessage("Flove"),
@@ -44,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "darkTheme": MessageLookupByLibrary.simpleMessage("ダークテーマ"),
         "east": MessageLookupByLibrary.simpleMessage("東"),
         "fast": MessageLookupByLibrary.simpleMessage("速い"),
+        "goOpen": MessageLookupByLibrary.simpleMessage("開く"),
         "hour": MessageLookupByLibrary.simpleMessage("时"),
         "kilometer": MessageLookupByLibrary.simpleMessage("キロメートル"),
         "kilometerPerHour": MessageLookupByLibrary.simpleMessage("キロメートル/時"),
@@ -56,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelStep": MessageLookupByLibrary.simpleMessage("歩数"),
         "language": MessageLookupByLibrary.simpleMessage("言語"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("ライトテーマ"),
+        "locationServiceDisabled":
+            MessageLookupByLibrary.simpleMessage("位置情報サービスが無効です"),
         "maxAltitude": MessageLookupByLibrary.simpleMessage("最高高度"),
         "maxPace": MessageLookupByLibrary.simpleMessage("最高ペース"),
         "meter": MessageLookupByLibrary.simpleMessage("メートル"),
@@ -68,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "north": MessageLookupByLibrary.simpleMessage("北"),
         "pace": MessageLookupByLibrary.simpleMessage("ペース"),
         "recentActivity": MessageLookupByLibrary.simpleMessage("最近の活動"),
+        "refuse": MessageLookupByLibrary.simpleMessage("拒否する"),
         "settings": MessageLookupByLibrary.simpleMessage("設定"),
         "sky": MessageLookupByLibrary.simpleMessage("空"),
         "slow": MessageLookupByLibrary.simpleMessage("遅い"),
@@ -77,6 +82,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("合計"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("総距離"),
         "totalDuration": MessageLookupByLibrary.simpleMessage("合計時間"),
+        "unauthorizedLocation":
+            MessageLookupByLibrary.simpleMessage("位置情報の許可がありません"),
+        "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
+            "屋外での活動中に位置情報にアクセスできません。Flelo - アクセス許可設定で位置情報の許可を設定してください。"),
         "unit": m2,
         "unitKm": MessageLookupByLibrary.simpleMessage("キロメートル"),
         "unitM": MessageLookupByLibrary.simpleMessage("メートル"),

@@ -9,7 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_my_tracker/cubit/locale/locale_cubit.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_cubit.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
-import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
+import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/location/location_service_repository.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';

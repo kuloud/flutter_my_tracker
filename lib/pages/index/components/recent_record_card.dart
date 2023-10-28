@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
+import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/detail/detail_page.dart';
 import 'package:flutter_my_tracker/pages/records/records_page.dart';

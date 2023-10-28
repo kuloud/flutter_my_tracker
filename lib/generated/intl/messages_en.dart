@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "activitySummary":
             MessageLookupByLibrary.simpleMessage("Activity Summary"),
         "activityTimes": m0,
+        "agree": MessageLookupByLibrary.simpleMessage("Agree"),
         "allActivities": MessageLookupByLibrary.simpleMessage("All Activities"),
         "altitude": MessageLookupByLibrary.simpleMessage("Altitude"),
         "appName": MessageLookupByLibrary.simpleMessage("Flove"),
@@ -45,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "darkTheme": MessageLookupByLibrary.simpleMessage("Dark Theme"),
         "east": MessageLookupByLibrary.simpleMessage("East"),
         "fast": MessageLookupByLibrary.simpleMessage("Fast"),
+        "goOpen": MessageLookupByLibrary.simpleMessage("Go Open"),
         "hour": MessageLookupByLibrary.simpleMessage("h"),
         "kilometer": MessageLookupByLibrary.simpleMessage("km"),
         "kilometerPerHour": MessageLookupByLibrary.simpleMessage("km/h"),
@@ -57,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelStep": MessageLookupByLibrary.simpleMessage("Step"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Light Theme"),
+        "locationServiceDisabled":
+            MessageLookupByLibrary.simpleMessage("Location Service Disabled"),
         "maxAltitude": MessageLookupByLibrary.simpleMessage("Max Altitude"),
         "maxPace": MessageLookupByLibrary.simpleMessage("Max Pace"),
         "meter": MessageLookupByLibrary.simpleMessage("m"),
@@ -70,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pace": MessageLookupByLibrary.simpleMessage("Pace"),
         "recentActivity":
             MessageLookupByLibrary.simpleMessage("Recent Activity"),
+        "refuse": MessageLookupByLibrary.simpleMessage("Refuse"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sky": MessageLookupByLibrary.simpleMessage("Sky"),
         "slow": MessageLookupByLibrary.simpleMessage("Slow"),
@@ -79,6 +84,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("Total Distance"),
         "totalDuration": MessageLookupByLibrary.simpleMessage("Total Duration"),
+        "unauthorizedLocation":
+            MessageLookupByLibrary.simpleMessage("Unauthorized Location"),
+        "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
+            "Unable to access your location while outdoor activities. Please grant permission to access location in Flelo - Permission Settings."),
         "unit": m2,
         "unitKm": MessageLookupByLibrary.simpleMessage("KM"),
         "unitM": MessageLookupByLibrary.simpleMessage("M"),

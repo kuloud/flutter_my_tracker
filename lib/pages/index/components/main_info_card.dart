@@ -1,7 +1,7 @@
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
+import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/components/grid_tile_label_title.dart';
 import 'package:flutter_my_tracker/components/highlighted_number_text.dart';

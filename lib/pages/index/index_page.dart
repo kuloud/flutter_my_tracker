@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app_settings/app_settings.dart';
 import 'package:background_locator_2/background_locator.dart';
 import 'package:background_locator_2/location_dto.dart';
 import 'package:background_locator_2/settings/android_settings.dart';
@@ -7,7 +8,7 @@ import 'package:background_locator_2/settings/ios_settings.dart';
 import 'package:background_locator_2/settings/locator_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
+import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/location/location_callback_handler.dart';
 import 'package:flutter_my_tracker/models/enums/operation.dart';
@@ -18,7 +19,9 @@ import 'package:flutter_my_tracker/pages/index/components/trajectory/trajectory_
 import 'package:flutter_my_tracker/pages/settings/settings_page.dart';
 import 'package:flutter_my_tracker/providers/operation_record_provider.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
+import 'package:geolocator/geolocator.dart' as geolocator;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
@@ -27,30 +30,66 @@ class IndexPage extends StatefulWidget {
   State<IndexPage> createState() => _IndexPageState();
 }
 
-class _IndexPageState extends State<IndexPage> {
+class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
   bool isRunning = false;
   LocationDto? lastLocation;
   Timer? _timer;
+  bool? _locationEnable;
+  bool? _permissionGranted;
 
   @override
   void initState() {
     super.initState();
-    syncServiceRunningState().then((isServiceRunning) {
-      if (isServiceRunning) {
-        OperationRecordProvider.instance().insert(OperationRecord(
-            time: DateTime.now(), operation: Operation.autoResume));
-        // final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
-        // trackStatCubit.start();
-        _tickTimer();
-      }
-    });
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
     if (_timer?.isActive ?? false) {
       _timer?.cancel();
+    }
+  }
+
+  // Future<void> openAppSettings() async {
+  //   if (await canLaunch('app-settings:')) {
+  //     await launch('app-settings:');
+  //   } else {
+  //     throw 'Could not open app settings.';
+  //   }
+  // }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      geolocator.Geolocator.isLocationServiceEnabled().then(
+        (isLocationServiceEnabled) {
+          if (mounted) {
+            setState(() {
+              _locationEnable = isLocationServiceEnabled;
+            });
+          }
+        },
+      );
+      _checkPermission(Permission.location).then(
+        (permissionGranted) {
+          if (mounted) {
+            setState(() {
+              _permissionGranted = permissionGranted;
+            });
+          }
+        },
+      );
+      syncServiceRunningState().then((isServiceRunning) {
+        if (isServiceRunning) {
+          OperationRecordProvider.instance().insert(OperationRecord(
+              time: DateTime.now(), operation: Operation.autoResume));
+          // final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
+          // trackStatCubit.start();
+          _tickTimer();
+        }
+      });
     }
   }
 
@@ -141,7 +180,30 @@ class _IndexPageState extends State<IndexPage> {
                   child: TrajectoryPanel(isServiceRunning: isRunning),
                 ),
               ],
-            )
+            ),
+            // if (_locationEnable == false)
+            //   MaterialBanner(
+            //       content: Text(S.of(context).locationServiceDisabled),
+            //       actions: [
+            //         TextButton(
+            //             onPressed: () {
+            //               //
+            //               openAppSettings();
+            //             },
+            //             child: Text(S.of(context).goOpen))
+            //       ]),
+            if (_locationEnable == true && _permissionGranted == false)
+              MaterialBanner(
+                  content: Text(S.of(context).unauthorizedLocation),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          // openAppSettings();
+                          AppSettings.openAppSettings(
+                              type: AppSettingsType.location);
+                        },
+                        child: Text(S.of(context).goOpen))
+                  ])
           ],
         )));
   }
@@ -197,6 +259,11 @@ class _IndexPageState extends State<IndexPage> {
 
   Future<bool> _checkLocationPermission() async {
     final locationStatusGranted = await _checkPermission(Permission.location);
+    if (mounted) {
+      setState(() {
+        _permissionGranted = locationStatusGranted;
+      });
+    }
     if (locationStatusGranted) {
       return await _checkPermission(Permission.locationAlways);
     }

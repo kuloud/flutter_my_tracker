@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_my_tracker/app.dart';
 import 'package:flutter_my_tracker/cubit/locale/locale_cubit.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_cubit.dart';
-import 'package:flutter_my_tracker/cubit/track_stat_cubit.dart';
+import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/di/di.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/providers/operation_record_provider.dart';

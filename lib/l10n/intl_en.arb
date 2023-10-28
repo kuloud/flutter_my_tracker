@@ -53,6 +53,12 @@
     "labelStep": "Step",
     "min": "m",
     "hour": "h",
-    "lab":"Lab"
+    "lab":"Lab",
+    "refuse": "Refuse",
+    "agree": "Agree",
+    "unauthorizedLocation": "Unauthorized Location",
+    "unauthorizedLocationDescription": "Unable to access your location while outdoor activities. Please grant permission to access location in Flelo - Permission Settings.",
+    "locationServiceDisabled": "Location Service Disabled",
+    "goOpen": "Go Open"
   }
   
