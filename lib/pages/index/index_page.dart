@@ -19,9 +19,7 @@ import 'package:flutter_my_tracker/pages/index/components/trajectory/trajectory_
 import 'package:flutter_my_tracker/pages/settings/settings_page.dart';
 import 'package:flutter_my_tracker/providers/operation_record_provider.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
-import 'package:geolocator/geolocator.dart' as geolocator;
 import 'package:permission_handler/permission_handler.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
@@ -52,27 +50,19 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
     }
   }
 
-  // Future<void> openAppSettings() async {
-  //   if (await canLaunch('app-settings:')) {
-  //     await launch('app-settings:');
-  //   } else {
-  //     throw 'Could not open app settings.';
-  //   }
-  // }
-
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      geolocator.Geolocator.isLocationServiceEnabled().then(
-        (isLocationServiceEnabled) {
+      Permission.location.serviceStatus.isEnabled.then(
+        (isEnabled) {
           if (mounted) {
             setState(() {
-              _locationEnable = isLocationServiceEnabled;
+              _locationEnable = isEnabled;
             });
           }
         },
       );
-      _checkPermission(Permission.location).then(
+      Permission.location.isGranted.then(
         (permissionGranted) {
           if (mounted) {
             setState(() {
@@ -181,26 +171,26 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
                 ),
               ],
             ),
-            // if (_locationEnable == false)
-            //   MaterialBanner(
-            //       content: Text(S.of(context).locationServiceDisabled),
-            //       actions: [
-            //         TextButton(
-            //             onPressed: () {
-            //               //
-            //               openAppSettings();
-            //             },
-            //             child: Text(S.of(context).goOpen))
-            //       ]),
+            if (_locationEnable == false)
+              MaterialBanner(
+                  content: Text(S.of(context).locationServiceDisabled),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          // 跳到系统定位服务设置页
+                          AppSettings.openAppSettings(
+                              type: AppSettingsType.location);
+                        },
+                        child: Text(S.of(context).goOpen))
+                  ]),
             if (_locationEnable == true && _permissionGranted == false)
               MaterialBanner(
                   content: Text(S.of(context).unauthorizedLocation),
                   actions: [
                     TextButton(
                         onPressed: () {
-                          // openAppSettings();
-                          AppSettings.openAppSettings(
-                              type: AppSettingsType.location);
+                          // 打开应用权限设置页
+                          openAppSettings();
                         },
                         child: Text(S.of(context).goOpen))
                   ])
