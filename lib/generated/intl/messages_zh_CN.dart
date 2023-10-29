@@ -84,7 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalDuration": MessageLookupByLibrary.simpleMessage("总时长"),
         "unauthorizedLocation": MessageLookupByLibrary.simpleMessage("未授权定位权限"),
         "unauthorizedLocationAlways":
-            MessageLookupByLibrary.simpleMessage("未授权应用程序后台运行时访问设备位置的权限定位权限"),
+            MessageLookupByLibrary.simpleMessage("未授权应用后台运行时访问设备位置的权限定位权限"),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
             "当前无法获得您在户外运动时的位置，请前往飞乐-权限授权定位权限后使用"),
         "unit": m2,

@@ -33,6 +33,8 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
   void initState() {
     super.initState();
     context.read<ThemeCubit>().loadTheme();
+    context.read<LocaleCubit>().loadLocales(context);
+
     if (IsolateNameServer.lookupPortByName(
             LocationServiceRepository.isolateName) !=
         null) {
