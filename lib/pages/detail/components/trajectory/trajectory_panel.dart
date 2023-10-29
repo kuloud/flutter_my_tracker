@@ -79,7 +79,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
                 figures: _points,
                 controller: _controller,
                 config: const DiTreDiConfig(
-                  defaultPointWidth: 1,
+                  defaultPointWidth: 4,
                   supportZIndex: true,
                 ),
               ),

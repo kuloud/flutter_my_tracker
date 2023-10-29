@@ -14,13 +14,11 @@ Widget buildBottomTimeTitlesWidget(
     intervalInSeconds = 1 * unit;
   } else if (size <= 20 * unit) {
     intervalInSeconds = 5 * unit;
-    value = index ~/ (5 * unit);
   } else if (size <= 60 * unit) {
     intervalInSeconds = 10 * unit;
-    value = index ~/ (10 * unit);
   } else {
     intervalInSeconds = 60 * unit;
-    value = index ~/ (60 * unit);
+    value = index ~/ (60);
     if (index >= 60 * (60 * unit)) {
       suffix = S.of(context).hour;
     }
