@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agree": MessageLookupByLibrary.simpleMessage("同意する"),
         "allActivities": MessageLookupByLibrary.simpleMessage("すべての活動"),
         "altitude": MessageLookupByLibrary.simpleMessage("高度"),
-        "appName": MessageLookupByLibrary.simpleMessage("Flove"),
+        "appName": MessageLookupByLibrary.simpleMessage("フィロ"),
         "appSlogan": MessageLookupByLibrary.simpleMessage("成長を飛躍させ、楽しみましょう。"),
         "authorYear": m1,
         "averagePace": MessageLookupByLibrary.simpleMessage("平均ペース"),
@@ -84,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalDuration": MessageLookupByLibrary.simpleMessage("総時間"),
         "unauthorizedLocation":
             MessageLookupByLibrary.simpleMessage("位置情報の許可がありません"),
+        "unauthorizedLocationAlways": MessageLookupByLibrary.simpleMessage(
+            "アプリがバックグラウンドで実行されている場合にデバイスの位置情報へのアクセスを許可されていません。"),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
             "屋外での位置情報にアクセスできません。Flove - パーミッションに移動して位置情報のアクセスを許可してください。"),
         "unit": m2,

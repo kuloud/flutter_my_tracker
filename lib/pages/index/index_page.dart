@@ -34,6 +34,7 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
   Timer? _timer;
   bool? _locationEnable;
   bool? _permissionGranted;
+  bool? _permissionAlwaysGranted;
 
   @override
   void initState() {
@@ -71,6 +72,15 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
           }
         },
       );
+      Permission.locationAlways.isGranted.then(
+        (permissionGranted) {
+          if (mounted) {
+            setState(() {
+              _permissionAlwaysGranted = permissionGranted;
+            });
+          }
+        },
+      );
       syncServiceRunningState().then((isServiceRunning) {
         if (isServiceRunning) {
           OperationRecordProvider.instance().insert(OperationRecord(
@@ -95,6 +105,8 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    // logger.d(
+    //     '----${_locationEnable} ${_permissionGranted} ${_permissionAlwaysGranted}');
     return Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).appName),
@@ -120,12 +132,18 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
                 OperationRecordProvider.instance().insert(OperationRecord(
                     time: DateTime.now(), operation: Operation.stop));
                 trackStatCubit.stop(context);
+              }).onError((error, stackTrace) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(error.toString())));
               });
             } else {
               _onStart().then((value) {
                 OperationRecordProvider.instance().insert(OperationRecord(
                     time: DateTime.now(), operation: Operation.start));
                 trackStatCubit.start();
+              }).onError((error, stackTrace) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(error.toString())));
               });
             }
           },
@@ -183,9 +201,13 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
                         },
                         child: Text(S.of(context).goOpen))
                   ]),
-            if (_locationEnable == true && _permissionGranted == false)
+            if (_locationEnable != false &&
+                (_permissionGranted == false ||
+                    _permissionAlwaysGranted == false))
               MaterialBanner(
-                  content: Text(S.of(context).unauthorizedLocation),
+                  content: (_permissionGranted ?? false)
+                      ? Text(S.of(context).unauthorizedLocationAlways)
+                      : Text(S.of(context).unauthorizedLocation),
                   actions: [
                     TextButton(
                         onPressed: () {
@@ -209,10 +231,14 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
       _timer?.cancel();
     }
     await BackgroundLocator.unRegisterLocationUpdate();
+
     final isServiceRunning = await BackgroundLocator.isServiceRunning();
-    setState(() {
-      isRunning = isServiceRunning;
-    });
+    // logger.d('-----${isServiceRunning}');
+    if (mounted) {
+      setState(() {
+        isRunning = isServiceRunning;
+      });
+    }
     return isServiceRunning;
   }
 
@@ -223,14 +249,21 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
 
       _tickTimer();
 
-      setState(() {
-        isRunning = isServiceRunning;
-        lastLocation = null;
-      });
+      if (mounted) {
+        setState(() {
+          isRunning = isServiceRunning;
+          lastLocation = null;
+        });
+      }
 
       return isServiceRunning;
     } else {
-      // show error
+      if (mounted) {
+        setState(() {
+          isRunning = false;
+          lastLocation = null;
+        });
+      }
     }
     return false;
   }
@@ -255,7 +288,14 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
       });
     }
     if (locationStatusGranted) {
-      return await _checkPermission(Permission.locationAlways);
+      final locationAlwaysStatusGranted =
+          await _checkPermission(Permission.locationAlways);
+      if (mounted) {
+        setState(() {
+          _permissionAlwaysGranted = locationAlwaysStatusGranted;
+        });
+      }
+      return locationAlwaysStatusGranted;
     }
     return locationStatusGranted;
   }

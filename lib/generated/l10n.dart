@@ -610,11 +610,21 @@ class S {
     );
   }
 
-  /// `Unauthorized Location`
+  /// `Unauthorized permission to access device location.`
   String get unauthorizedLocation {
     return Intl.message(
-      'Unauthorized Location',
+      'Unauthorized permission to access device location.',
       name: 'unauthorizedLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unauthorized permission to access device location when the app is running in the background.`
+  String get unauthorizedLocationAlways {
+    return Intl.message(
+      'Unauthorized permission to access device location when the app is running in the background.',
+      name: 'unauthorizedLocationAlways',
       desc: '',
       args: [],
     );
@@ -659,6 +669,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
       Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ja', countryCode: 'JP'),
       Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
+      Locale.fromSubtags(languageCode: 'zh', countryCode: 'HK'),
     ];
   }
 

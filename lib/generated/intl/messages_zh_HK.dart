@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a zh_CN locale. All the
+// This is a library that provides messages for a zh_HK locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,48 +18,48 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'zh_CN';
+  String get localeName => 'zh_HK';
 
-  static String m0(times) => "运动${times}次";
+  static String m0(times) => "運動${times}次";
 
-  static String m1(author, year) => "版权所有 © {${author}}, {${year}}";
+  static String m1(author, year) => "版權所有 © {${author}}, {${year}}";
 
   static String m2(unit) => "(${unit})";
 
   static String m3(version, buildNumber) =>
-      "版本 {${version}}, 构建号 #{${buildNumber}}";
+      "版本 {${version}}, 構建號 #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "about": MessageLookupByLibrary.simpleMessage("关于"),
-        "activitySummary": MessageLookupByLibrary.simpleMessage("运动总结"),
+        "about": MessageLookupByLibrary.simpleMessage("關於"),
+        "activitySummary": MessageLookupByLibrary.simpleMessage("運動總結"),
         "activityTimes": m0,
         "agree": MessageLookupByLibrary.simpleMessage("同意"),
-        "allActivities": MessageLookupByLibrary.simpleMessage("全部运动记录"),
+        "allActivities": MessageLookupByLibrary.simpleMessage("全部運動記錄"),
         "altitude": MessageLookupByLibrary.simpleMessage("海拔"),
-        "appName": MessageLookupByLibrary.simpleMessage("飞乐"),
-        "appSlogan": MessageLookupByLibrary.simpleMessage("飞跃成长，自得其乐。"),
+        "appName": MessageLookupByLibrary.simpleMessage("飛樂"),
+        "appSlogan": MessageLookupByLibrary.simpleMessage("飛躍成長，自得其樂。"),
         "authorYear": m1,
         "averagePace": MessageLookupByLibrary.simpleMessage("平均配速"),
         "comma": MessageLookupByLibrary.simpleMessage("，"),
-        "darkTheme": MessageLookupByLibrary.simpleMessage("深色主题"),
-        "east": MessageLookupByLibrary.simpleMessage("东"),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("深色主題"),
+        "east": MessageLookupByLibrary.simpleMessage("東"),
         "fast": MessageLookupByLibrary.simpleMessage("快"),
-        "goOpen": MessageLookupByLibrary.simpleMessage("去开启"),
-        "hour": MessageLookupByLibrary.simpleMessage("时"),
+        "goOpen": MessageLookupByLibrary.simpleMessage("去開啟"),
+        "hour": MessageLookupByLibrary.simpleMessage("時"),
         "kilometer": MessageLookupByLibrary.simpleMessage("千米"),
-        "kilometerPerHour": MessageLookupByLibrary.simpleMessage("公里/小时"),
+        "kilometerPerHour": MessageLookupByLibrary.simpleMessage("公里/小時"),
         "kilometers": MessageLookupByLibrary.simpleMessage("千米"),
-        "lab": MessageLookupByLibrary.simpleMessage("实验室"),
+        "lab": MessageLookupByLibrary.simpleMessage("實驗室"),
         "labelAppDescription": MessageLookupByLibrary.simpleMessage(
-            "一款极简风格的运动轨迹记录软件，100%遵循Material You的设计语言。"),
+            "一款極簡風格的運動軌跡記錄軟件，100%遵循Material You的設計語言。"),
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("平均配速"),
         "labelPace": MessageLookupByLibrary.simpleMessage("配速"),
-        "labelStep": MessageLookupByLibrary.simpleMessage("步数"),
-        "language": MessageLookupByLibrary.simpleMessage("语言"),
-        "lightTheme": MessageLookupByLibrary.simpleMessage("浅色主题"),
+        "labelStep": MessageLookupByLibrary.simpleMessage("步數"),
+        "language": MessageLookupByLibrary.simpleMessage("語言"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("淺色主題"),
         "locationServiceDisabled":
-            MessageLookupByLibrary.simpleMessage("定位服务功能未开启"),
+            MessageLookupByLibrary.simpleMessage("定位服務功能未開啟"),
         "maxAltitude": MessageLookupByLibrary.simpleMessage("最高海拔"),
         "maxPace": MessageLookupByLibrary.simpleMessage("最高配速"),
         "meter": MessageLookupByLibrary.simpleMessage("米"),
@@ -71,30 +71,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "month": MessageLookupByLibrary.simpleMessage("月"),
         "north": MessageLookupByLibrary.simpleMessage("北"),
         "pace": MessageLookupByLibrary.simpleMessage("配速"),
-        "recentActivity": MessageLookupByLibrary.simpleMessage("最近运动"),
-        "refuse": MessageLookupByLibrary.simpleMessage("拒绝"),
-        "settings": MessageLookupByLibrary.simpleMessage("设置"),
+        "recentActivity": MessageLookupByLibrary.simpleMessage("最近運動"),
+        "refuse": MessageLookupByLibrary.simpleMessage("拒絕"),
+        "settings": MessageLookupByLibrary.simpleMessage("設定"),
         "sky": MessageLookupByLibrary.simpleMessage("天"),
         "slow": MessageLookupByLibrary.simpleMessage("慢"),
         "toNow": MessageLookupByLibrary.simpleMessage("至今"),
         "toastDistanceTooShort":
-            MessageLookupByLibrary.simpleMessage("距离太短，数据将不会被记录。"),
-        "total": MessageLookupByLibrary.simpleMessage("总"),
-        "totalDistance": MessageLookupByLibrary.simpleMessage("总距离"),
-        "totalDuration": MessageLookupByLibrary.simpleMessage("总时长"),
-        "unauthorizedLocation": MessageLookupByLibrary.simpleMessage("未授权定位权限"),
+            MessageLookupByLibrary.simpleMessage("距離太短，數據將不會被記錄。"),
+        "total": MessageLookupByLibrary.simpleMessage("總"),
+        "totalDistance": MessageLookupByLibrary.simpleMessage("總距離"),
+        "totalDuration": MessageLookupByLibrary.simpleMessage("總時長"),
+        "unauthorizedLocation": MessageLookupByLibrary.simpleMessage("未授權定位權限"),
         "unauthorizedLocationAlways":
-            MessageLookupByLibrary.simpleMessage("未授权应用程序后台运行时访问设备位置的权限定位权限"),
+            MessageLookupByLibrary.simpleMessage("未授權應用後台運行時訪問設備位置的權限定位權限"),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
-            "当前无法获得您在户外运动时的位置，请前往飞乐-权限授权定位权限后使用"),
+            "當前無法獲得您在戶外運動時的位置，請前往飛樂-權限授權定位權限後使用"),
         "unit": m2,
         "unitKm": MessageLookupByLibrary.simpleMessage("公里"),
         "unitM": MessageLookupByLibrary.simpleMessage("米"),
         "versionBuild": m3,
-        "viewChangelog": MessageLookupByLibrary.simpleMessage("查看更新日志"),
-        "viewPrivacyPolicy": MessageLookupByLibrary.simpleMessage("查看隐私政策"),
+        "viewChangelog": MessageLookupByLibrary.simpleMessage("查看更新日誌"),
+        "viewPrivacyPolicy": MessageLookupByLibrary.simpleMessage("查看隱私政策"),
         "viewReadme": MessageLookupByLibrary.simpleMessage("查看自述文件"),
-        "week": MessageLookupByLibrary.simpleMessage("周"),
+        "week": MessageLookupByLibrary.simpleMessage("週"),
         "workoutsTimes": MessageLookupByLibrary.simpleMessage("次"),
         "year": MessageLookupByLibrary.simpleMessage("年")
       };

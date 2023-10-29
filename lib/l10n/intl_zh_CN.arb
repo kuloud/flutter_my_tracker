@@ -57,6 +57,7 @@
   "refuse":"拒绝",
   "agree":"同意",
   "unauthorizedLocation":"未授权定位权限",
+  "unauthorizedLocationAlways":"未授权应用后台运行时访问设备位置的权限定位权限",
   "unauthorizedLocationDescription":"当前无法获得您在户外运动时的位置，请前往飞乐-权限授权定位权限后使用",
   "locationServiceDisabled":"定位服务功能未开启",
   "goOpen":"去开启"

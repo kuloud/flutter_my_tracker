@@ -1,6 +1,6 @@
 {
     "@@locale": "ja_JP",
-    "appName": "Flove",
+    "appName": "フィロ",
     "appSlogan": "成長を飛躍させ、楽しみましょう。",
     "labelAppDescription": "Material Youのデザイン言語に従ったシンプルな活動トラッキングアプリ。",
     "viewReadme": "Readmeを表示",
@@ -57,6 +57,7 @@
     "refuse": "拒否",
     "agree": "同意する",
     "unauthorizedLocation": "位置情報の許可がありません",
+    "unauthorizedLocationAlways": "アプリがバックグラウンドで実行されている場合にデバイスの位置情報へのアクセスを許可されていません。",
     "unauthorizedLocationDescription": "屋外での位置情報にアクセスできません。Flove - パーミッションに移動して位置情報のアクセスを許可してください。",
     "locationServiceDisabled": "位置情報サービスが無効です",
     "goOpen": "開く"

@@ -56,7 +56,8 @@
     "lab": "Lab",
     "refuse": "Refuse",
     "agree": "Agree",
-    "unauthorizedLocation": "Unauthorized Location",
+    "unauthorizedLocation": "Unauthorized permission to access device location.",
+    "unauthorizedLocationAlways": "Unauthorized permission to access device location when the app is running in the background.",
     "unauthorizedLocationDescription": "Unable to access your outdoor location. Please go to Flove - Permissions to grant location access.",
     "locationServiceDisabled": "Location Services Disabled",
     "goOpen": "Go Open"

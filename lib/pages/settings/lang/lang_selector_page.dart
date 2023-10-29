@@ -54,7 +54,11 @@ String _getLanguageTitle(Locale e) {
   // logger.d('${e.toLanguageTag()}');
   switch (e.languageCode) {
     case 'zh':
-      return '中文';
+      if (e.countryCode == 'HK') {
+        return '中文（繁体）';
+      } else {
+        return '中文（简体）';
+      }
     case 'en':
       return 'English';
     case 'ja':

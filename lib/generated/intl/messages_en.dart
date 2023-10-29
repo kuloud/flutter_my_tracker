@@ -84,8 +84,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("Total Distance"),
         "totalDuration": MessageLookupByLibrary.simpleMessage("Total Duration"),
-        "unauthorizedLocation":
-            MessageLookupByLibrary.simpleMessage("Unauthorized Location"),
+        "unauthorizedLocation": MessageLookupByLibrary.simpleMessage(
+            "Unauthorized permission to access device location."),
+        "unauthorizedLocationAlways": MessageLookupByLibrary.simpleMessage(
+            "Unauthorized permission to access device location when the app is running in the background."),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
             "Unable to access your outdoor location. Please go to Flove - Permissions to grant location access."),
         "unit": m2,
