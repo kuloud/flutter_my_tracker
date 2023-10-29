@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `A minimalist movement tracking software that 100% follows the Material You design language.`
+  /// `A minimalist-style activity tracking app that follows the design language of Material You.`
   String get labelAppDescription {
     return Intl.message(
-      'A minimalist movement tracking software that 100% follows the Material You design language.',
+      'A minimalist-style activity tracking app that follows the design language of Material You.',
       name: 'labelAppDescription',
       desc: '',
       args: [],
@@ -90,20 +90,20 @@ class S {
     );
   }
 
-  /// `Version {{ version }}, build #{{ buildNumber }}`
+  /// `Version {{ version }}, Build #{{ buildNumber }}`
   String versionBuild(Object version, Object buildNumber) {
     return Intl.message(
-      'Version {$version}, build #{$buildNumber}',
+      'Version {$version}, Build #{$buildNumber}',
       name: 'versionBuild',
       desc: '',
       args: [version, buildNumber],
     );
   }
 
-  /// `Copyright © {{ author }}, {{ year }}`
+  /// `© {{ author }}, {{ year }}`
   String authorYear(Object author, Object year) {
     return Intl.message(
-      'Copyright © {$author}, {$year}',
+      '© {$author}, {$year}',
       name: 'authorYear',
       desc: '',
       args: [author, year],
@@ -480,31 +480,41 @@ class S {
     );
   }
 
-  /// `The distance is too short and the data will not be recorded.`
+  /// `Distance is too short, data will not be recorded.`
   String get toastDistanceTooShort {
     return Intl.message(
-      'The distance is too short and the data will not be recorded.',
+      'Distance is too short, data will not be recorded.',
       name: 'toastDistanceTooShort',
       desc: '',
       args: [],
     );
   }
 
-  /// `KM`
+  /// `km`
   String get unitKm {
     return Intl.message(
-      'KM',
+      'km',
       name: 'unitKm',
       desc: '',
       args: [],
     );
   }
 
-  /// `M`
+  /// `m`
   String get unitM {
     return Intl.message(
-      'M',
+      'm',
       name: 'unitM',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `workouts`
+  String get workoutsTimes {
+    return Intl.message(
+      'workouts',
+      name: 'workoutsTimes',
       desc: '',
       args: [],
     );
@@ -530,16 +540,6 @@ class S {
     );
   }
 
-  /// `workouts`
-  String get workoutsTimes {
-    return Intl.message(
-      'workouts',
-      name: 'workoutsTimes',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Language`
   String get language {
     return Intl.message(
@@ -550,10 +550,10 @@ class S {
     );
   }
 
-  /// `Step`
+  /// `Steps`
   String get labelStep {
     return Intl.message(
-      'Step',
+      'Steps',
       name: 'labelStep',
       desc: '',
       args: [],
@@ -620,20 +620,20 @@ class S {
     );
   }
 
-  /// `Unable to access your location while outdoor activities. Please grant permission to access location in Flelo - Permission Settings.`
+  /// `Unable to access your outdoor location. Please go to Flove - Permissions to grant location access.`
   String get unauthorizedLocationDescription {
     return Intl.message(
-      'Unable to access your location while outdoor activities. Please grant permission to access location in Flelo - Permission Settings.',
+      'Unable to access your outdoor location. Please go to Flove - Permissions to grant location access.',
       name: 'unauthorizedLocationDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Location Service Disabled`
+  /// `Location Services Disabled`
   String get locationServiceDisabled {
     return Intl.message(
-      'Location Service Disabled',
+      'Location Services Disabled',
       name: 'locationServiceDisabled',
       desc: '',
       args: [],

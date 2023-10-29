@@ -22,12 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(times) => "${times} Activities";
 
-  static String m1(author, year) => "Copyright © {${author}}, {${year}}";
+  static String m1(author, year) => "© {${author}}, {${year}}";
 
   static String m2(unit) => "(${unit})";
 
   static String m3(version, buildNumber) =>
-      "Version {${version}}, build #{${buildNumber}}";
+      "Version {${version}}, Build #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -53,14 +53,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "kilometers": MessageLookupByLibrary.simpleMessage("km"),
         "lab": MessageLookupByLibrary.simpleMessage("Lab"),
         "labelAppDescription": MessageLookupByLibrary.simpleMessage(
-            "A minimalist movement tracking software that 100% follows the Material You design language."),
+            "A minimalist-style activity tracking app that follows the design language of Material You."),
         "labelAvgPace": MessageLookupByLibrary.simpleMessage("Avg Pace"),
         "labelPace": MessageLookupByLibrary.simpleMessage("Pace"),
-        "labelStep": MessageLookupByLibrary.simpleMessage("Step"),
+        "labelStep": MessageLookupByLibrary.simpleMessage("Steps"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Light Theme"),
         "locationServiceDisabled":
-            MessageLookupByLibrary.simpleMessage("Location Service Disabled"),
+            MessageLookupByLibrary.simpleMessage("Location Services Disabled"),
         "maxAltitude": MessageLookupByLibrary.simpleMessage("Max Altitude"),
         "maxPace": MessageLookupByLibrary.simpleMessage("Max Pace"),
         "meter": MessageLookupByLibrary.simpleMessage("m"),
@@ -80,17 +80,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "slow": MessageLookupByLibrary.simpleMessage("Slow"),
         "toNow": MessageLookupByLibrary.simpleMessage("to Now"),
         "toastDistanceTooShort": MessageLookupByLibrary.simpleMessage(
-            "The distance is too short and the data will not be recorded."),
+            "Distance is too short, data will not be recorded."),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("Total Distance"),
         "totalDuration": MessageLookupByLibrary.simpleMessage("Total Duration"),
         "unauthorizedLocation":
             MessageLookupByLibrary.simpleMessage("Unauthorized Location"),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
-            "Unable to access your location while outdoor activities. Please grant permission to access location in Flelo - Permission Settings."),
+            "Unable to access your outdoor location. Please go to Flove - Permissions to grant location access."),
         "unit": m2,
-        "unitKm": MessageLookupByLibrary.simpleMessage("KM"),
-        "unitM": MessageLookupByLibrary.simpleMessage("M"),
+        "unitKm": MessageLookupByLibrary.simpleMessage("km"),
+        "unitM": MessageLookupByLibrary.simpleMessage("m"),
         "versionBuild": m3,
         "viewChangelog": MessageLookupByLibrary.simpleMessage("View Changelog"),
         "viewPrivacyPolicy":

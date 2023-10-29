@@ -1,3 +1,12 @@
+# 1.0.1
+- Feat:
+    - International, add English, Japanese support
+    - The statistics page displays the data panel by time interval
+    - If the location service is not enabled or the location permission is not granted, the notice banner will displayed on the home page
+    - Track details page screenshot sharing
+    - Pace and altitude chart data display optimization
+- Fixed:
+    - The axis titles display error of altitude chart
 
 # 1.0.0
 

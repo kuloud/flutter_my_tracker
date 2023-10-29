@@ -17,7 +17,7 @@ extension PositionExtension on Position {
   Vector3 toVector3() {
     return Vector3(
       longitude,
-      altitude * 0.000009, // 海拔密度和经纬度拉齐，否则D3D显示会因为坐标系问题显示异常
+      altitude * 0.00009, // 海拔密度和经纬度拉齐，否则D3D显示会因为坐标系问题显示异常
       latitude,
     );
   }
@@ -58,12 +58,12 @@ extension IterablePoint3DExtension on Iterable<Point3D> {
     final bottomCenter = Vector3.copy(bounds.center)..y = bounds.min.y;
     yield Line3D(Vector3.copy(bottomCenter),
         Vector3.copy(bottomCenter)..x += num * interval,
-        width: 2, color: m.Colors.green);
+        width: 1, color: m.Colors.green);
     yield Line3D(Vector3.copy(bottomCenter),
         Vector3.copy(bottomCenter)..z += num * interval,
-        width: 2, color: m.Colors.blue);
+        width: 1, color: m.Colors.blue);
     yield Line3D(Vector3.copy(bottomCenter),
-        Vector3.copy(bottomCenter)..y = num * interval,
-        width: 2, color: m.Colors.red);
+        Vector3.copy(bottomCenter)..y += num * interval,
+        width: 1, color: m.Colors.red);
   }
 }

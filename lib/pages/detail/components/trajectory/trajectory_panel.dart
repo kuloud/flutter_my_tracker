@@ -1,13 +1,8 @@
-import 'dart:ffi';
-import 'dart:math';
-
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
-import 'package:flutter_my_tracker/utils/color.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:flutter_my_tracker/utils/render.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
@@ -55,7 +50,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
   vector.Vector3 createVector3(Position p) {
     return vector.Vector3(
       p.latitude,
-      p.altitude * 0.000009,
+      p.altitude * 0.00009,
       p.longitude,
     );
   }
@@ -84,7 +79,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
                 figures: _points,
                 controller: _controller,
                 config: const DiTreDiConfig(
-                  defaultPointWidth: 4,
+                  defaultPointWidth: 1,
                   supportZIndex: true,
                 ),
               ),
@@ -119,9 +114,9 @@ Iterable<Cube3D> _generateCubes() sync* {
         yield Cube3D(
           0.9,
           vector.Vector3(
-            x.toDouble() * 2,
-            y.toDouble() * 2,
-            z.toDouble() * 2,
+            x.toDouble(),
+            y.toDouble(),
+            z.toDouble(),
           ),
           color: colors[(colors.length - y) % colors.length].withOpacity(0.3),
         );
