@@ -12,13 +12,13 @@ class LocaleCubit extends Cubit<LocaleState> {
 
   final _shared = GetIt.instance.get<SharedPreferences>();
 
-  loadLocales(BuildContext context) async {
+  loadLocales() async {
     String? langCode = _shared.getString('appLang');
     String? countryCode = _shared.getString('appCountry');
     logger.d('${S.delegate.supportedLocales}');
     Locale locale = S.delegate.supportedLocales.firstWhere(
         (e) => e.languageCode == langCode,
-        orElse: () => Localizations.localeOf(context));
+        orElse: () => S.delegate.supportedLocales.first);
     logger.d('[loadLocales] ${langCode}_$countryCode');
     changeLocale(LocaleState.findState(locale));
   }
