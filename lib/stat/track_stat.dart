@@ -23,6 +23,10 @@ class TrackStat {
 
   TrackState state;
 
+  List<Position>
+      positionBuffer; // Buffer to store last 3 seconds of speed values
+  double currentSpeed = 0;
+
   TrackStat({
     this.id,
     this.positionsCount = 0,
@@ -36,20 +40,42 @@ class TrackStat {
     this.endTime = 0,
     this.totalTime = 0,
     this.state = TrackState.unkonwn,
-  });
+  }) : positionBuffer = [];
 
   TrackStat addPosition(Position position) {
     positionsCount++;
 
+    const double bufferTimeLimit = 3000; // 3 seconds
+
+    while (positionBuffer.isNotEmpty &&
+        position.time - positionBuffer.first.time > bufferTimeLimit) {
+      positionBuffer.removeAt(0);
+    }
+
+    /// android上provider为'network和'gps'，基站定位点没有速度信息，
+    /// ios上provider为''
     if ('network' != position.provider) {
+      positionBuffer.add(position);
+
+      if (position.speedAccuracy < 0.01) {
+        // 定位点精度小于0.1 m/s, 使用定位点速度
+        currentSpeed = position.speed;
+      } else {
+        // 按3s内定位点计算速度均值
+        currentSpeed = _currentSpeedFromBuffer();
+      }
+
       minSpeed = (minSpeed != double.infinity)
-          ? min(minSpeed, position.speed)
-          : position.speed;
-      maxSpeed = max(maxSpeed, position.speed);
+          ? min(minSpeed, currentSpeed)
+          : currentSpeed;
+      maxSpeed = max(maxSpeed, currentSpeed);
       minAltitude = (minAltitude != double.infinity)
           ? min(minAltitude, position.altitude)
           : position.altitude;
       maxAltitude = max(maxAltitude, position.altitude);
+    } else {
+      // 按3s内定位点计算速度均值
+      currentSpeed = _currentSpeedFromBuffer();
     }
 
     startTime = (startTime != double.infinity)
@@ -57,6 +83,7 @@ class TrackStat {
         : position.time;
     endTime = max(endTime, position.time);
     totalTime = endTime - startTime;
+
     if (lastPosition != null) {
       totalDistance += calculateDistance(lastPosition!, position);
     }
@@ -64,6 +91,17 @@ class TrackStat {
     lastPosition = position;
 
     return this;
+  }
+
+  double _currentSpeedFromBuffer() {
+    return positionBuffer.isNotEmpty
+        ? positionBuffer
+                .map(
+                  (e) => e.speed,
+                )
+                .reduce((a, b) => a + b) /
+            positionBuffer.length
+        : 0;
   }
 
   void tick() {

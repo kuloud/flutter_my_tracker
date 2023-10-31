@@ -1,4 +1,5 @@
 # 飞乐
+[![Codemagic build status](https://api.codemagic.io/apps/6540319b28820fa34aba188b/6540319b28820fa34aba188a/status_badge.svg)](https://codemagic.io/apps/6540319b28820fa34aba188b/6540319b28820fa34aba188a/latest_build)
 
 一款极简风格的运动轨迹记录软件，100%遵循Material You的设计语言。
 

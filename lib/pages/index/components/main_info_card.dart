@@ -27,7 +27,7 @@ class MainInfoCard extends StatelessWidget {
                   'label': S.of(context).totalDuration
                 },
                 {
-                  'title': formatPace(state.trackStat.lastPosition?.speed ?? 0),
+                  'title': formatPace(state.trackStat.currentSpeed),
                   'label': S.of(context).pace
                 },
               ];
