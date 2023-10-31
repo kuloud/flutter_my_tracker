@@ -23,7 +23,8 @@ class TrackStat {
 
   TrackState state;
 
-  List<double> speedBuffer; // Buffer to store last 3 seconds of speed values
+  List<Position>
+      positionBuffer; // Buffer to store last 3 seconds of speed values
   double currentSpeed = 0;
 
   TrackStat({
@@ -39,28 +40,31 @@ class TrackStat {
     this.endTime = 0,
     this.totalTime = 0,
     this.state = TrackState.unkonwn,
-  }) : speedBuffer = [];
+  }) : positionBuffer = [];
 
   TrackStat addPosition(Position position) {
     positionsCount++;
 
+    const double bufferTimeLimit = 3000; // 3 seconds
+
+    while (positionBuffer.isNotEmpty &&
+        position.time - positionBuffer.first.time > bufferTimeLimit) {
+      positionBuffer.removeAt(0);
+    }
+
     /// android上provider为'network和'gps'，基站定位点没有速度信息，
     /// ios上provider为''
     if ('network' != position.provider) {
-      // 当定位点速度为0时，用速度精度取半修正
-      speedBuffer.add((position.speed == 0) ? position.speedAccuracy / 2 : 0);
+      positionBuffer.add(position);
 
-      const double bufferTimeLimit = 3000; // 3 seconds
-
-      while (speedBuffer.isNotEmpty &&
-          position.time - speedBuffer.first > bufferTimeLimit) {
-        speedBuffer.removeAt(0);
+      if (position.speedAccuracy < 0.01) {
+        // 定位点精度小于0.1 m/s, 使用定位点速度
+        currentSpeed = position.speed;
+      } else {
+        // 按3s内定位点计算速度均值
+        currentSpeed = _currentSpeedFromBuffer();
       }
 
-      // 计算速度均值
-      currentSpeed = speedBuffer.isNotEmpty
-          ? speedBuffer.reduce((a, b) => a + b) / speedBuffer.length
-          : 0;
       minSpeed = (minSpeed != double.infinity)
           ? min(minSpeed, currentSpeed)
           : currentSpeed;
@@ -69,6 +73,9 @@ class TrackStat {
           ? min(minAltitude, position.altitude)
           : position.altitude;
       maxAltitude = max(maxAltitude, position.altitude);
+    } else {
+      // 按3s内定位点计算速度均值
+      currentSpeed = _currentSpeedFromBuffer();
     }
 
     startTime = (startTime != double.infinity)
@@ -84,6 +91,17 @@ class TrackStat {
     lastPosition = position;
 
     return this;
+  }
+
+  double _currentSpeedFromBuffer() {
+    return positionBuffer.isNotEmpty
+        ? positionBuffer
+                .map(
+                  (e) => e.speed,
+                )
+                .reduce((a, b) => a + b) /
+            positionBuffer.length
+        : 0;
   }
 
   void tick() {

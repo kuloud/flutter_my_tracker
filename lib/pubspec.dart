@@ -3,7 +3,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, avoid_classes_with_only_static_members
 
 mixin Pubspec {
-  static final buildDate = DateTime.utc(2023, 10, 29, 5, 10, 55);
+  static final buildDate = DateTime.utc(2023, 10, 31, 1, 37, 56);
 
   static const name = 'flutter_my_tracker';
 
