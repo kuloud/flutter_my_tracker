@@ -23,6 +23,9 @@ class TrackStat {
 
   TrackState state;
 
+  List<double> speedBuffer; // Buffer to store last 3 seconds of speed values
+  double currentSpeed = 0;
+
   TrackStat({
     this.id,
     this.positionsCount = 0,
@@ -36,16 +39,32 @@ class TrackStat {
     this.endTime = 0,
     this.totalTime = 0,
     this.state = TrackState.unkonwn,
-  });
+  }) : speedBuffer = [];
 
   TrackStat addPosition(Position position) {
     positionsCount++;
 
+    /// android上provider为'network和'gps'，基站定位点没有速度信息，
+    /// ios上provider为''
     if ('network' != position.provider) {
+      // 当定位点速度为0时，用速度精度取半修正
+      speedBuffer.add((position.speed == 0) ? position.speedAccuracy / 2 : 0);
+
+      const double bufferTimeLimit = 3000; // 3 seconds
+
+      while (speedBuffer.isNotEmpty &&
+          position.time - speedBuffer.first > bufferTimeLimit) {
+        speedBuffer.removeAt(0);
+      }
+
+      // 计算速度均值
+      currentSpeed = speedBuffer.isNotEmpty
+          ? speedBuffer.reduce((a, b) => a + b) / speedBuffer.length
+          : 0;
       minSpeed = (minSpeed != double.infinity)
-          ? min(minSpeed, position.speed)
-          : position.speed;
-      maxSpeed = max(maxSpeed, position.speed);
+          ? min(minSpeed, currentSpeed)
+          : currentSpeed;
+      maxSpeed = max(maxSpeed, currentSpeed);
       minAltitude = (minAltitude != double.infinity)
           ? min(minAltitude, position.altitude)
           : position.altitude;
@@ -57,6 +76,7 @@ class TrackStat {
         : position.time;
     endTime = max(endTime, position.time);
     totalTime = endTime - startTime;
+
     if (lastPosition != null) {
       totalDistance += calculateDistance(lastPosition!, position);
     }

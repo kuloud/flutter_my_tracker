@@ -54,7 +54,8 @@ class _BarChartRegionSummaryState extends State<BarChartRegionSummary> {
             ))),
         barTouchData: BarTouchData(
             touchCallback: (event, response) {
-              if (event.isInterestedForInteractions) {
+              if (event.isInterestedForInteractions &&
+                  groupTrackStats.isNotEmpty) {
                 try {
                   final trackStat =
                       groupTrackStats[response!.spot!.touchedBarGroupIndex]
