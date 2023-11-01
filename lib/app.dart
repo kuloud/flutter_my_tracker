@@ -32,38 +32,47 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
   @override
   void initState() {
     super.initState();
-    context.read<ThemeCubit>().loadTheme();
-    context.read<LocaleCubit>().loadLocales();
+    try {
+      context.read<ThemeCubit>().loadTheme();
+      context.read<LocaleCubit>().loadLocales();
 
-    if (IsolateNameServer.lookupPortByName(
-            LocationServiceRepository.isolateName) !=
-        null) {
-      IsolateNameServer.removePortNameMapping(
-          LocationServiceRepository.isolateName);
+      if (IsolateNameServer.lookupPortByName(
+              LocationServiceRepository.isolateName) !=
+          null) {
+        IsolateNameServer.removePortNameMapping(
+            LocationServiceRepository.isolateName);
+      }
+
+      IsolateNameServer.registerPortWithName(
+          port.sendPort, LocationServiceRepository.isolateName);
+
+      final trackStatCubit =
+          BlocProvider.of<TrackStatCubit>(context, listen: false);
+
+      port.listen(
+        (dynamic data) async {
+          await updateUI(data);
+          Position? position = (data != null) ? Position.fromJson(data) : null;
+          if (position != null) {
+            trackStatCubit.update(position);
+          }
+        },
+      );
+
+      initPlatformState();
+    } catch (e) {
+      logger.e('[initState]', error: e);
     }
-
-    IsolateNameServer.registerPortWithName(
-        port.sendPort, LocationServiceRepository.isolateName);
-
-    final trackStatCubit =
-        BlocProvider.of<TrackStatCubit>(context, listen: false);
-
-    port.listen(
-      (dynamic data) async {
-        await updateUI(data);
-        Position? position = (data != null) ? Position.fromJson(data) : null;
-        if (position != null) {
-          trackStatCubit.update(position);
-        }
-      },
-    );
-
-    initPlatformState();
   }
 
   @override
   void dispose() {
-    port.close();
+    try {
+      port.close();
+    } catch (e) {
+      logger.e('[dispose]', error: e);
+    }
+
     super.dispose();
   }
 
@@ -91,8 +100,6 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
           supportedLocales: S.delegate.supportedLocales,
           locale: localeState.locale,
           home: const IndexPage(),
-          // home: const TrajectoryPage(),
-          // home: MyApp(),
         );
       });
     });
@@ -102,8 +109,12 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
     if (data == null) {
       return;
     }
-    LocationDto locationDto = LocationDto.fromJson(data);
-    await _updateNotificationText(locationDto);
+    try {
+      LocationDto locationDto = LocationDto.fromJson(data);
+      await _updateNotificationText(locationDto);
+    } catch (e) {
+      logger.e('[updateUI]', error: e);
+    }
   }
 
   Future<void> _updateNotificationText(LocationDto data) async {
