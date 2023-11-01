@@ -1,5 +1,4 @@
 # Flove
-[![Codemagic build status](https://api.codemagic.io/apps/6540319b28820fa34aba188b/6540319b28820fa34aba188a/status_badge.svg)](https://codemagic.io/apps/6540319b28820fa34aba188b/6540319b28820fa34aba188a/latest_build)
 
 A minimalist movement tracking software that 100% follows the Material You design language.
 
