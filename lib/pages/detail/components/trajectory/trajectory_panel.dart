@@ -50,7 +50,7 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
   vector.Vector3 createVector3(Position p) {
     return vector.Vector3(
       p.latitude,
-      p.altitude * 0.00009,
+      p.altitude * 0.000009,
       p.longitude,
     );
   }

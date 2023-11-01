@@ -103,11 +103,8 @@ class TrackStat {
 
   double _currentSpeedFromBuffer() {
     return positionBuffer.isNotEmpty
-        ? positionBuffer
-                .map(
-                  (e) => e.speed,
-                )
-                .reduce((a, b) => a + b) /
+        ? positionBuffer.fold(0.0,
+                (previousValue, element) => previousValue + element.speed) /
             positionBuffer.length
         : 0;
   }
