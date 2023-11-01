@@ -410,10 +410,10 @@ class S {
     );
   }
 
-  /// `min/km`
+  /// `/km`
   String get minutePerKilometer {
     return Intl.message(
-      'min/km',
+      '/km',
       name: 'minutePerKilometer',
       desc: '',
       args: [],

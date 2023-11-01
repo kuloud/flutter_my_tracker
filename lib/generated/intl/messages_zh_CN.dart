@@ -67,7 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("分"),
         "minAltitude": MessageLookupByLibrary.simpleMessage("最低海拔"),
         "minPace": MessageLookupByLibrary.simpleMessage("最低配速"),
-        "minutePerKilometer": MessageLookupByLibrary.simpleMessage("分/千米"),
+        "minutePerKilometer": MessageLookupByLibrary.simpleMessage("/千米"),
         "month": MessageLookupByLibrary.simpleMessage("月"),
         "north": MessageLookupByLibrary.simpleMessage("北"),
         "pace": MessageLookupByLibrary.simpleMessage("配速"),
