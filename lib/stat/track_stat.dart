@@ -45,34 +45,12 @@ class TrackStat {
   TrackStat addPosition(Position position) {
     positionsCount++;
 
-    const double bufferTimeLimit = 3000; // 3 seconds
-
-    while (positionBuffer.isNotEmpty &&
-        position.time - positionBuffer.first.time > bufferTimeLimit) {
-      positionBuffer.removeAt(0);
-    }
+    _refreshPositionBuffer(position);
 
     /// android上provider为'network和'gps'，基站定位点没有速度信息，
     /// ios上provider为''
     if ('network' != position.provider) {
-      positionBuffer.add(position);
-
-      if (position.speedAccuracy < 0.01) {
-        // 定位点精度小于0.1 m/s, 使用定位点速度
-        currentSpeed = position.speed;
-      } else {
-        // 按3s内定位点计算速度均值
-        currentSpeed = _currentSpeedFromBuffer();
-      }
-
-      minSpeed = (minSpeed != double.infinity)
-          ? min(minSpeed, currentSpeed)
-          : currentSpeed;
-      maxSpeed = max(maxSpeed, currentSpeed);
-      minAltitude = (minAltitude != double.infinity)
-          ? min(minAltitude, position.altitude)
-          : position.altitude;
-      maxAltitude = max(maxAltitude, position.altitude);
+      _updateByPositionWithSpeed(position);
     } else {
       // 按3s内定位点计算速度均值
       currentSpeed = _currentSpeedFromBuffer();
@@ -91,6 +69,36 @@ class TrackStat {
     lastPosition = position;
 
     return this;
+  }
+
+  void _updateByPositionWithSpeed(Position position) {
+    positionBuffer.add(position);
+
+    if (position.speedAccuracy < 0.01) {
+      // 定位点精度小于0.1 m/s, 使用定位点速度
+      currentSpeed = position.speed;
+    } else {
+      // 按3s内定位点计算速度均值
+      currentSpeed = _currentSpeedFromBuffer();
+    }
+
+    minSpeed = (minSpeed != double.infinity)
+        ? min(minSpeed, currentSpeed)
+        : currentSpeed;
+    maxSpeed = max(maxSpeed, currentSpeed);
+    minAltitude = (minAltitude != double.infinity)
+        ? min(minAltitude, position.altitude)
+        : position.altitude;
+    maxAltitude = max(maxAltitude, position.altitude);
+  }
+
+  void _refreshPositionBuffer(Position position) {
+    const double bufferTimeLimit = 3000; // 3 seconds
+
+    while (positionBuffer.isNotEmpty &&
+        position.time - positionBuffer.first.time > bufferTimeLimit) {
+      positionBuffer.removeAt(0);
+    }
   }
 
   double _currentSpeedFromBuffer() {
