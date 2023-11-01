@@ -1,3 +1,8 @@
+# 1.0.2
+- Feat:
+
+- Fixed:
+
 # 1.0.1
 - Feat:
     - International, add English, Japanese and Traditional Chinese support
