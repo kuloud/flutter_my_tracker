@@ -6,18 +6,19 @@ import 'package:flutter_my_tracker/utils/logger.dart';
 
 List<List<Position>> groupPointsByMinute(List<Position> sortedPoints) {
   // 计算每分钟的毫秒数
-  double millisecondsInMinute = 60 * 1000;
+  int millisecondsInMinute = 60 * 1000;
 
   int minutes = ((sortedPoints.last.time - sortedPoints.first.time) /
           millisecondsInMinute)
       .ceil();
   logger.d('[groupPointsByMinute] minutes: $minutes');
-  List<List<Position>> groupPoints = List.generate(minutes, (index) => []);
+  List<List<Position>> groupPoints = List.generate(minutes, (_) => []);
 
   int i = 0;
+  int currentMinutes = 0;
   // 遍历每个点
   for (Position point in sortedPoints) {
-    int currentMinutes =
+    currentMinutes =
         ((point.time - sortedPoints.first.time) / millisecondsInMinute).ceil();
     // logger
     //     .d('---- ${++i} ${sortedPoints.length} ${point.time} $currentMinutes');
@@ -37,11 +38,13 @@ List<List<Position>> groupPointsByMinute(List<Position> sortedPoints) {
   return groupPoints;
 }
 
+/// 传入的统计记录默认是时间倒序的
 List<List<TrackStat>> groupTracksByDay(List<TrackStat> sortedTrackStats) {
   if (sortedTrackStats.isEmpty) {
-    return List.generate(0, (index) => []);
+    return List.generate(0, (_) => []);
   }
 
+  /// 传入的统计记录默认是时间倒序的，这里遍历需要按时间正序
   sortedTrackStats.sort((a, b) => a.startTime.compareTo(b.startTime));
 
   // 计算每分钟的毫秒数

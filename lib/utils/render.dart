@@ -17,7 +17,7 @@ extension PositionExtension on Position {
   Vector3 toVector3() {
     return Vector3(
       longitude,
-      altitude * 0.00009, // 海拔密度和经纬度拉齐，否则D3D显示会因为坐标系问题显示异常
+      altitude * 0.000009, // 海拔密度和经纬度拉齐，否则D3D显示会因为坐标系问题显示异常
       latitude,
     );
   }
