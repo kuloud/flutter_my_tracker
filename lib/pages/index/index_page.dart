@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/location/location_callback_handler.dart';
+import 'package:flutter_my_tracker/components/location/location_callback_handler.dart';
 import 'package:flutter_my_tracker/models/enums/operation.dart';
 import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
 import 'package:flutter_my_tracker/pages/index/components/main_info_card.dart';

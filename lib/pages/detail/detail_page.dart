@@ -2,8 +2,7 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'dart:ui' as ui
-    show PictureRecorder, ImageByteFormat, Image, ImageFilter;
+import 'dart:ui' as ui show PictureRecorder, ImageByteFormat, Image;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

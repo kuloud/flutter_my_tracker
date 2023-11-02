@@ -1,8 +1,8 @@
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_my_tracker/components/grid_tile_label_title.dart';
-import 'package:flutter_my_tracker/components/highlighted_number_text.dart';
+import 'package:flutter_my_tracker/components/widgets/grid_tile_label_title.dart';
 import 'package:flutter_my_tracker/calc/stat_calc.dart';
+import 'package:flutter_my_tracker/components/widgets/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/region_summary_data.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';

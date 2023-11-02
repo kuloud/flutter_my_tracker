@@ -4,7 +4,6 @@ import 'package:flutter_my_tracker/cubit/theme/theme_cubit.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/about/about_page.dart';
-import 'package:flutter_my_tracker/pages/lab/lab_dashboard_page.dart';
 import 'package:flutter_my_tracker/pages/settings/lang/lang_selector_page.dart';
 
 class SettingsPage extends StatelessWidget {

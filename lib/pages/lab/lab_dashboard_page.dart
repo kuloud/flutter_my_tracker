@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
-import 'package:flutter_my_tracker/pages/detail/components/main_info_card.dart';
 import 'package:flutter_my_tracker/pages/detail/components/trajectory/color_label.dart';
 import 'package:flutter_my_tracker/pages/detail/components/trajectory/trajectory_panel.dart';
 import 'package:flutter_my_tracker/pages/lab/components/track_generator.dart';

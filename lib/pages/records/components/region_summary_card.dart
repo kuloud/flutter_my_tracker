@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/calc/stat_calc.dart';
-import 'package:flutter_my_tracker/components/highlighted_number_text.dart';
+import 'package:flutter_my_tracker/components/widgets/highlighted_number_text.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/stat/chart/bar_chart_region_summary.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';

@@ -3,7 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/calc/speed_calc.dart';
 import 'package:flutter_my_tracker/calc/time_calc.dart';
-import 'package:flutter_my_tracker/components/empty_view.dart';
+import 'package:flutter_my_tracker/components/widgets/empty_view.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/stat/card_title_bar.dart';

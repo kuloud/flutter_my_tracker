@@ -11,7 +11,7 @@ import 'package:flutter_my_tracker/cubit/theme/theme_cubit.dart';
 import 'package:flutter_my_tracker/cubit/theme/theme_state.dart';
 import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/location/location_service_repository.dart';
+import 'package:flutter_my_tracker/components/location/location_service_repository.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/pages/index/index_page.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';

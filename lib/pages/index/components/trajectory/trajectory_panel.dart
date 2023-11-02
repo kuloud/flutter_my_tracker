@@ -2,14 +2,9 @@ import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
-import 'package:flutter_my_tracker/location/location_service_repository.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
-import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
-import 'package:flutter_my_tracker/utils/color.dart';
-import 'package:flutter_my_tracker/utils/file.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:flutter_my_tracker/utils/render.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
