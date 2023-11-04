@@ -55,7 +55,7 @@ packages:
       path: "thirdparty/background_locator_fixed"
       relative: true
     source: path
-    version: "2.0.6"
+    version: "1.0.0"
   bloc:
     dependency: "direct main"
     description:
@@ -451,6 +451,14 @@ packages:
       url: "https://mirrors.tuna.tsinghua.edu.cn/dart-pub/"
     source: hosted
     version: "0.5.0"
+  matrices:
+    dependency: "direct main"
+    description:
+      name: matrices
+      sha256: e1277be104655d46bfe4aeb8917e7c31e2ffc06e9d0461b92fc139391fc931c2
+      url: "https://mirrors.tuna.tsinghua.edu.cn/dart-pub/"
+    source: hosted
+    version: "1.2.7"
   meta:
     dependency: transitive
     description:
