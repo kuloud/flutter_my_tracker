@@ -80,20 +80,19 @@ class TrackStatProvider {
     return trackStat;
   }
 
-  @Deprecated("use getLastestFinishedTrackStat")
   Future<TrackStat?> getLastestTrackStat() async {
-    return getLastestTrackStatByState(TrackState.finish);
+    return getLastestTrackStatByState(null);
   }
 
   Future<TrackStat?> getLastestFinishedTrackStat() async {
     return getLastestTrackStatByState(TrackState.finish);
   }
 
-  Future<TrackStat?> getLastestTrackStatByState(TrackState state) async {
+  Future<TrackStat?> getLastestTrackStatByState(TrackState? state) async {
     await open();
     List<Map<String, dynamic>> maps = await _database!.query('track_stats',
         where: 'state = ?',
-        whereArgs: [state.name],
+        whereArgs: [state?.name],
         limit: 1,
         orderBy: 'startTime DESC');
     if (maps.isNotEmpty) {

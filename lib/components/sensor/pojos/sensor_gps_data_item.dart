@@ -13,20 +13,20 @@ class SensorGpsDataItem implements Comparable<SensorGpsDataItem> {
   double posErr;
   double velErr;
 
-  static const double NOT_INITIALIZED = 361.0;
+  static const double NOT_INITIALIZED = double.infinity;
 
   SensorGpsDataItem(
       {required this.timestamp,
-      required this.gpsLat,
-      required this.gpsLon,
-      required this.gpsAlt,
-      required this.absNorthAcc,
-      required this.absEastAcc,
-      required this.absUpAcc,
-      required this.speed,
-      required this.course,
-      required this.posErr,
-      required this.velErr,
+      this.gpsLat = NOT_INITIALIZED,
+      this.gpsLon = NOT_INITIALIZED,
+      this.gpsAlt = NOT_INITIALIZED,
+      this.absNorthAcc = NOT_INITIALIZED,
+      this.absEastAcc = NOT_INITIALIZED,
+      this.absUpAcc = NOT_INITIALIZED,
+      this.speed = NOT_INITIALIZED,
+      this.course = NOT_INITIALIZED,
+      this.posErr = NOT_INITIALIZED,
+      this.velErr = NOT_INITIALIZED,
       required double declination}) {
     this.absNorthAcc =
         absNorthAcc * cos(declination) + absEastAcc * sin(declination);

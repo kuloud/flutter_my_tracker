@@ -28,6 +28,17 @@ class TrackStatCubit extends Cubit<TrackStatState> {
     return false;
   }
 
+  Future<bool> resume(TrackStat trackStat) async {
+    try {
+      _trackStat = trackStat;
+      emit(TrackStatStart());
+      return true;
+    } catch (e) {
+      logger.e('[TrackStatCubit] [start] error', error: e);
+    }
+    return false;
+  }
+
   /// 记录过程中持续更新持久化
   update(Position position) async {
     try {

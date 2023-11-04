@@ -12,12 +12,14 @@ import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/components/location/location_callback_handler.dart';
 import 'package:flutter_my_tracker/models/enums/operation.dart';
+import 'package:flutter_my_tracker/models/enums/track_state.dart';
 import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
 import 'package:flutter_my_tracker/pages/index/components/main_info_card.dart';
 import 'package:flutter_my_tracker/pages/index/components/recent_record_card.dart';
 import 'package:flutter_my_tracker/pages/index/components/trajectory/trajectory_panel.dart';
 import 'package:flutter_my_tracker/pages/settings/settings_page.dart';
 import 'package:flutter_my_tracker/providers/operation_record_provider.dart';
+import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -35,6 +37,8 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
   bool? _locationEnable;
   bool? _permissionGranted;
   bool? _permissionAlwaysGranted;
+
+  late final List<StreamSubscription> streamSubscriptions;
 
   @override
   void initState() {
@@ -88,6 +92,17 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
           // final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
           // trackStatCubit.start();
           _tickTimer();
+        } else {
+          // 当前定位服务关闭时，读取最新记录，如果是未正常关闭，则自动启动定位服务
+          TrackStatProvider.instance()
+              .getRunningTrackStat()
+              .then((runningTrackStat) {
+            if (runningTrackStat?.state == TrackState.started) {
+              final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
+              trackStatCubit.resume(runningTrackStat!);
+              _onStart();
+            }
+          });
         }
       });
     }

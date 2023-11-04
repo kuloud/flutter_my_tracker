@@ -24,7 +24,7 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
   void initState() {
     super.initState();
 
-    _recordFuture = TrackStatProvider.instance().getLastestTrackStat();
+    _recordFuture = TrackStatProvider.instance().getLastestFinishedTrackStat();
   }
 
   @override
@@ -32,7 +32,8 @@ class _RecentRecordCardState extends State<RecentRecordCard> {
     return BlocBuilder<TrackStatCubit, TrackStatState>(
       builder: (context, state) {
         if (state is TrackStatStop) {
-          _recordFuture = TrackStatProvider.instance().getLastestTrackStat();
+          _recordFuture =
+              TrackStatProvider.instance().getLastestFinishedTrackStat();
         }
         return FutureBuilder(
             future: _recordFuture,

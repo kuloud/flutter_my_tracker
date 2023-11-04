@@ -5,6 +5,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:background_locator/location_dto.dart';
+import 'package:flutter_my_tracker/components/location/location_state.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
