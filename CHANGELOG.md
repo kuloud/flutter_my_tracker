@@ -1,7 +1,8 @@
-# 1.0.2
+# 1.0.2(In developing)
 - Feat:
-
+    - Add kalman filter to optimize positioning data
 - Fixed:
+    - None
 
 # 1.0.1
 - Feat:
