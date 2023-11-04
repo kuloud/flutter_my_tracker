@@ -15,6 +15,7 @@ import 'package:flutter_my_tracker/components/location/location_service_reposito
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/pages/index/index_page.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 
 import 'dart:async';
 
@@ -28,6 +29,12 @@ class MyTrackerApp extends StatefulWidget {
 class _MyTrackerAppState extends State<MyTrackerApp> {
   ReceivePort port = ReceivePort();
   bool isRunning = false;
+
+  List<double>? _userAccelerometerValues;
+  List<double>? _accelerometerValues;
+  List<double>? _gyroscopeValues;
+  List<double>? _magnetometerValues;
+  final _streamSubscriptions = <StreamSubscription<dynamic>>[];
 
   @override
   void initState() {
@@ -63,10 +70,70 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
     } catch (e) {
       logger.e('[initState]', error: e);
     }
+
+    _streamSubscriptions.add(
+      userAccelerometerEvents.listen(
+        (UserAccelerometerEvent event) {
+          logger.d('[userAccelerometerEvents] $event');
+          setState(() {
+            _userAccelerometerValues = <double>[event.x, event.y, event.z];
+          });
+        },
+        onError: (e) {
+          logger.w('[userAccelerometerEvents]', error: e);
+        },
+        cancelOnError: true,
+      ),
+    );
+    _streamSubscriptions.add(
+      accelerometerEvents.listen(
+        (AccelerometerEvent event) {
+          logger.d('[accelerometerEvents] $event');
+          setState(() {
+            _accelerometerValues = <double>[event.x, event.y, event.z];
+          });
+        },
+        onError: (e) {
+          logger.w('[accelerometerEvents]', error: e);
+        },
+        cancelOnError: true,
+      ),
+    );
+    _streamSubscriptions.add(
+      gyroscopeEvents.listen(
+        (GyroscopeEvent event) {
+          logger.d('[gyroscopeEvents] $event');
+          setState(() {
+            _gyroscopeValues = <double>[event.x, event.y, event.z];
+          });
+        },
+        onError: (e) {
+          logger.w('[gyroscopeEvents]', error: e);
+        },
+        cancelOnError: true,
+      ),
+    );
+    _streamSubscriptions.add(
+      magnetometerEvents.listen(
+        (MagnetometerEvent event) {
+          logger.d('[magnetometerEvents] $event');
+          setState(() {
+            _magnetometerValues = <double>[event.x, event.y, event.z];
+          });
+        },
+        onError: (e) {
+          logger.w('[magnetometerEvents]', error: e);
+        },
+        cancelOnError: true,
+      ),
+    );
   }
 
   @override
   void dispose() {
+    for (final subscription in _streamSubscriptions) {
+      subscription.cancel();
+    }
     try {
       port.close();
     } catch (e) {
