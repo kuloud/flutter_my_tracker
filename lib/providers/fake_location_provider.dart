@@ -1,4 +1,4 @@
-import 'package:background_locator_2/keys.dart';
+import 'package:background_locator/keys.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:path/path.dart';

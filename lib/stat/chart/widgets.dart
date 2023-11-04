@@ -11,7 +11,7 @@ Widget buildBottomTimeTitlesWidget(
   int value = index;
   double? hValue;
   String suffix = S.of(context).min;
-  logger.d('[buildBottomTimeTitlesWidget]: $index $size');
+  // logger.d('[buildBottomTimeTitlesWidget]: $index $size');
 
   if (size <= 10 * unit) {
     intervalInSeconds = 1 * unit;

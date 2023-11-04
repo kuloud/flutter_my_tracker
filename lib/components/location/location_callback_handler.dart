@@ -1,4 +1,4 @@
-import 'package:background_locator_2/location_dto.dart';
+import 'package:background_locator/location_dto.dart';
 import 'package:flutter_my_tracker/components/location/location_service_repository.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 

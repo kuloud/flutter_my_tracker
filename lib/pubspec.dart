@@ -45,7 +45,7 @@ mixin Pubspec {
     'intl': '^0.18.1',
     'path_provider': '^2.1.1',
     'sqflite': '^2.3.0',
-    'background_locator_2': '^2.0.6',
+    'background_locator': '^2.0.6',
     'path': '^1.8.3',
     'logger': '^2.0.2+1',
     'bloc': '^8.1.2',

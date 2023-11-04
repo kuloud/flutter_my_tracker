@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="yukams.app.background_locator_2.IsolateHolderService"
+        <service android:name="yukams.app.background_locator.IsolateHolderService"
             android:permission="android.permission.FOREGROUND_SERVICE"
             android:exported="true"
             android:foregroundServiceType = "location"/>

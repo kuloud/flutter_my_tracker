@@ -1,7 +1,7 @@
 PODS:
   - app_settings (5.1.1):
     - Flutter
-  - background_locator_2 (0.0.1):
+  - background_locator (0.0.1):
     - Flutter
   - Flutter (1.0.0)
   - FMDB (2.7.5):
@@ -29,7 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - app_settings (from `.symlinks/plugins/app_settings/ios`)
-  - background_locator_2 (from `.symlinks/plugins/background_locator_2/ios`)
+  - background_locator (from `.symlinks/plugins/background_locator/ios`)
   - Flutter (from `Flutter`)
   - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -47,8 +47,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   app_settings:
     :path: ".symlinks/plugins/app_settings/ios"
-  background_locator_2:
-    :path: ".symlinks/plugins/background_locator_2/ios"
+  background_locator:
+    :path: ".symlinks/plugins/background_locator/ios"
   Flutter:
     :path: Flutter
   image_gallery_saver:
@@ -70,7 +70,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   app_settings: 017320c6a680cdc94c799949d95b84cb69389ebc
-  background_locator_2: bc8a422343ab656d5bd98e08694c6f89fef20418
+  background_locator: bc8a422343ab656d5bd98e08694c6f89fef20418
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_gallery_saver: cb43cc43141711190510e92c460eb1655cd343cb
