@@ -92,7 +92,7 @@ class TrackStatProvider {
     await open();
     List<Map<String, dynamic>> maps = await _database!.query('track_stats',
         where: 'state = ?',
-        whereArgs: [state?.name],
+        whereArgs: [state?.name ?? '%'],
         limit: 1,
         orderBy: 'startTime DESC');
     if (maps.isNotEmpty) {

@@ -44,6 +44,7 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _syncServiceState();
   }
 
   @override
@@ -58,53 +59,7 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      Permission.location.serviceStatus.isEnabled.then(
-        (isEnabled) {
-          if (mounted) {
-            setState(() {
-              _locationEnable = isEnabled;
-            });
-          }
-        },
-      );
-      Permission.location.isGranted.then(
-        (permissionGranted) {
-          if (mounted) {
-            setState(() {
-              _permissionGranted = permissionGranted;
-            });
-          }
-        },
-      );
-      Permission.locationAlways.isGranted.then(
-        (permissionGranted) {
-          if (mounted) {
-            setState(() {
-              _permissionAlwaysGranted = permissionGranted;
-            });
-          }
-        },
-      );
-      syncServiceRunningState().then((isServiceRunning) {
-        if (isServiceRunning) {
-          OperationRecordProvider.instance().insert(OperationRecord(
-              time: DateTime.now(), operation: Operation.autoResume));
-          // final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
-          // trackStatCubit.start();
-          _tickTimer();
-        } else {
-          // 当前定位服务关闭时，读取最新记录，如果是未正常关闭，则自动启动定位服务
-          TrackStatProvider.instance()
-              .getRunningTrackStat()
-              .then((runningTrackStat) {
-            if (runningTrackStat?.state == TrackState.started) {
-              final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
-              trackStatCubit.resume(runningTrackStat!);
-              _onStart();
-            }
-          });
-        }
-      });
+      _syncServiceState();
     }
   }
 
@@ -361,5 +316,55 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
                 notificationIconColor: Colors.grey,
                 notificationTapCallback:
                     LocationCallbackHandler.notificationCallback)));
+  }
+
+  void _syncServiceState() {
+    Permission.location.serviceStatus.isEnabled.then(
+      (isEnabled) {
+        if (mounted) {
+          setState(() {
+            _locationEnable = isEnabled;
+          });
+        }
+      },
+    );
+    Permission.location.isGranted.then(
+      (permissionGranted) {
+        if (mounted) {
+          setState(() {
+            _permissionGranted = permissionGranted;
+          });
+        }
+      },
+    );
+    Permission.locationAlways.isGranted.then(
+      (permissionGranted) {
+        if (mounted) {
+          setState(() {
+            _permissionAlwaysGranted = permissionGranted;
+          });
+        }
+      },
+    );
+    syncServiceRunningState().then((isServiceRunning) {
+      if (isServiceRunning) {
+        OperationRecordProvider.instance().insert(OperationRecord(
+            time: DateTime.now(), operation: Operation.autoResume));
+        // final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
+        // trackStatCubit.start();
+        _tickTimer();
+      } else {
+        // 当前定位服务关闭时，读取最新记录，如果是未正常关闭，则自动启动定位服务
+        TrackStatProvider.instance()
+            .getRunningTrackStat()
+            .then((runningTrackStat) {
+          if (runningTrackStat?.state == TrackState.started) {
+            final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
+            trackStatCubit.resume(runningTrackStat!);
+            _onStart();
+          }
+        });
+      }
+    });
   }
 }
