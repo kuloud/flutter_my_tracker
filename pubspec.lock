@@ -52,9 +52,11 @@ packages:
   background_locator:
     dependency: "direct main"
     description:
-      path: "thirdparty/background_locator_fixed"
-      relative: true
-    source: path
+      path: "."
+      ref: master
+      resolved-ref: c2ef80bb825e32e4cb0b1808dd29861f50adcc29
+      url: "git@github.com:kuloud/background_locator_fixed.git"
+    source: git
     version: "1.0.0"
   bloc:
     dependency: "direct main"
@@ -351,9 +353,11 @@ packages:
   image_gallery_saver:
     dependency: "direct main"
     description:
-      path: "thirdparty/image_gallery_saver"
-      relative: true
-    source: path
+      path: "."
+      ref: master
+      resolved-ref: "19646f26f1623127a4ba179246f15dad138d371b"
+      url: "git@github.com:kuloud/image_gallery_saver.git"
+    source: git
     version: "2.0.3"
   injectable:
     dependency: "direct main"
