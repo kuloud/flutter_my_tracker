@@ -71,69 +71,69 @@ class _MyTrackerAppState extends State<MyTrackerApp> {
       logger.e('[initState]', error: e);
     }
 
-    _streamSubscriptions.add(
-      userAccelerometerEvents.listen(
-        (UserAccelerometerEvent event) {
-          logger.d('[userAccelerometerEvents] $event');
-          setState(() {
-            _userAccelerometerValues = <double>[event.x, event.y, event.z];
-          });
-        },
-        onError: (e) {
-          logger.w('[userAccelerometerEvents]', error: e);
-        },
-        cancelOnError: true,
-      ),
-    );
-    _streamSubscriptions.add(
-      accelerometerEvents.listen(
-        (AccelerometerEvent event) {
-          logger.d('[accelerometerEvents] $event');
-          setState(() {
-            _accelerometerValues = <double>[event.x, event.y, event.z];
-          });
-        },
-        onError: (e) {
-          logger.w('[accelerometerEvents]', error: e);
-        },
-        cancelOnError: true,
-      ),
-    );
-    _streamSubscriptions.add(
-      gyroscopeEvents.listen(
-        (GyroscopeEvent event) {
-          logger.d('[gyroscopeEvents] $event');
-          setState(() {
-            _gyroscopeValues = <double>[event.x, event.y, event.z];
-          });
-        },
-        onError: (e) {
-          logger.w('[gyroscopeEvents]', error: e);
-        },
-        cancelOnError: true,
-      ),
-    );
-    _streamSubscriptions.add(
-      magnetometerEvents.listen(
-        (MagnetometerEvent event) {
-          logger.d('[magnetometerEvents] $event');
-          setState(() {
-            _magnetometerValues = <double>[event.x, event.y, event.z];
-          });
-        },
-        onError: (e) {
-          logger.w('[magnetometerEvents]', error: e);
-        },
-        cancelOnError: true,
-      ),
-    );
+    // _streamSubscriptions.add(
+    //   userAccelerometerEvents.listen(
+    //     (UserAccelerometerEvent event) {
+    //       logger.d('[userAccelerometerEvents] $event');
+    //       setState(() {
+    //         _userAccelerometerValues = <double>[event.x, event.y, event.z];
+    //       });
+    //     },
+    //     onError: (e) {
+    //       logger.w('[userAccelerometerEvents]', error: e);
+    //     },
+    //     cancelOnError: true,
+    //   ),
+    // );
+    // _streamSubscriptions.add(
+    //   accelerometerEvents.listen(
+    //     (AccelerometerEvent event) {
+    //       logger.d('[accelerometerEvents] $event');
+    //       setState(() {
+    //         _accelerometerValues = <double>[event.x, event.y, event.z];
+    //       });
+    //     },
+    //     onError: (e) {
+    //       logger.w('[accelerometerEvents]', error: e);
+    //     },
+    //     cancelOnError: true,
+    //   ),
+    // );
+    // _streamSubscriptions.add(
+    //   gyroscopeEvents.listen(
+    //     (GyroscopeEvent event) {
+    //       logger.d('[gyroscopeEvents] $event');
+    //       setState(() {
+    //         _gyroscopeValues = <double>[event.x, event.y, event.z];
+    //       });
+    //     },
+    //     onError: (e) {
+    //       logger.w('[gyroscopeEvents]', error: e);
+    //     },
+    //     cancelOnError: true,
+    //   ),
+    // );
+    // _streamSubscriptions.add(
+    //   magnetometerEvents.listen(
+    //     (MagnetometerEvent event) {
+    //       logger.d('[magnetometerEvents] $event');
+    //       setState(() {
+    //         _magnetometerValues = <double>[event.x, event.y, event.z];
+    //       });
+    //     },
+    //     onError: (e) {
+    //       logger.w('[magnetometerEvents]', error: e);
+    //     },
+    //     cancelOnError: true,
+    //   ),
+    // );
   }
 
   @override
   void dispose() {
-    for (final subscription in _streamSubscriptions) {
-      subscription.cancel();
-    }
+    // for (final subscription in _streamSubscriptions) {
+    //   subscription.cancel();
+    // }
     try {
       port.close();
     } catch (e) {
