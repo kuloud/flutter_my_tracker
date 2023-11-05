@@ -306,7 +306,6 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
             accuracy: LocationAccuracy.NAVIGATION,
             interval: 5,
             distanceFilter: 0,
-            client: LocationClient.android,
             androidNotificationSettings: AndroidNotificationSettings(
                 notificationChannelName: 'Location tracking',
                 notificationTitle: 'Start Location Tracking',

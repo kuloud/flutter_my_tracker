@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">飞乐</string>
+    <string name="app_is_running">飞乐正在持续定位</string>
 </resources>

@@ -659,6 +659,26 @@ class S {
       args: [],
     );
   }
+
+  /// `New location received`
+  String get newLocationReceived {
+    return Intl.message(
+      'New location received',
+      name: 'newLocationReceived',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Distance: {distance}`
+  String notificationTotalDiatance(Object distance) {
+    return Intl.message(
+      'Total Distance: $distance',
+      name: 'notificationTotalDiatance',
+      desc: '',
+      args: [distance],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

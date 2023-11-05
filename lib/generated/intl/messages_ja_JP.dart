@@ -24,9 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(author, year) => "© {${author}}, {${year}}";
 
-  static String m2(unit) => "(${unit})";
+  static String m2(distance) => "Total Distance: ${distance}";
 
-  static String m3(version, buildNumber) =>
+  static String m3(unit) => "(${unit})";
+
+  static String m4(version, buildNumber) =>
       "バージョン {${version}}, ビルド #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -69,7 +71,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "minPace": MessageLookupByLibrary.simpleMessage("最小ペース"),
         "minutePerKilometer": MessageLookupByLibrary.simpleMessage("/キロメートル"),
         "month": MessageLookupByLibrary.simpleMessage("月"),
+        "newLocationReceived":
+            MessageLookupByLibrary.simpleMessage("New location received"),
         "north": MessageLookupByLibrary.simpleMessage("北"),
+        "notificationTotalDiatance": m2,
         "pace": MessageLookupByLibrary.simpleMessage("ペース"),
         "recentActivity": MessageLookupByLibrary.simpleMessage("最近の活動"),
         "refuse": MessageLookupByLibrary.simpleMessage("拒否"),
@@ -88,10 +93,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "アプリがバックグラウンドで実行されている場合にデバイスの位置情報へのアクセスを許可されていません。"),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
             "屋外での位置情報にアクセスできません。Flove - パーミッションに移動して位置情報のアクセスを許可してください。"),
-        "unit": m2,
+        "unit": m3,
         "unitKm": MessageLookupByLibrary.simpleMessage("km"),
         "unitM": MessageLookupByLibrary.simpleMessage("m"),
-        "versionBuild": m3,
+        "versionBuild": m4,
         "viewChangelog": MessageLookupByLibrary.simpleMessage("変更履歴を表示"),
         "viewPrivacyPolicy":
             MessageLookupByLibrary.simpleMessage("プライバシーポリシーを表示"),

@@ -60,6 +60,8 @@
     "unauthorizedLocationAlways": "Unauthorized permission to access device location when the app is running in the background.",
     "unauthorizedLocationDescription": "Unable to access your outdoor location. Please go to Flove - Permissions to grant location access.",
     "locationServiceDisabled": "Location Services Disabled",
-    "goOpen": "Go Open"
+    "goOpen": "Go Open",
+    "newLocationReceived":"New location received",
+    "notificationTotalDiatance":"Total Distance: {distance}"
   }
   

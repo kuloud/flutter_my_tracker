@@ -60,5 +60,7 @@
     "unauthorizedLocationAlways": "アプリがバックグラウンドで実行されている場合にデバイスの位置情報へのアクセスを許可されていません。",
     "unauthorizedLocationDescription": "屋外での位置情報にアクセスできません。Flove - パーミッションに移動して位置情報のアクセスを許可してください。",
     "locationServiceDisabled": "位置情報サービスが無効です",
-    "goOpen": "開く"
+    "goOpen": "開く",
+    "newLocationReceived":"New location received",
+    "notificationTotalDiatance":"Total Distance: {distance}"
   }

@@ -24,9 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(author, year) => "© {${author}}, {${year}}";
 
-  static String m2(unit) => "(${unit})";
+  static String m2(distance) => "Total Distance: ${distance}";
 
-  static String m3(version, buildNumber) =>
+  static String m3(unit) => "(${unit})";
+
+  static String m4(version, buildNumber) =>
       "Version {${version}}, Build #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -70,7 +72,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "minPace": MessageLookupByLibrary.simpleMessage("Min Pace"),
         "minutePerKilometer": MessageLookupByLibrary.simpleMessage("/km"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
+        "newLocationReceived":
+            MessageLookupByLibrary.simpleMessage("New location received"),
         "north": MessageLookupByLibrary.simpleMessage("North"),
+        "notificationTotalDiatance": m2,
         "pace": MessageLookupByLibrary.simpleMessage("Pace"),
         "recentActivity":
             MessageLookupByLibrary.simpleMessage("Recent Activity"),
@@ -90,10 +95,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Unauthorized permission to access device location when the app is running in the background."),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
             "Unable to access your outdoor location. Please go to Flove - Permissions to grant location access."),
-        "unit": m2,
+        "unit": m3,
         "unitKm": MessageLookupByLibrary.simpleMessage("km"),
         "unitM": MessageLookupByLibrary.simpleMessage("m"),
-        "versionBuild": m3,
+        "versionBuild": m4,
         "viewChangelog": MessageLookupByLibrary.simpleMessage("View Changelog"),
         "viewPrivacyPolicy":
             MessageLookupByLibrary.simpleMessage("View Privacy Policy"),

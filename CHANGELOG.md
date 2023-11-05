@@ -1,7 +1,7 @@
 # 1.0.2(In developing)
 - Feat:
-    - Add kalman filter to optimize positioning data
     - The service is automatically restored when the application is restarted
+    - Keep Android applications alive
 - Fixed:
     - None
 

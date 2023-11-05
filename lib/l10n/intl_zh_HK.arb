@@ -60,5 +60,7 @@
   "unauthorizedLocationAlways": "未授權應用後台運行時訪問設備位置的權限定位權限",
   "unauthorizedLocationDescription": "當前無法獲得您在戶外運動時的位置，請前往飛樂-權限授權定位權限後使用",
   "locationServiceDisabled": "定位服務功能未開啟",
-  "goOpen": "去開啟"
+  "goOpen": "去開啟",
+  "newLocationReceived":"New location received",
+  "notificationTotalDiatance":"Total Distance: {distance}"
 }
