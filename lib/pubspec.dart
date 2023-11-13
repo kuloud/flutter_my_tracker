@@ -3,7 +3,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, avoid_classes_with_only_static_members
 
 mixin Pubspec {
-  static final buildDate = DateTime.utc(2023, 11, 4, 11, 32, 30);
+  static final buildDate = DateTime.utc(2023, 11, 13, 11, 28, 14);
 
   static const name = 'flutter_my_tracker';
 
@@ -11,9 +11,9 @@ mixin Pubspec {
 
   static const publish_to = 'none';
 
-  static const versionFull = '1.0.1+5';
+  static const versionFull = '1.0.2+6';
 
-  static const version = '1.0.1';
+  static const version = '1.0.2';
 
   static const versionSmall = '1.0';
 
@@ -21,9 +21,9 @@ mixin Pubspec {
 
   static const versionMinor = 0;
 
-  static const versionPatch = 1;
+  static const versionPatch = 2;
 
-  static const versionBuild = 5;
+  static const versionBuild = 6;
 
   static const versionPreRelease = '';
 
@@ -45,12 +45,7 @@ mixin Pubspec {
     'intl': '^0.18.1',
     'path_provider': '^2.1.1',
     'sqflite': '^2.3.0',
-    'background_locator': <dynamic, dynamic>{
-      'git': <dynamic, dynamic>{
-        'url': 'git@github.com:kuloud/background_locator_fixed.git',
-        'ref': 'master',
-      },
-    },
+    'cactus_locator': '^1.0.0',
     'path': '^1.8.3',
     'logger': '^2.0.2+1',
     'bloc': '^8.1.2',
@@ -64,16 +59,11 @@ mixin Pubspec {
     'vector_math': '^2.1.4',
     'about': '^2.1.3',
     'image_gallery_saver': <dynamic, dynamic>{
-      'git': <dynamic, dynamic>{
-        'url': 'git@github.com:kuloud/image_gallery_saver.git',
-        'ref': 'master',
-      },
+      'path': '../image_gallery_saver',
     },
     'share': '^2.0.4',
     'app_settings': '^5.1.1',
     'url_launcher': '^6.2.1',
-    'sensors_plus': '^4.0.0',
-    'matrices': '^1.2.7',
   };
 
   static const dev_dependencies = <dynamic, dynamic>{

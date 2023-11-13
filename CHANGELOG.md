@@ -1,4 +1,4 @@
-# 1.0.2(In developing)
+# 1.0.2
 - Feat:
     - The service is automatically restored when the application is restarted
     - Keep Android applications alive

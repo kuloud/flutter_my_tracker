@@ -2,5 +2,6 @@
     "java.compile.nullAnalysis.mode": "automatic",
     "cmake.sourceDirectory": "/Users/kuloud/Dev/projects/kuloud/flutter_my_tracker/linux",
     "java.configuration.updateBuildConfiguration": "interactive",
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "editor.inlineSuggest.showToolbar": "onHover"
 }
