@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Flove</string>
-    <string name="app_is_running">Flove is Running</string>
+    <string name="app_name">FlyMove</string>
+    <string name="app_is_running">FlyMove is Running</string>
 </resources>

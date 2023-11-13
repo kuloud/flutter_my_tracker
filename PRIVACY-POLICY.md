@@ -1,18 +1,18 @@
 1. General Provisions
 
-    1. Flove attaches great importance to the personal privacy of users, and promises to protect the security of users' personal information during the use of Flove.
+    1. FlyMove attaches great importance to the personal privacy of users, and promises to protect the security of users' personal information during the use of FlyMove.
 
     1. This Privacy Policy applies to all activities of users using the Service, including but not limited to accessing, browsing, and using the app.
 
 1. Collection and use of personal information
 
-    1. Flove only uses the geographical location of the user's mobile phone, and does not collect data.
+    1. FlyMove only uses the geographical location of the user's mobile phone, and does not collect data.
 
 1. Protection of personal information
 
-    1. Flove adopts various security measures to protect users' personal information, including but not limited to the use of encryption technology, access control, etc.
+    1. FlyMove adopts various security measures to protect users' personal information, including but not limited to the use of encryption technology, access control, etc.
 
-    2. Flove undertakes to take all reasonable measures to protect the security of users' personal information, but cannot guarantee absolute security, users should assume the risk.
+    2. FlyMove undertakes to take all reasonable measures to protect the security of users' personal information, but cannot guarantee absolute security, users should assume the risk.
 
 1. User Rights
 
@@ -20,12 +20,12 @@
 
 1. Disclaimer
 
-    1. Flove does not assume any responsibility for personal information disclosure, loss, theft and other problems caused by the user's own reasons.
+    1. FlyMove does not assume any responsibility for personal information disclosure, loss, theft and other problems caused by the user's own reasons.
     1. Feille does not assume any responsibility for the leakage, loss, theft and other problems of personal information caused by force majeure or third-party reasons.
 
 1. Changes in Terms
 
-    1. Flove may revise this Privacy Policy from time to time, and the revised terms will be posted on the Flove App.
+    1. FlyMove may revise this Privacy Policy from time to time, and the revised terms will be posted on the FlyMove App.
     1. Users should consult this Privacy Policy in time to understand the latest privacy policy.
 
 1. Applicable law and dispute resolution

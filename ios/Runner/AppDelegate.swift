@@ -1,7 +1,7 @@
 import UIKit
 import Flutter
 
-import background_locator
+import cactus_locator
 
 func registerPlugins(registry: FlutterPluginRegistry) -> () {
     if (!registry.hasPlugin("BackgroundLocatorPlugin")) {

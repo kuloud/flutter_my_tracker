@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Flove`
+  /// `FlyMove`
   String get appName {
     return Intl.message(
-      'Flove',
+      'FlyMove',
       name: 'appName',
       desc: '',
       args: [],
@@ -630,10 +630,10 @@ class S {
     );
   }
 
-  /// `Unable to access your outdoor location. Please go to Flove - Permissions to grant location access.`
+  /// `Unable to access your outdoor location. Please go to FlyMove - Permissions to grant location access.`
   String get unauthorizedLocationDescription {
     return Intl.message(
-      'Unable to access your outdoor location. Please go to Flove - Permissions to grant location access.',
+      'Unable to access your outdoor location. Please go to FlyMove - Permissions to grant location access.',
       name: 'unauthorizedLocationDescription',
       desc: '',
       args: [],

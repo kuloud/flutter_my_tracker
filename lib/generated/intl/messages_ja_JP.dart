@@ -92,7 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unauthorizedLocationAlways": MessageLookupByLibrary.simpleMessage(
             "アプリがバックグラウンドで実行されている場合にデバイスの位置情報へのアクセスを許可されていません。"),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
-            "屋外での位置情報にアクセスできません。Flove - パーミッションに移動して位置情報のアクセスを許可してください。"),
+            "屋外での位置情報にアクセスできません。FlyMove - パーミッションに移動して位置情報のアクセスを許可してください。"),
         "unit": m3,
         "unitKm": MessageLookupByLibrary.simpleMessage("km"),
         "unitM": MessageLookupByLibrary.simpleMessage("m"),

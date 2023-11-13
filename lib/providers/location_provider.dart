@@ -1,6 +1,5 @@
-import 'package:background_locator/keys.dart';
+import 'package:cactus_locator/keys.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

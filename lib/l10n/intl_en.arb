@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "appName": "Flove",
+    "appName": "FlyMove",
     "appSlogan": "Love, yourself.",
     "labelAppDescription": "A minimalist-style activity tracking app that follows the design language of Material You.",
     "viewReadme": "View Readme",
@@ -58,7 +58,7 @@
     "agree": "Agree",
     "unauthorizedLocation": "Unauthorized permission to access device location.",
     "unauthorizedLocationAlways": "Unauthorized permission to access device location when the app is running in the background.",
-    "unauthorizedLocationDescription": "Unable to access your outdoor location. Please go to Flove - Permissions to grant location access.",
+    "unauthorizedLocationDescription": "Unable to access your outdoor location. Please go to FlyMove - Permissions to grant location access.",
     "locationServiceDisabled": "Location Services Disabled",
     "goOpen": "Go Open",
     "newLocationReceived":"New location received",

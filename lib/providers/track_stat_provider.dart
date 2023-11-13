@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_my_tracker/generated/l10n.dart';
-import 'package:flutter_my_tracker/models/enums/operation.dart';
 import 'package:flutter_my_tracker/models/enums/track_state.dart';
-import 'package:flutter_my_tracker/models/pojos/operation_record.dart';
 import 'package:flutter_my_tracker/pages/records/components/pojos/sub_tab_data.dart';
 import 'package:flutter_my_tracker/pages/records/components/utils/time_util.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';

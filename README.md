@@ -1,4 +1,4 @@
-# Flove
+# FlyMove
 
 A minimalist movement tracking software that 100% follows the Material You design language.
 

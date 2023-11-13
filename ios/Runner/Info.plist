@@ -31,16 +31,16 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The Flove App requires access to your location to provide location-based data(speed, latitude and longitude, etc) statistics and rendering, even when the app is running in the background.</string>
+	<string>The FlyMove App requires access to your location to provide location-based data(speed, latitude and longitude, etc) statistics and rendering, even when the app is running in the background.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>The Flove App requires access to your location to provide location-based data(speed, latitude and longitude, etc) statistics and rendering.</string>
+	<string>The FlyMove App requires access to your location to provide location-based data(speed, latitude and longitude, etc) statistics and rendering.</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict>
 		<key>NSLocationTemporaryUsageDescription</key>
-		<string>The Flove App requires temporary access to the device's precise location.</string>
+		<string>The FlyMove App requires temporary access to the device's precise location.</string>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The Flove app access to your location to provide location-based data(speed, latitude and longitude, etc) statistics and rendering.</string>
+	<string>The FlyMove app access to your location to provide location-based data(speed, latitude and longitude, etc) statistics and rendering.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

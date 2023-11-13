@@ -58,7 +58,7 @@
     "agree": "同意する",
     "unauthorizedLocation": "位置情報の許可がありません",
     "unauthorizedLocationAlways": "アプリがバックグラウンドで実行されている場合にデバイスの位置情報へのアクセスを許可されていません。",
-    "unauthorizedLocationDescription": "屋外での位置情報にアクセスできません。Flove - パーミッションに移動して位置情報のアクセスを許可してください。",
+    "unauthorizedLocationDescription": "屋外での位置情報にアクセスできません。FlyMove - パーミッションに移動して位置情報のアクセスを許可してください。",
     "locationServiceDisabled": "位置情報サービスが無効です",
     "goOpen": "開く",
     "newLocationReceived":"New location received",

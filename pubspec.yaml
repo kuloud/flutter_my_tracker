@@ -16,8 +16,8 @@ dependencies:
   intl: ^0.18.1
   path_provider: ^2.1.1
   sqflite: ^2.3.0
-  background_locator:
-    path: ../background_locator_fixed
+  cactus_locator: ^1.0.0
+    # path: ../background_locator_fixed
     # git:
     #   url: git@github.com:kuloud/background_locator_fixed.git
     #   ref: master

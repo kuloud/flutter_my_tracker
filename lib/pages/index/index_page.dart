@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:app_settings/app_settings.dart';
-import 'package:background_locator/background_locator.dart';
-import 'package:background_locator/location_dto.dart';
-import 'package:background_locator/settings/android_settings.dart';
-import 'package:background_locator/settings/ios_settings.dart';
-import 'package:background_locator/settings/locator_settings.dart';
+import 'package:cactus_locator/background_locator.dart';
+import 'package:cactus_locator/location_dto.dart';
+import 'package:cactus_locator/settings/android_settings.dart';
+import 'package:cactus_locator/settings/ios_settings.dart';
+import 'package:cactus_locator/settings/locator_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_my_tracker/cubit/track_stat/track_stat_cubit.dart';
@@ -303,7 +303,6 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
             distanceFilter: 0),
         autoStop: false,
         androidSettings: const AndroidSettings(
-            accuracy: LocationAccuracy.NAVIGATION,
             interval: 5,
             distanceFilter: 0,
             androidNotificationSettings: AndroidNotificationSettings(

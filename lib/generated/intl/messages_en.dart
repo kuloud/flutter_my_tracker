@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agree": MessageLookupByLibrary.simpleMessage("Agree"),
         "allActivities": MessageLookupByLibrary.simpleMessage("All Activities"),
         "altitude": MessageLookupByLibrary.simpleMessage("Altitude"),
-        "appName": MessageLookupByLibrary.simpleMessage("Flove"),
+        "appName": MessageLookupByLibrary.simpleMessage("FlyMove"),
         "appSlogan": MessageLookupByLibrary.simpleMessage("Love, yourself."),
         "authorYear": m1,
         "averagePace": MessageLookupByLibrary.simpleMessage("Average Pace"),
@@ -94,7 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unauthorizedLocationAlways": MessageLookupByLibrary.simpleMessage(
             "Unauthorized permission to access device location when the app is running in the background."),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
-            "Unable to access your outdoor location. Please go to Flove - Permissions to grant location access."),
+            "Unable to access your outdoor location. Please go to FlyMove - Permissions to grant location access."),
         "unit": m3,
         "unitKm": MessageLookupByLibrary.simpleMessage("km"),
         "unitM": MessageLookupByLibrary.simpleMessage("m"),
