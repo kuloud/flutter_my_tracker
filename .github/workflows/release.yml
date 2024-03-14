@@ -13,7 +13,7 @@ jobs:
     environment: flove
     container: 
       image: ghcr.io/kuloud/flutter-essentials-docker:main
-      options: --user developer
+      options: --user root
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.REPO_TOKEN }}
@@ -27,7 +27,7 @@ jobs:
     environment: flove
     container: 
       image: ghcr.io/kuloud/flutter-essentials-docker:main
-      options: --user developer
+      options: --user root
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.REPO_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
     needs: [test, analyze]
     container: 
       image: ghcr.io/kuloud/flutter-essentials-docker:main
-      options: --user developer
+      options: --user root
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.REPO_TOKEN }}
