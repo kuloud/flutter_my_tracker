@@ -7,21 +7,17 @@ on:
 name: Analyze - Test - Build
 jobs:
 
-  login:
-    name: Log into registry ${{ env.REGISTRY }}
-    uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-    with:
-      registry: ${{ env.REGISTRY }}
-      username: ${{ github.actor }}
-      password: ${{ secrets.GITHUB_TOKEN }}
-
   analyze:
     name: analyze
     runs-on: ubuntu-latest
     container: ghcr.io/kuloud/flutter-essentials-docker:main
     steps:
       - uses: actions/checkout@v2
-      - uses: login
+      - uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/flutter-analyze
 
   test:
@@ -30,7 +26,11 @@ jobs:
     container: ghcr.io/kuloud/flutter-essentials-docker:main
     steps:
       - uses: actions/checkout@v2
-      - uses: login
+      - uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/flutter-test
 
   android-release-build:
@@ -40,7 +40,11 @@ jobs:
     container: ghcr.io/kuloud/flutter-essentials-docker:main
     steps:
       - uses: actions/checkout@v2
-      - uses: login
+      - uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - uses: NiklasLehnfeld/flutter-android-build-action@v1
         id: android-build
         with:
