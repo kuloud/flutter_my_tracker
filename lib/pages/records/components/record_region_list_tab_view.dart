@@ -45,7 +45,7 @@ class _RecordRegionListTabViewState extends State<RecordRegionListTabView>
             title: TabBar(
               controller: _tabController,
               isScrollable: true,
-              tabs: widget.secondTabs
+              tabs: widget.secondTabs.reversed
                   .map((e) => Tab(
                         text: e.title,
                       ))
