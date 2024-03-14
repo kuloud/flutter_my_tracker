@@ -10,41 +10,38 @@ jobs:
   analyze:
     name: analyze
     runs-on: ubuntu-latest
-    container: ghcr.io/kuloud/flutter-essentials-docker:main
+    container: 
+      image: ghcr.io/kuloud/flutter-essentials-docker:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.REPO_TOKEN }}
       - uses: ./.github/actions/flutter-analyze
 
   test:
     name: test
     runs-on: ubuntu-latest
-    container: ghcr.io/kuloud/flutter-essentials-docker:main
+    container: 
+      image: ghcr.io/kuloud/flutter-essentials-docker:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.REPO_TOKEN }}
       - uses: ./.github/actions/flutter-test
 
   android-release-build:
     name: android-release-build
     runs-on: ubuntu-latest
     needs: [test, analyze]
-    container: ghcr.io/kuloud/flutter-essentials-docker:main
+    container: 
+      image: ghcr.io/kuloud/flutter-essentials-docker:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.REPO_TOKEN }}
       - uses: NiklasLehnfeld/flutter-android-build-action@v1
         id: android-build
         with:
