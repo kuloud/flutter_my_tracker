@@ -10,11 +10,12 @@ jobs:
   analyze:
     name: analyze
     runs-on: ubuntu-latest
+    environment: flove
     container: 
       image: ghcr.io/kuloud/flutter-essentials-docker:main
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/flutter-analyze
@@ -22,11 +23,12 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
+    environment: flove
     container: 
       image: ghcr.io/kuloud/flutter-essentials-docker:main
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/flutter-test
@@ -34,12 +36,13 @@ jobs:
   android-release-build:
     name: android-release-build
     runs-on: ubuntu-latest
+    environment: flove
     needs: [test, analyze]
     container: 
       image: ghcr.io/kuloud/flutter-essentials-docker:main
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: NiklasLehnfeld/flutter-android-build-action@v1
@@ -63,6 +66,7 @@ jobs:
   create-github-release:
     name: create-github-release
     runs-on: ubuntu-latest
+    environment: flove
     needs: [android-release-build]
     steps:
       - uses: actions/checkout@v2
@@ -76,7 +80,7 @@ jobs:
         uses: NiklasLehnfeld/flutter-version-number-action@v1
       - uses: marvinpinto/action-automatic-releases@latest
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.REPO_TOKEN }}
           prerelease: false
           automatic_release_tag: ${{ steps.version.outputs.version-number }}
           title: ${{ steps.version.outputs.version-number }}
