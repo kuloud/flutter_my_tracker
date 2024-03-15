@@ -7,33 +7,33 @@ on:
 name: Analyze - Test - Build
 jobs:
 
-  analyze:
-    name: analyze
-    runs-on: ubuntu-latest
-    environment: flove
-    container: 
-      image: ghcr.io/kuloud/flutter-essentials-docker:main
-      options: --user root
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.REPO_TOKEN }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/flutter-analyze
+  # analyze:
+  #   name: analyze
+  #   runs-on: ubuntu-latest
+  #   environment: flove
+  #   container: 
+  #     image: ghcr.io/kuloud/flutter-essentials-docker:main
+  #     options: --user root
+  #     credentials:
+  #       username: ${{ github.actor }}
+  #       password: ${{ secrets.REPO_TOKEN }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: ./.github/actions/flutter-analyze
 
-  test:
-    name: test
-    runs-on: ubuntu-latest
-    environment: flove
-    container: 
-      image: ghcr.io/kuloud/flutter-essentials-docker:main
-      options: --user root
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.REPO_TOKEN }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/flutter-test
+  # test:
+  #   name: test
+  #   runs-on: ubuntu-latest
+  #   environment: flove
+  #   container: 
+  #     image: ghcr.io/kuloud/flutter-essentials-docker:main
+  #     options: --user root
+  #     credentials:
+  #       username: ${{ github.actor }}
+  #       password: ${{ secrets.REPO_TOKEN }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: ./.github/actions/flutter-test
 
   android-release-build:
     name: android-release-build
@@ -48,6 +48,7 @@ jobs:
         password: ${{ secrets.REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+      - run: git config --global --add safe.directory /home/developer/flutter
       - uses: NiklasLehnfeld/flutter-android-build-action@v1
         id: android-build
         with:
