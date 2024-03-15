@@ -352,11 +352,9 @@ packages:
   image_gallery_saver:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "19646f26f1623127a4ba179246f15dad138d371b"
-      url: "git@github.com:kuloud/image_gallery_saver.git"
-    source: git
+      path: image_gallery_saver
+      relative: true
+    source: path
     version: "2.0.3"
   injectable:
     dependency: "direct main"
