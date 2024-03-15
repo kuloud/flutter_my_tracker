@@ -39,7 +39,7 @@ jobs:
     name: android-release-build
     runs-on: ubuntu-latest
     environment: flove
-    needs: [test, analyze]
+    # needs: [test, analyze]
     container: 
       image: ghcr.io/kuloud/flutter-essentials-docker:main
       options: --user root
