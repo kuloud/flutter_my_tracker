@@ -4,8 +4,8 @@
 
 A minimalist movement tracking software that 100% follows the Material You design language.
 
-AppStore Link: https://apps.apple.com/tw/app/flymove/id6470037066
-Android Apk Link: https://github.com/kuloud/flutter_my_tracker/releases
+- AppStore Link: https://apps.apple.com/tw/app/flymove/id6470037066
+- Android Apk Link: https://github.com/kuloud/flutter_my_tracker/releases
 
 ||||
 |:-:|:-:|:-:|
