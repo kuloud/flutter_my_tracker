@@ -1,8 +1,10 @@
 # 飞乐
+[![Build](https://github.com/kuloud/flutter_my_tracker/actions/workflows/release.yml/badge.svg)](https://github.com/kuloud/flutter_my_tracker/actions/workflows/release.yml)
 
 一款极简风格的运动轨迹记录软件，100%遵循Material You的设计语言。
 
 AppStore Link: https://apps.apple.com/tw/app/flymove/id6470037066
+Android Apk Link: https://github.com/kuloud/flutter_my_tracker/releases
 
 ||||
 |:-:|:-:|:-:|
