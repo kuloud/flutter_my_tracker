@@ -9,7 +9,7 @@ func registerPlugins(registry: FlutterPluginRegistry) -> () {
     } 
 }
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(
     _ application: UIApplication,
