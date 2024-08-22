@@ -25,7 +25,7 @@ class TrackGenerator {
     double currentAltitude = initialAltitude;
 
     for (int i = 0; i < timeDuration; i++) {
-      double pace = generateRandomPace();
+      // double pace = generateRandomPace();
       double altitudeChange = generateRandomAltitudeChange();
 
       if (currentAltitude + altitudeChange > finalAltitude) {

@@ -9,9 +9,11 @@ import 'package:path_provider/path_provider.dart';
 
 import 'utils.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,18 +21,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  GlobalKey _globalKey = GlobalKey();
+  final GlobalKey _globalKey = GlobalKey();
 
   @override
   void initState() {
@@ -42,12 +46,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Save image to gallery"),
+          title: const Text("Save image to gallery"),
         ),
         body: Center(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               RepaintBoundary(
                 key: _globalKey,
                 child: Container(
@@ -58,37 +62,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 15),
                 child: ElevatedButton(
                   onPressed: _saveLocalImage,
-                  child: Text("Save Local Image"),
+                  child: const Text("Save Local Image"),
                 ),
                 width: 300,
                 height: 44,
               ),
               Container(
-                padding: EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 15),
                 child: ElevatedButton(
                   onPressed: _saveNetworkImage,
-                  child: Text("Save Network Image"),
+                  child: const Text("Save Network Image"),
                 ),
                 width: 300,
                 height: 44,
               ),
               Container(
-                padding: EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 15),
                 child: ElevatedButton(
                   onPressed: _saveNetworkGifFile,
-                  child: Text("Save Network Gif Image"),
+                  child: const Text("Save Network Gif Image"),
                 ),
                 width: 300,
                 height: 44,
               ),
               Container(
-                padding: EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 15),
                 child: ElevatedButton(
                   onPressed: _saveNetworkVideoFile,
-                  child: Text("Save Network Video"),
+                  child: const Text("Save Network Video"),
                 ),
                 width: 300,
                 height: 44,

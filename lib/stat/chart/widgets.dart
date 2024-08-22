@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
 
 Widget buildBottomTimeTitlesWidget(
     BuildContext context, int index, TitleMeta meta, int size, int unit) {

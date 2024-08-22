@@ -123,7 +123,7 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
               : const Icon(Icons.play_arrow),
         ),
         bottomSheet: Container(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
           padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewPadding.bottom),
           child: DraggableScrollableSheet(

@@ -9,8 +9,7 @@ import 'package:flutter_my_tracker/utils/render.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 class TrajectoryPanel extends StatefulWidget {
-  const TrajectoryPanel({Key? key, this.isServiceRunning = false})
-      : super(key: key);
+  const TrajectoryPanel({super.key, this.isServiceRunning = false});
 
   final bool isServiceRunning;
 

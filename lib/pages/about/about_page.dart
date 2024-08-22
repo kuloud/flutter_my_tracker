@@ -5,13 +5,15 @@ import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pubspec.dart';
 
 class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return about.AboutPage(
       values: {
         'version': Pubspec.version,
         'buildNumber': Pubspec.versionBuild.toString(),
-        'year': '2023',
+        'year': '2023-2024',
         'author': Pubspec.authorsname,
       },
       title: Text(S.of(context).about),

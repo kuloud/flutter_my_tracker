@@ -7,8 +7,7 @@ import 'package:flutter_my_tracker/utils/render.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 class TrajectoryPanel extends StatefulWidget {
-  const TrajectoryPanel({Key? key, required this.trackStat, this.onAxisShow})
-      : super(key: key);
+  const TrajectoryPanel({super.key, required this.trackStat, this.onAxisShow});
 
   final TrackStat trackStat;
   final Function(bool show)? onAxisShow;

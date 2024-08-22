@@ -65,7 +65,6 @@ class MainInfoCard extends StatelessWidget {
         ]),
       ),
     );
-    ;
   }
 
   CrossAxisAlignment _determineTextAlign(int i) {

@@ -36,7 +36,7 @@ class _RecordRegionListTabViewState extends State<RecordRegionListTabView>
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return [
           SliverAppBar(
-            forceMaterialTransparency: true,
+            forceMaterialTransparency: false,
             automaticallyImplyLeading: false,
             floating: true,
             pinned: true,

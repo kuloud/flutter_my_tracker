@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.kuloud.android.flit"
-    compileSdk flutter.compileSdkVersion
+    compileSdk 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -43,7 +43,7 @@ android {
     defaultConfig {
         applicationId "com.kuloud.android.flit"
         minSdkVersion 30
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -65,6 +65,11 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 flutter {
@@ -72,5 +77,5 @@ flutter {
 }
 
 dependencies {
-    implementation 'io.github.kuloud:cactus:0.0.1'
+   implementation 'io.github.kuloud:cactus:0.0.1'
 }

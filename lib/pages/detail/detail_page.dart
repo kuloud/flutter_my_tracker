@@ -19,7 +19,7 @@ import 'package:flutter_my_tracker/utils/logger.dart';
 
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key, required this.trackStat});
@@ -67,8 +67,8 @@ class _DetailPageState extends State<DetailPage> {
 
       await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
 
-      Share.shareFiles(
-        [imagePath],
+      Share.shareXFiles(
+        [XFile(imagePath)],
         text: '分享截图',
       );
     } catch (e) {

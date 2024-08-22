@@ -9,24 +9,24 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter_my_tracker/services/shred_preference/shared_preference.dart'
-    as _i4;
-import 'package:get_it/get_it.dart' as _i1;
-import 'package:injectable/injectable.dart' as _i2;
-import 'package:shared_preferences/shared_preferences.dart' as _i3;
+    as _i801;
+import 'package:get_it/get_it.dart' as _i174;
+import 'package:injectable/injectable.dart' as _i526;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
-extension GetItInjectableX on _i1.GetIt {
+extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
-  Future<_i1.GetIt> init({
+  Future<_i174.GetIt> init({
     String? environment,
-    _i2.EnvironmentFilter? environmentFilter,
+    _i526.EnvironmentFilter? environmentFilter,
   }) async {
-    final gh = _i2.GetItHelper(
+    final gh = _i526.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
     final sharedPreferenceService = _$SharedPreferenceService();
-    await gh.factoryAsync<_i3.SharedPreferences>(
+    await gh.factoryAsync<_i460.SharedPreferences>(
       () => sharedPreferenceService.prefs,
       preResolve: true,
     );
@@ -34,4 +34,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$SharedPreferenceService extends _i4.SharedPreferenceService {}
+class _$SharedPreferenceService extends _i801.SharedPreferenceService {}

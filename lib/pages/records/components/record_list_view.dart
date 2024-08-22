@@ -63,7 +63,7 @@ class _RecordListViewState extends State<RecordListView> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => DetailPage(
-                                            trackStat: records![index],
+                                            trackStat: records[index],
                                           )),
                                 );
                               },
