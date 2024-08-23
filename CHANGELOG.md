@@ -1,3 +1,10 @@
+# 1.0.3
+
+- Feat:
+    - Add the start/end TTS
+- Fixed:
+    - None
+
 # 1.0.2
 - Feat:
     - The service is automatically restored when the application is restarted

@@ -679,6 +679,26 @@ class S {
       args: [distance],
     );
   }
+
+  /// `Let's get moving! Let's go for a run!`
+  String get ttsStartRun {
+    return Intl.message(
+      'Let\'s get moving! Let\'s go for a run!',
+      name: 'ttsStartRun',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You've completed {distance} miles! You've been running for {duration}.`
+  String ttsEndRun(Object distance, Object duration) {
+    return Intl.message(
+      'You\'ve completed $distance miles! You\'ve been running for $duration.',
+      name: 'ttsEndRun',
+      desc: '',
+      args: [distance, duration],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

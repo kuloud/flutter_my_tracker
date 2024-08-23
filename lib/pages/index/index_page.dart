@@ -20,6 +20,7 @@ import 'package:flutter_my_tracker/pages/index/components/trajectory/trajectory_
 import 'package:flutter_my_tracker/pages/settings/settings_page.dart';
 import 'package:flutter_my_tracker/providers/operation_record_provider.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
+import 'package:flutter_my_tracker/services/tts_service.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -101,19 +102,27 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
               _onStop().then((value) {
                 OperationRecordProvider.instance().insert(OperationRecord(
                     time: DateTime.now(), operation: Operation.stop));
-                trackStatCubit.stop(context);
+                if (context.mounted) {
+                  trackStatCubit.stop(context);
+                }
               }).onError((error, stackTrace) {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text(error.toString())));
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(error.toString())));
+                }
               });
             } else {
               _onStart().then((value) {
                 OperationRecordProvider.instance().insert(OperationRecord(
                     time: DateTime.now(), operation: Operation.start));
-                trackStatCubit.start();
+                if (context.mounted) {
+                  trackStatCubit.start(context);
+                }
               }).onError((error, stackTrace) {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text(error.toString())));
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(error.toString())));
+                }
               });
             }
           },
@@ -357,8 +366,11 @@ class _IndexPageState extends State<IndexPage> with WidgetsBindingObserver {
             .getRunningTrackStat()
             .then((runningTrackStat) {
           if (runningTrackStat?.state == TrackState.started) {
-            final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
-            trackStatCubit.resume(runningTrackStat!);
+            if (mounted && runningTrackStat != null) {
+              final trackStatCubit = BlocProvider.of<TrackStatCubit>(context);
+              trackStatCubit.resume(runningTrackStat);
+            }
+
             _onStart();
           }
         });

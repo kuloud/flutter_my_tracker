@@ -1,7 +1,7 @@
 name: flutter_my_tracker
 description: A new Flutter project.
 publish_to: none
-version: 1.0.1+6
+version: 1.0.3+7
 authorsName: Kuloud
 
 environment:
@@ -35,6 +35,7 @@ dependencies:
   url_launcher: ^6.2.1
   share_plus: ^10.0.2
   x_common: ^1.0.4
+  flutter_tts: ^4.0.2
   
 dev_dependencies:
   flutter_test:

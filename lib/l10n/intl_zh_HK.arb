@@ -62,5 +62,7 @@
   "locationServiceDisabled": "定位服務功能未開啟",
   "goOpen": "去開啟",
   "newLocationReceived":"New location received",
-  "notificationTotalDiatance":"Total Distance: {distance}"
+  "notificationTotalDiatance":"Total Distance: {distance}",
+        "ttsStartRun":"让我们开始今天的跑步之旅！",
+    "ttsEndRun":"完成了 {distance}！您已经坚持了 {duration}。"
 }

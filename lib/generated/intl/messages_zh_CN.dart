@@ -26,9 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(distance) => "总距离: ${distance}";
 
-  static String m3(unit) => "(${unit})";
+  static String m3(distance, duration) => "完成了 ${distance}！您已经坚持了 ${duration}。";
 
-  static String m4(version, buildNumber) =>
+  static String m4(unit) => "(${unit})";
+
+  static String m5(version, buildNumber) =>
       "版本 {${version}}, 构建号 #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -86,15 +88,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("总"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("总距离"),
         "totalDuration": MessageLookupByLibrary.simpleMessage("总时长"),
+        "ttsEndRun": m3,
+        "ttsStartRun": MessageLookupByLibrary.simpleMessage("让我们开始今天的跑步之旅！"),
         "unauthorizedLocation": MessageLookupByLibrary.simpleMessage("未授权定位权限"),
         "unauthorizedLocationAlways":
             MessageLookupByLibrary.simpleMessage("未授权应用后台运行时访问设备位置的权限定位权限"),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
             "当前无法获得您在户外运动时的位置，请前往飞乐-权限授权定位权限后使用"),
-        "unit": m3,
+        "unit": m4,
         "unitKm": MessageLookupByLibrary.simpleMessage("公里"),
         "unitM": MessageLookupByLibrary.simpleMessage("米"),
-        "versionBuild": m4,
+        "versionBuild": m5,
         "viewChangelog": MessageLookupByLibrary.simpleMessage("查看更新日志"),
         "viewPrivacyPolicy": MessageLookupByLibrary.simpleMessage("查看隐私政策"),
         "viewReadme": MessageLookupByLibrary.simpleMessage("查看自述文件"),

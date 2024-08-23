@@ -62,6 +62,8 @@
     "locationServiceDisabled": "Location Services Disabled",
     "goOpen": "Go Open",
     "newLocationReceived":"New location received",
-    "notificationTotalDiatance":"Total Distance: {distance}"
+    "notificationTotalDiatance":"Total Distance: {distance}",
+    "ttsStartRun":"Let's get moving! Let's go for a run!",
+    "ttsEndRun":"You've completed {distance} miles! You've been running for {duration}."
   }
   

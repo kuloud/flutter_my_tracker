@@ -8,11 +8,14 @@ import 'package:flutter_my_tracker/di/di.dart';
 import 'package:flutter_my_tracker/providers/location_provider.dart';
 import 'package:flutter_my_tracker/providers/operation_record_provider.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
+import 'package:flutter_my_tracker/services/tts_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await configureDependencies();
+
+  await TtsService().initTts();
 
   await openDatabases();
 

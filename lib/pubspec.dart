@@ -3,7 +3,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, avoid_classes_with_only_static_members
 
 mixin Pubspec {
-  static final buildDate = DateTime.utc(2024, 8, 21, 11, 5, 14);
+  static final buildDate = DateTime.utc(2024, 8, 23, 6, 38, 11);
 
   static const name = 'flutter_my_tracker';
 
@@ -11,9 +11,9 @@ mixin Pubspec {
 
   static const publish_to = 'none';
 
-  static const versionFull = '1.0.1+6';
+  static const versionFull = '1.0.3+7';
 
-  static const version = '1.0.1';
+  static const version = '1.0.3';
 
   static const versionSmall = '1.0';
 
@@ -21,9 +21,9 @@ mixin Pubspec {
 
   static const versionMinor = 0;
 
-  static const versionPatch = 1;
+  static const versionPatch = 3;
 
-  static const versionBuild = 6;
+  static const versionBuild = 7;
 
   static const versionPreRelease = '';
 
@@ -44,7 +44,8 @@ mixin Pubspec {
     },
     'intl': '^0.19.0',
     'path_provider': '^2.1.1',
-    'sqflite': '^2.3.0',
+    'sqflite': '^2.3.3+1',
+    'cactus_locator': '^1.0.0',
     'path': '^1.8.3',
     'logger': '^2.0.2+1',
     'bloc': '^8.1.2',
@@ -53,16 +54,18 @@ mixin Pubspec {
     'shared_preferences': '^2.2.2',
     'injectable': '^2.3.2',
     'fl_chart': '^0.68.0',
-    'permission_handler': '^11.0.1',
+    'permission_handler': '^11.3.1',
     'ditredi': '^2.0.2',
     'vector_math': '^2.1.4',
     'about': '^2.1.3',
     'image_gallery_saver': <dynamic, dynamic>{
       'path': './image_gallery_saver',
     },
-    'share': '^2.0.4',
     'app_settings': '^5.1.1',
     'url_launcher': '^6.2.1',
+    'share_plus': '^10.0.2',
+    'x_common': '^1.0.4',
+    'flutter_tts': '^4.0.2',
   };
 
   static const dev_dependencies = <dynamic, dynamic>{

@@ -62,5 +62,7 @@
     "locationServiceDisabled": "位置情報サービスが無効です",
     "goOpen": "開く",
     "newLocationReceived":"New location received",
-    "notificationTotalDiatance":"Total Distance: {distance}"
+    "notificationTotalDiatance":"Total Distance: {distance}",
+    "ttsStartRun":"走りだそう！ランニングの時間が始まりました。",
+    "ttsEndRun":"{distance}を達成しました！あなたは{duration}間走りました。"
   }

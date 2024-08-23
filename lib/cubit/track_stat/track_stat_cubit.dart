@@ -4,7 +4,9 @@ import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/enums/track_state.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
+import 'package:flutter_my_tracker/services/tts_service.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
+import 'package:flutter_my_tracker/utils/format.dart';
 import 'package:flutter_my_tracker/utils/logger.dart';
 
 part 'track_stat_state.dart';
@@ -13,14 +15,19 @@ class TrackStatCubit extends Cubit<TrackStatState> {
   TrackStatCubit() : super(TrackStatInitial());
 
   TrackStat? _trackStat;
+  final TtsService _ttsService = TtsService();
 
   /// 记录启动，只能被调用一次
-  Future<bool> start() async {
+  Future<bool> start(BuildContext context) async {
     try {
       _trackStat = await TrackStatProvider.instance().insert(TrackStat()
         ..startTime = double.parse('${DateTime.now().millisecondsSinceEpoch}')
         ..state = TrackState.started);
       emit(TrackStatStart());
+      if (context.mounted) {
+        _ttsService.speak(S.of(context).ttsStartRun);
+      }
+
       return true;
     } catch (e) {
       logger.e('[TrackStatCubit] [start] error', error: e);
@@ -67,6 +74,9 @@ class TrackStatCubit extends Cubit<TrackStatState> {
         } else {
           TrackStatProvider.instance()
               .update(_trackStat!..state = TrackState.finish);
+          _ttsService.speak(S.of(context).ttsEndRun(
+              distanceFormat(S.of(context), _trackStat!.totalDistance),
+              formatMilliseconds(_trackStat!.totalTime.toInt())));
         }
 
         emit(TrackStatStop(trackStat: _trackStat!));

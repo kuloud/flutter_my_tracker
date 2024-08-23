@@ -13,7 +13,7 @@ class AboutPage extends StatelessWidget {
       values: {
         'version': Pubspec.version,
         'buildNumber': Pubspec.versionBuild.toString(),
-        'year': '2023-2024',
+        'year': '2023-${Pubspec.buildDate.year}',
         'author': Pubspec.authorsname,
       },
       title: Text(S.of(context).about),

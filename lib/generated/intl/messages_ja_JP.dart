@@ -26,9 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(distance) => "Total Distance: ${distance}";
 
-  static String m3(unit) => "(${unit})";
+  static String m3(distance, duration) =>
+      "${distance}を達成しました！あなたは${duration}間走りました。";
 
-  static String m4(version, buildNumber) =>
+  static String m4(unit) => "(${unit})";
+
+  static String m5(version, buildNumber) =>
       "バージョン {${version}}, ビルド #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -87,16 +90,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("合計"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("総距離"),
         "totalDuration": MessageLookupByLibrary.simpleMessage("総時間"),
+        "ttsEndRun": m3,
+        "ttsStartRun":
+            MessageLookupByLibrary.simpleMessage("走りだそう！ランニングの時間が始まりました。"),
         "unauthorizedLocation":
             MessageLookupByLibrary.simpleMessage("位置情報の許可がありません"),
         "unauthorizedLocationAlways": MessageLookupByLibrary.simpleMessage(
             "アプリがバックグラウンドで実行されている場合にデバイスの位置情報へのアクセスを許可されていません。"),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
             "屋外での位置情報にアクセスできません。FlyMove - パーミッションに移動して位置情報のアクセスを許可してください。"),
-        "unit": m3,
+        "unit": m4,
         "unitKm": MessageLookupByLibrary.simpleMessage("km"),
         "unitM": MessageLookupByLibrary.simpleMessage("m"),
-        "versionBuild": m4,
+        "versionBuild": m5,
         "viewChangelog": MessageLookupByLibrary.simpleMessage("変更履歴を表示"),
         "viewPrivacyPolicy":
             MessageLookupByLibrary.simpleMessage("プライバシーポリシーを表示"),

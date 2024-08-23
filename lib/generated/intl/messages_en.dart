@@ -26,9 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(distance) => "Total Distance: ${distance}";
 
-  static String m3(unit) => "(${unit})";
+  static String m3(distance, duration) =>
+      "You\'ve completed ${distance} miles! You\'ve been running for ${duration}.";
 
-  static String m4(version, buildNumber) =>
+  static String m4(unit) => "(${unit})";
+
+  static String m5(version, buildNumber) =>
       "Version {${version}}, Build #{${buildNumber}}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -89,16 +92,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("Total Distance"),
         "totalDuration": MessageLookupByLibrary.simpleMessage("Total Duration"),
+        "ttsEndRun": m3,
+        "ttsStartRun": MessageLookupByLibrary.simpleMessage(
+            "Let\'s get moving! Let\'s go for a run!"),
         "unauthorizedLocation": MessageLookupByLibrary.simpleMessage(
             "Unauthorized permission to access device location."),
         "unauthorizedLocationAlways": MessageLookupByLibrary.simpleMessage(
             "Unauthorized permission to access device location when the app is running in the background."),
         "unauthorizedLocationDescription": MessageLookupByLibrary.simpleMessage(
             "Unable to access your outdoor location. Please go to FlyMove - Permissions to grant location access."),
-        "unit": m3,
+        "unit": m4,
         "unitKm": MessageLookupByLibrary.simpleMessage("km"),
         "unitM": MessageLookupByLibrary.simpleMessage("m"),
-        "versionBuild": m4,
+        "versionBuild": m5,
         "viewChangelog": MessageLookupByLibrary.simpleMessage("View Changelog"),
         "viewPrivacyPolicy":
             MessageLookupByLibrary.simpleMessage("View Privacy Policy"),
