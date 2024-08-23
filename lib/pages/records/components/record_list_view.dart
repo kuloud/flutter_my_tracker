@@ -35,39 +35,34 @@ class _RecordListViewState extends State<RecordListView> {
                       itemCount: records?.length ?? 0,
                       itemBuilder: (context, index) {
                         return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16, right: 16, top: 16, bottom: 8),
-                            child: ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              title: Text(
-                                distanceFormat(S.of(context),
-                                    records![index].totalDistance),
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    formatMillisecondsDateWithTime(
-                                        S.of(context),
-                                        records[index].startTime.toInt()),
-                                    style:
-                                        Theme.of(context).textTheme.titleSmall,
-                                  ),
-                                  const Icon(Icons.chevron_right)
-                                ],
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DetailPage(
-                                            trackStat: records[index],
-                                          )),
-                                );
-                              },
+                          child: ListTile(
+                            contentPadding:
+                                const EdgeInsets.only(left: 16, right: 8),
+                            title: Text(
+                              distanceFormat(
+                                  S.of(context), records![index].totalDistance),
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  formatMillisecondsDateWithTime(S.of(context),
+                                      records[index].startTime.toInt()),
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ),
+                                const Icon(Icons.chevron_right)
+                              ],
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                          trackStat: records[index],
+                                        )),
+                              );
+                            },
                           ),
                         );
                       })

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
+import 'package:x_common/utils/logger.dart';
 
 List<List<Position>> groupPointsByMinute(List<Position> sortedPoints) {
   // 计算每分钟的毫秒数

@@ -275,6 +275,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_adaptive_scaffold:
+    dependency: transitive
+    description:
+      name: flutter_adaptive_scaffold
+      sha256: a464b74540401cade07af0ae84d19f210534cac67651a150fb413507040b74f6
+      url: "https://mirrors.tuna.tsinghua.edu.cn/dart-pub/"
+    source: hosted
+    version: "0.1.12"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -1038,6 +1046,14 @@ packages:
       url: "https://mirrors.tuna.tsinghua.edu.cn/dart-pub/"
     source: hosted
     version: "5.5.4"
+  x_common:
+    dependency: "direct main"
+    description:
+      name: x_common
+      sha256: e69ad76b0aea9a6687b6ce5cc71fdb881fcdb21a59db1719d95b38d7494dcf0f
+      url: "https://mirrors.tuna.tsinghua.edu.cn/dart-pub/"
+    source: hosted
+    version: "1.0.4"
   xdg_directories:
     dependency: transitive
     description:

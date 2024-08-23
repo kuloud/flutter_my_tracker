@@ -14,9 +14,10 @@ import 'package:flutter_my_tracker/components/location/location_service_reposito
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/pages/index/index_page.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
 
 import 'dart:async';
+
+import 'package:x_common/utils/logger.dart';
 
 class MyTrackerApp extends StatefulWidget {
   const MyTrackerApp({super.key});
