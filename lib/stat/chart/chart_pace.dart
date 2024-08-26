@@ -1,9 +1,6 @@
-import 'package:ditredi/ditredi.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_my_tracker/calc/speed_calc.dart';
 import 'package:flutter_my_tracker/calc/time_calc.dart';
-import 'package:flutter_my_tracker/components/widgets/empty_view.dart';
 import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/models/pojos/position.dart';
 import 'package:flutter_my_tracker/stat/card_title_bar.dart';
@@ -31,8 +28,7 @@ class _ChartPaceState extends State<ChartPace> {
     Colors.blue,
   ];
 
-  BarChartData? _barChartData;
-  LineChartData? _lineChartData;
+  late LineChartData data;
 
   final Duration animDuration = const Duration(milliseconds: 250);
 
@@ -52,61 +48,51 @@ class _ChartPaceState extends State<ChartPace> {
   }
 
   void buildChartData() {
-    final startTime = widget.trackStat.startTime.toInt() / 1000; // s
-
     final groupPoints = groupPointsByMinute(widget.points);
 
     final spots = widget.points.where((e) => 'network' != e.provider).map((e) {
-      return FlSpot((e.time / 1000) - startTime, dp(e.speed, 1));
+      return FlSpot(e.time, dp(e.speed, 1));
     }).toList();
 
-    if (groupPoints.length > 60) {
-      _lineChartData = LineChartData(
-          borderData: FlBorderData(show: false),
-          gridData: const FlGridData(
-            show: false,
+    data = LineChartData(
+      borderData: FlBorderData(show: false),
+      gridData: const FlGridData(
+        show: false,
+      ),
+      titlesData: _buildTitleData(groupPoints),
+      lineBarsData: [
+        LineChartBarData(
+          isStrokeCapRound: true,
+          spots: spots,
+          gradient: LinearGradient(
+            colors: gradientColors,
           ),
-          titlesData: _buildTitleData(groupPoints),
-          lineBarsData: [
-            LineChartBarData(
-                isStrokeCapRound: true,
-                spots: spots,
-                gradient: LinearGradient(
-                  colors: gradientColors,
-                ),
-                dotData: const FlDotData(show: false))
-          ]);
-    } else {
-      _barChartData = BarChartData(
-          borderData: FlBorderData(show: false),
-          gridData: const FlGridData(
-            show: false,
+          dotData: const FlDotData(show: false),
+          belowBarData: BarAreaData(
+            show: true,
+            gradient: LinearGradient(
+              colors: gradientColors
+                  .map((color) => color.withOpacity(0.3))
+                  .toList(),
+            ),
           ),
-          titlesData: _buildTitleData(groupPoints),
-          barTouchData: BarTouchData(touchTooltipData: BarTouchTooltipData(
-            getTooltipItem: (group, groupIndex, rod, rodIndex) {
-              return BarTooltipItem(
-                  formatPace(rod.toY),
-                  Theme.of(context)
-                      .textTheme
-                      .labelMedium!
-                      .copyWith(color: gradientColors.first));
-            },
-          )),
-          barGroups: groupPoints
-              .mapIndexed((e, i) =>
-                  BarChartGroupData(groupVertically: true, x: i + 1, barRods: [
-                    BarChartRodData(
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          colors: gradientColors,
-                        ),
-                        fromY: 0,
-                        toY: e.isNotEmpty ? dp(getAvgSpeed(e), 1) : 0)
-                  ]))
-              .toList());
-    }
+        )
+      ],
+      lineTouchData: LineTouchData(touchTooltipData: LineTouchTooltipData(
+        getTooltipItems: (touchedSpots) {
+          return touchedSpots.map((spots) {
+            final textStyle = TextStyle(
+              color: spots.bar.gradient?.colors.first ??
+                  spots.bar.color ??
+                  Colors.blueGrey,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            );
+            return LineTooltipItem(formatPace(spots.y), textStyle);
+          }).toList();
+        },
+      )),
+    );
   }
 
   FlTitlesData _buildTitleData(List<List<Position>> groupPoints) {
@@ -126,9 +112,8 @@ class _ChartPaceState extends State<ChartPace> {
         bottomTitles: AxisTitles(
             sideTitles: SideTitles(
           showTitles: true,
-          reservedSize: 24,
-          getTitlesWidget: (value, titleMeta) => buildBottomTimeTitlesWidget(
-              context, value.toInt(), titleMeta, groupPoints.length, 1),
+          getTitlesWidget: (value, titleMeta) =>
+              buildBottomTimeTitlesWidget(context, value.toInt(), titleMeta),
         )));
   }
 
@@ -150,24 +135,15 @@ class _ChartPaceState extends State<ChartPace> {
               }
             ]),
         Container(
-          height: 200,
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: AspectRatio(
             aspectRatio: 2,
-            child: _buildChart(),
+            child: LineChart(
+              data,
+            ),
           ),
         )
       ]),
     );
-  }
-
-  Widget _buildChart() {
-    if (_barChartData != null) {
-      return BarChart(_barChartData!);
-    } else if (_lineChartData != null) {
-      return LineChart(_lineChartData!);
-    } else {
-      return const EmptyView();
-    }
   }
 }

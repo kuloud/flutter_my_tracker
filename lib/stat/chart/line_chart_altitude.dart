@@ -6,7 +6,6 @@ import 'package:flutter_my_tracker/stat/card_title_bar.dart';
 import 'package:flutter_my_tracker/stat/chart/widgets.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
-import 'package:flutter_my_tracker/utils/logger.dart';
 
 class LineChartAltitude extends StatefulWidget {
   const LineChartAltitude(
@@ -34,59 +33,49 @@ class _LineChartAltitudeState extends State<LineChartAltitude> {
   }
 
   void buildLineChartData() {
-    final startTime = widget.trackStat.startTime.toInt() / 1000; // s
-    final endTime = widget.trackStat.endTime.toInt() / 1000; //s
-
     final spots = widget.points.where((e) => 'network' != e.provider).map((e) {
-      return FlSpot((e.time / 1000) - startTime, dp(e.altitude, 1));
+      return FlSpot(e.time, dp(e.altitude, 1));
     }).toList();
 
     data = LineChartData(
         titlesData: FlTitlesData(
             topTitles:
                 const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            leftTitles: AxisTitles(
-              // axisNameWidget: Text('海拔'),
+            leftTitles: const AxisTitles(
               sideTitles: SideTitles(
-                  reservedSize: 40,
-                  showTitles: false,
-                  getTitlesWidget: buildLeftTitlesWidget),
+                showTitles: false,
+              ),
             ),
             rightTitles:
                 const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             bottomTitles: AxisTitles(
-                // axisNameWidget: Text('时间'),
                 sideTitles: SideTitles(
               showTitles: true,
-              reservedSize: 24,
               getTitlesWidget: (value, titleMeta) {
-                return buildBottomTimeTitlesWidget(context, value.toInt(),
-                    titleMeta, (endTime - startTime).toInt(), 60);
+                return buildBottomTimeTitlesWidget(
+                    context, value.toInt(), titleMeta);
               },
             ))),
         lineBarsData: [
           LineChartBarData(
-              isStrokeCapRound: true,
-              spots: spots,
+            isStrokeCapRound: true,
+            spots: spots,
+            gradient: LinearGradient(
+              colors: gradientColors,
+            ),
+            dotData: const FlDotData(show: false),
+            belowBarData: BarAreaData(
+              show: true,
               gradient: LinearGradient(
-                colors: gradientColors,
+                colors: gradientColors
+                    .map((color) => color.withOpacity(0.3))
+                    .toList(),
               ),
-              dotData: const FlDotData(show: false))
+            ),
+          )
         ],
         gridData: const FlGridData(show: false),
         borderData: FlBorderData(show: false));
-  }
-
-  Widget buildLeftTitlesWidget(double value, TitleMeta meta) {
-    return SideTitleWidget(
-      fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
-      axisSide: meta.axisSide,
-      child: Text(
-        meta.formattedValue,
-        textAlign: TextAlign.right,
-        style: Theme.of(context).textTheme.labelSmall,
-      ),
-    );
   }
 
   @override

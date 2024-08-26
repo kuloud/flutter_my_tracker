@@ -36,6 +36,7 @@ dependencies:
   share_plus: ^10.0.2
   x_common: ^1.0.4
   flutter_tts: ^4.0.2
+  amap_map: ^1.0.12
   
 dev_dependencies:
   flutter_test:
