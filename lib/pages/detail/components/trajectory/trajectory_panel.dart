@@ -61,9 +61,18 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
             _points.clear();
-            if (snapshot.data!.isNotEmpty) {
+            final positions = snapshot.data!;
+            if (positions.isNotEmpty) {
+              final List<Model3D<Model3D<dynamic>>> lines = [];
+              for (int i = 0; i < positions.length - 1; i++) {
+                final start = positions[i].toPoint3D();
+                final end = positions[i + 1].toPoint3D();
+                lines.add(Line3D(start.position, end.position,
+                    color: end.color, width: 2));
+              }
+              _points.addAll(lines);
               final points = snapshot.data!.map((e) => e.toPoint3D());
-              _points.addAll(points);
+              // _points.addAll(points);
               if (_showAxis) {
                 _points.addAll(points.bottomGrid());
               }
