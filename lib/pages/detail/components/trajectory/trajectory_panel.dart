@@ -71,9 +71,8 @@ class _TrajectoryPanelState extends State<TrajectoryPanel> {
                     color: end.color, width: 2));
               }
               _points.addAll(lines);
-              final points = snapshot.data!.map((e) => e.toPoint3D());
-              // _points.addAll(points);
               if (_showAxis) {
+                final points = snapshot.data!.map((e) => e.toPoint3D());
                 _points.addAll(points.bottomGrid());
               }
             } else {

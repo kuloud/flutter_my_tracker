@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:x_common/utils/logger.dart';
 
 enum TtsState { playing, stopped, paused, continued }
 
@@ -13,7 +14,7 @@ class TtsService {
   late FlutterTts flutterTts;
   String? language;
   String? engine;
-  double volume = 0.5;
+  double volume = 0.8;
   double pitch = 1.0;
   double rate = 0.5;
   bool isCurrentLanguageInstalled = false;
@@ -40,32 +41,32 @@ class TtsService {
     }
 
     flutterTts.setStartHandler(() {
-      print("Playing");
+      logger.d("Playing");
       ttsState = TtsState.playing;
     });
 
     flutterTts.setCompletionHandler(() {
-      print("Complete");
+      logger.d("Complete");
       ttsState = TtsState.stopped;
     });
 
     flutterTts.setCancelHandler(() {
-      print("Cancel");
+      logger.d("Cancel");
       ttsState = TtsState.stopped;
     });
 
     flutterTts.setPauseHandler(() {
-      print("Paused");
+      logger.d("Paused");
       ttsState = TtsState.paused;
     });
 
     flutterTts.setContinueHandler(() {
-      print("Continued");
+      logger.d("Continued");
       ttsState = TtsState.continued;
     });
 
     flutterTts.setErrorHandler((msg) {
-      print("error: $msg");
+      logger.w("error: $msg");
       ttsState = TtsState.stopped;
     });
   }
@@ -81,14 +82,14 @@ class TtsService {
   Future<void> _getDefaultEngine() async {
     var engine = await flutterTts.getDefaultEngine;
     if (engine != null) {
-      print(engine);
+      logger.d(engine);
     }
   }
 
   Future<void> _getDefaultVoice() async {
     var voice = await flutterTts.getDefaultVoice;
     if (voice != null) {
-      print(voice);
+      logger.d(voice);
     }
   }
 
