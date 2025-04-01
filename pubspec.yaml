@@ -36,7 +36,7 @@ dependencies:
   share_plus: ^10.0.2
   x_common: ^1.0.4
   flutter_tts: ^4.0.2
-  amap_map: ^1.0.12
+  amap_map: ^1.0.15
   
 dev_dependencies:
   flutter_test:
@@ -54,10 +54,7 @@ flutter:
   assets:
     - assets/images/app_logo.png
     - PRIVACY-POLICY.md
-    - PRIVACY-POLICY-zh_CN.md
     - CHANGELOG.md
-    - CHANGELOG-zh_CN.md
     - README.md
-    - README-zh_CN.md
 flutter_intl:
   enabled: true
