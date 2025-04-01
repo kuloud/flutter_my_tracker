@@ -1,4 +1,4 @@
-import 'package:ditredi/ditredi.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/components/widgets/grid_tile_title_label.dart';
 import 'package:flutter_my_tracker/components/widgets/highlighted_number_text.dart';
@@ -6,6 +6,7 @@ import 'package:flutter_my_tracker/generated/l10n.dart';
 import 'package:flutter_my_tracker/pages/index/components/pace_gradient_bar.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
+import 'package:collection/collection.dart';
 
 class MainInfoCard extends StatelessWidget {
   const MainInfoCard({
@@ -57,7 +58,7 @@ class MainInfoCard extends StatelessWidget {
               crossAxisCount: 3,
               childAspectRatio: 2,
               children: items
-                  .mapIndexed((e, i) => SkyGridTileTitleLabel(
+                  .mapIndexed((i, e) => SkyGridTileTitleLabel(
                         data: e,
                         textAlign: _determineTextAlign(i),
                       ))

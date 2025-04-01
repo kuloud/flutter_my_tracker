@@ -1,6 +1,7 @@
-import 'package:ditredi/ditredi.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/components/widgets/grid_tile_label_title.dart';
+import 'package:collection/collection.dart';
 
 class CardTitleBar extends StatelessWidget {
   const CardTitleBar(
@@ -43,7 +44,7 @@ class CardTitleBar extends StatelessWidget {
               crossAxisCount: 2,
               childAspectRatio: 2.5,
               children: items
-                  .mapIndexed((e, i) => SkyGridTileLabelTitle(
+                  .mapIndexed((i, e) => SkyGridTileLabelTitle(
                         data: e,
                         textAlign: CrossAxisAlignment.center,
                       ))

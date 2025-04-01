@@ -18,7 +18,8 @@ Widget buildBottomTimeTitlesWidget(
   }
 
   return SideTitleWidget(
-    axisSide: meta.axisSide,
+    meta: meta,
+    // axisSide: meta.axisSide,
     child: Text(
       DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(time)),
       style: Theme.of(context).textTheme.labelSmall,

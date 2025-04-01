@@ -1,4 +1,4 @@
-import 'package:ditredi/ditredi.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/components/widgets/grid_tile_label_title.dart';
 import 'package:flutter_my_tracker/calc/stat_calc.dart';
@@ -8,6 +8,7 @@ import 'package:flutter_my_tracker/pages/records/components/pojos/region_summary
 import 'package:flutter_my_tracker/providers/track_stat_provider.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
+import 'package:collection/collection.dart';
 
 class SummaryCard extends StatefulWidget {
   const SummaryCard({
@@ -94,7 +95,7 @@ class _SummaryCardState extends State<SummaryCard> {
                           crossAxisCount: 2,
                           childAspectRatio: 2.5,
                           children: items
-                              .mapIndexed((e, i) => SkyGridTileLabelTitle(
+                              .mapIndexed((i, e) => SkyGridTileLabelTitle(
                                     data: e,
                                     textAlign: CrossAxisAlignment.center,
                                   ))

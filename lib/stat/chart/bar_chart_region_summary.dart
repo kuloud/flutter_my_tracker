@@ -1,4 +1,4 @@
-import 'package:ditredi/ditredi.dart';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_tracker/calc/stat_calc.dart';
@@ -8,6 +8,7 @@ import 'package:flutter_my_tracker/pages/records/components/pojos/region_summary
 import 'package:flutter_my_tracker/stat/chart/gradient_colors.dart';
 import 'package:flutter_my_tracker/stat/track_stat.dart';
 import 'package:flutter_my_tracker/utils/format.dart';
+import 'package:collection/collection.dart';
 
 class BarChartRegionSummary extends StatefulWidget {
   const BarChartRegionSummary(
@@ -80,7 +81,7 @@ class _BarChartRegionSummaryState extends State<BarChartRegionSummary> {
               },
             )),
         barGroups: groupTrackStats
-            .mapIndexed((g, i) => BarChartGroupData(
+            .mapIndexed((i, g) => BarChartGroupData(
                 groupVertically: true, x: i + 1, barRods: getBarRods(g)))
             .toList());
   }
@@ -104,7 +105,7 @@ class _BarChartRegionSummaryState extends State<BarChartRegionSummary> {
 
   List<BarChartRodData> getBarRods(List<TrackStat> g) {
     double totalDistance = 0;
-    return g.mapIndexed((e, i) {
+    return g.mapIndexed((i, e) {
       final rodData = BarChartRodData(
           gradient: const LinearGradient(
             begin: Alignment.bottomCenter,

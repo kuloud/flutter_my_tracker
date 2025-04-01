@@ -3,7 +3,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, avoid_classes_with_only_static_members
 
 mixin Pubspec {
-  static final buildDate = DateTime.utc(2024, 8, 23, 6, 38, 11);
+  static final buildDate = DateTime.utc(2025, 4, 1, 6, 11, 7);
 
   static const name = 'flutter_my_tracker';
 
@@ -48,15 +48,13 @@ mixin Pubspec {
     'cactus_locator': '^1.0.0',
     'path': '^1.8.3',
     'logger': '^2.0.2+1',
-    'bloc': '^8.1.2',
-    'flutter_bloc': '^8.1.3',
-    'get_it': '^7.6.4',
+    'bloc': '^9.0.0',
+    'flutter_bloc': '^9.1.0',
+    'get_it': '^8.0.3',
     'shared_preferences': '^2.2.2',
     'injectable': '^2.3.2',
-    'fl_chart': '^0.68.0',
+    'fl_chart': '^0.70.2',
     'permission_handler': '^11.3.1',
-    'ditredi': '^2.0.2',
-    'vector_math': '^2.1.4',
     'about': '^2.1.3',
     'image_gallery_saver': <dynamic, dynamic>{
       'path': './image_gallery_saver',
@@ -66,13 +64,14 @@ mixin Pubspec {
     'share_plus': '^10.0.2',
     'x_common': '^1.0.4',
     'flutter_tts': '^4.0.2',
+    'amap_map': '^1.0.15',
   };
 
   static const dev_dependencies = <dynamic, dynamic>{
     'flutter_test': <dynamic, dynamic>{
       'sdk': 'flutter',
     },
-    'flutter_lints': '^4.0.0',
+    'flutter_lints': '^5.0.0',
     'build_runner': '^2.4.6',
     'injectable_generator': '^2.1.6',
     'pubspec_extract': '^2.0.5',
@@ -83,11 +82,8 @@ mixin Pubspec {
     'assets': <dynamic>[
       'assets/images/app_logo.png',
       'PRIVACY-POLICY.md',
-      'PRIVACY-POLICY-zh_CN.md',
       'CHANGELOG.md',
-      'CHANGELOG-zh_CN.md',
       'README.md',
-      'README-zh_CN.md',
     ],
   };
 
